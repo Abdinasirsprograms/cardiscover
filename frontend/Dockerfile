@@ -6,10 +6,8 @@ WORKDIR /app
 # Copy the frontend source code to the container
 COPY /cardiscover-frontend/. .
 
-RUN ls -l
 # Install dependencies and build the frontend application
 RUN npm install && npm run build --prod
-RUN ls -l
 
 # Production stage
 FROM alpine:latest
