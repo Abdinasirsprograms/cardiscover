@@ -1,0 +1,109 @@
+<form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+  <mat-grid-list cols="4" rows="2" rowHeight="2.75:1" guttersize="1rem" >
+    <!-- Need a way to display the ID -->
+    <!-- <ng-container *ngIf="editView">
+      <mat-grid-tile colspan=2>
+        <mat-form-field formControlName="id">
+          <mat-label>Car ID</mat-label>
+          <input disabled matInput [value]="id">
+        </mat-form-field>
+      </mat-grid-tile>
+    </ng-container> -->
+    <mat-grid-tile >
+      <mat-form-field>
+        <mat-label>Brand</mat-label>
+        <input matInput formControlName="brand">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile >
+      <mat-form-field>
+        <mat-label>Pickup date</mat-label>
+        <mat-hint>MM/DD/YYYY, HH:MM AM/PM</mat-hint>
+        <mat-datetimepicker-toggle [for]="pickupTime" class="datetime-picker-toggle"   matSuffix></mat-datetimepicker-toggle>
+        <mat-datetimepicker #pickupTime type="datetime" > </mat-datetimepicker>
+        <input matInput formControlName="pickupTime" [matDatetimepicker]="pickupTime" autocomplete="false" />
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile >
+      <mat-form-field>
+
+        <mat-label>Drop off date</mat-label>
+        <mat-hint>MM/DD/YYYY, HH:MM AM/PM</mat-hint>
+        <mat-datetimepicker-toggle [for]="dropoffTime" class="datetime-picker-toggle"   matSuffix></mat-datetimepicker-toggle>
+        <mat-datetimepicker #dropoffTime type="datetime" > </mat-datetimepicker>
+        <input matInput formControlName="dropoffTime" [matDatetimepicker]="dropoffTime" autocomplete="false" />
+      </mat-form-field>
+    </mat-grid-tile>
+    
+    <mat-grid-tile >
+      <mat-form-field>
+          <mat-label>Location</mat-label>
+        <input matInput formControlName="location">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile >
+      <mat-form-field>
+      <mat-label>Model</mat-label>
+        <input matInput formControlName="model">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile >
+      <mat-form-field>
+          <mat-label>Rate</mat-label>
+        <input matInput type="number" formControlName="rate">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile >
+      <mat-form-field>
+          <mat-label>Size</mat-label>
+        <input matInput formControlName="size">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile >
+      <mat-form-field>
+          <mat-label>Supplier</mat-label>
+        <input matInput formControlName="supplier">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan=2>
+      <button mat-fab extended color="primary" type="submit">
+        <ng-container *ngIf="editView === false">
+          <mat-icon >add</mat-icon>
+          Add car
+        </ng-container>
+        <ng-container *ngIf="editView">
+          <mat-icon >save</mat-icon>
+          Save Changes
+        </ng-container>
+      </button>
+    </mat-grid-tile>
+    <ng-container *ngIf="editView && clearSelectedView !== true">
+      <mat-grid-tile colspan=2>
+        <button mat-stroked-button	color="basic" (click)="addMultiple()">
+          <mat-icon >library_add</mat-icon>
+          Add multiple cars
+        </button>
+      </mat-grid-tile>
+    </ng-container>
+    <!-- Can implement a next and a clear feature -->
+    <!-- <ng-container ngIf="rowsClicked.length > 1">
+    <ng-container *ngIf="editView && clearSelectedView">
+      <mat-grid-tile colspan=2>
+        <button mat-flat-button (click)="app.clearSelected()"  [ngStyle]="{'display': app.rowsClicked.length > 0 ? 'block' : 'none'}">
+          <mat-icon>clear_all_outlined</mat-icon>
+          Clear Selected ({{app.rowsClicked.length}})
+        </button>
+      </mat-grid-tile>
+    </ng-container>
+      <button mat-stroked-button	color="basic" (click)="addMultiple()">
+        <mat-icon >library_add</mat-icon>
+        Next record
+      </button>
+    </ng-container> -->
+    
+  </mat-grid-list>
+</form>

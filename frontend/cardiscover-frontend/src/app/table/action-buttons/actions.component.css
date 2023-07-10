@@ -1,0 +1,28 @@
+.grid-list-container {
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin: 3rem 0;
+}
+
+.grid-list-item {
+    padding: 1rem;
+}
+
+.remove-margin{
+    margin-bottom: 0!important;
+}
+
+.highlight-text {
+    background-color: white!important;
+    border-radius: 6px;
+    min-width: 22ch;
+    text-align: center;
+    align-self: bottom;
+}
+
+@media only screen and (min-width: 768px) {
+    
+}

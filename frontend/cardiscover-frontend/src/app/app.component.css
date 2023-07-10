@@ -1,0 +1,104 @@
+.button-white-background {
+    background-color: white;
+}
+
+
+.mdc-text-field__input::-webkit-calendar-picker-indicator {
+    display: block !important;
+}
+
+.center-me {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.filter-button-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+
+.no-result {
+    padding: 1rem;
+}
+
+.danger {
+    background-color: hsl(0, 77%, 47%);
+    color: white!important;
+
+}
+.shake {
+    animation: shake 0.5s linear forwards;
+    padding: 1rem;
+  }
+  
+  @keyframes shake {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    10%, 30%, 70%, 90% {
+      transform: translate(-2px, 0);
+    }
+    20%, 60% {
+      transform: translate(2px, 0);
+    }
+} 
+
+
+.edit-background-green {
+    background-color: hsla(130, 100%, 70%, 0.911)!important;
+}
+.card-background {
+    background-color: RGBA(105, 125, 175, .85);
+    color: white;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    border-radius: 2rem;
+}
+
+.image-background::after {
+    display: inline-block;
+    min-width: 100%;
+    height: 100%;
+    content: "";
+    position: fixed;
+    aspect-ratio: 9/16;
+    /* request will be initiated front-end so rate-limiting and caching shouldn't be a concern for demo purposes */
+    /* background: url(https://source.unsplash.com/random/?car,travel,city); */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -5;
+    filter: blur(1px);
+    margin: 0;
+    top: 0;
+}
+
+@media only screen and (min-width: 768px) {
+    .set-after-image-background::after {
+        display: inline-block;
+        min-width: 100%;
+        min-height: 100%;
+        aspect-ratio: 1.85/1;
+        content: "";
+        position: fixed;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: -5;
+        filter: blur(1px);
+        margin: 0;
+        top: 0vh;
+    }
+    .filter-button-container {
+        padding: 1rem;
+    }
+}

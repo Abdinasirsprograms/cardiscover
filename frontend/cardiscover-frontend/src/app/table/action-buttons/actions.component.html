@@ -1,0 +1,55 @@
+ <!-- CAR ACTIONS -->
+ <div class="grid-list-container"  [ngStyle]="{'display': showControls ? 'flex' : 'none'}">
+    <div class="grid-list-item">
+      <ng-container *ngIf="(rowsClicked.length == 0 && (editView || addCarView))">
+        <button mat-flat-button color="warn" (click)="deleteAllCars()" >
+          <mat-icon>delete_forever</mat-icon>
+          Delete all cars
+        </button>
+      </ng-container>
+      <ng-container *ngIf="rowsClicked.length >= 1 && (editView || addCarView)">
+<!-- TABLE ACTION/REQUIRES ROW DETAILS -->
+      <button mat-flat-button color="warn" (click)="deleteRows()" >
+        <mat-icon>delete_forever</mat-icon>
+        Delete Selected
+      </button>
+    </ng-container>
+
+    </div>
+
+    <div class="grid-list-item" >
+        <!-- TEXT VISUALS / NO NEED TO -->
+      <ng-container *ngIf="(rowsClicked.length < 1 && (editView || addCarView))">
+        <h2 class="highlight-text remove-margin">Choose a car to modify</h2>
+      </ng-container>
+        <ng-container *ngIf="editView == false && addCarView == false">
+          <h2 class="highlight-text remove-margin">Choose a car to book for your Trip!</h2>
+        </ng-container>
+        <ng-container *ngIf="rowsClicked.length >= 1 && editView == true && showStartCarReservationView == false">
+          <button mat-flat-button (click)="modify()">
+            <mat-icon>edit_outlined</mat-icon>
+            modify ({{rowsClicked.length}})
+          </button>
+        </ng-container>
+        <ng-container *ngIf="rowsClicked.length == 1 && showStartCarReservationView">
+          <button mat-flat-button (click)="bookCar()">
+            <mat-icon>play_lesson</mat-icon>
+            Book car!
+          </button>
+      </ng-container>
+      <!-- MODIFY CAR WILL BRING UP CAR FORM -->
+        <ng-container *ngIf="rowsClicked.length > 1 && showStartCarReservationView">
+          <button mat-flat-button (click)="modify()">
+            <mat-icon>play_lesson</mat-icon>
+            Book Multiple Cars!
+          </button>
+      </ng-container>
+    </div >
+    <div >
+      <button mat-flat-button (click)="clearSelected()"  [ngStyle]="{'display': rowsClicked.length > 0 ? 'block' : 'none'}">
+        <mat-icon>clear_all_outlined</mat-icon>
+        Clear Selected ({{rowsClicked.length}})
+      </button>
+    </div>
+  </div>
+  <!-- **** -->

@@ -1,0 +1,128 @@
+
+<main >
+  <div class="image-background"></div>
+  <!-- Insert new car form -->
+  <mat-card [ngStyle]="{'display': addCarView ? 'block' : 'none'}">
+    <mat-card-header> 
+        <ng-container *ngIf="(insertNewCarTextHeader)">
+          Insert A New Car
+        </ng-container>
+        <ng-container *ngIf="editCarTextHeader && rowsClicked.length <= 1">
+          Edit Car
+        </ng-container>
+        <ng-container *ngIf="editCarTextHeader && rowsClicked.length > 1">
+          Editing Multiple Cars 
+        </ng-container>
+        
+    </mat-card-header>
+    <mat-card-content>
+    <app-car-form></app-car-form>
+    </mat-card-content>
+  </mat-card>
+  <!-- **** -->
+
+  <!-- Add or Edit car options -->
+  <mat-grid-list cols=2 rows=1 rowHeight="2:1" gutterSize="33%">
+    <mat-grid-tile >
+      <ng-container *ngIf="(addCarView); else addCar" > 
+          <button mat-stroked-button (click)="toggleAddCarView()" class="danger">
+            <mat-icon>close</mat-icon>
+            Close form
+          </button>
+        </ng-container>      
+      
+      <ng-template #addCar>
+        <button mat-stroked-button class="edit-background-green" (click)="toggleAddCarView()" >
+          <mat-icon>inventory</mat-icon>
+          Add car(s) 
+        </button>
+      </ng-template>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <ng-container *ngIf="(editView); else Finishedits" > 
+        <button mat-stroked-button (click)="toggleEditView()" class="button-white-background">
+          <mat-icon>visibility_off</mat-icon>
+          Done Editing
+        </button>
+      </ng-container>      
+    
+      <ng-template #Finishedits>
+        <button mat-stroked-button color="primary" class="button-white-background" (click)="toggleEditView()" >
+          <mat-icon>edit_road</mat-icon>
+          Edit car(s) 
+        </button>
+      </ng-template>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+    
+  <!-- Display error messages -->
+  <ng-container *ngIf="noResult" > 
+      <mat-card class="no-result danger shake">  
+        <mat-card-title  class="no-result">No Results!</mat-card-title>  
+        <mat-card-content >
+          Please try altering your itinerary to get results.
+        </mat-card-content>
+      </mat-card>
+  </ng-container>
+  
+  
+  <ng-container *ngIf="noInputView" > 
+      <mat-card class="no-result danger shake">  
+        <mat-card-title  class="no-result" >No Destination Entered!</mat-card-title>  
+        <mat-card-content >
+          Please enter a location.
+        </mat-card-content>
+      </mat-card>
+  </ng-container>
+  <!-- End of error messages -->
+
+  
+  <ng-container *ngIf="rowsClicked.length > 0" >
+    <div class="filter-button-container">
+      <ng-container *ngIf="filteredCarResultsView; else filter" >
+        <button mat-stroked-button (click)="filterForSelected()" class="button-white-background">
+          <mat-icon>filter_list_off</mat-icon>
+          Show all
+        </button>
+      </ng-container>
+      <ng-template #filter>
+        <button mat-stroked-button (click)="filterForSelected()" class="button-white-background">
+          <mat-icon>filter_list</mat-icon>
+          Filter Selected
+        </button>
+      </ng-template>
+    </div>
+  </ng-container>      
+
+    
+  <results-table #carResults [dataSource]="carResultsDataSource" [displayedColumns] = "displayedColumns"
+  [showTable] = "showTable"
+  (rowClick)="clickedRow($event)" [filteredCarResultsView]="filteredCarResultsView"
+  ></results-table>
+
+  <ng-container *ngIf="showDoLocationResults" >
+    <results-table #doLocationResults [dataSource]="doLocationResultsDataSource" [displayedColumns] = "displayedColumns"
+    [showTable] = "showTable"
+    (rowClick)="clickedRow($event)"
+    ></results-table>
+  </ng-container>
+
+
+
+  <results-table-actions [showControls]="showTable"
+  [addCarView]="addCarView"
+  [editView] = "editView"
+  [rowsClicked]="rowsClicked" 
+  ></results-table-actions>
+
+
+  <!-- Car discover form -->
+  <ng-container *ngIf="editView === false && showCarDiscoverForm === true">
+    <cardiscover-form #cardiscoverForm (formSubmitted) ="getAvaliableCars($event)"></cardiscover-form>
+  </ng-container>
+
+</main>
+  

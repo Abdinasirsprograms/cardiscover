@@ -1,0 +1,128 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+###### FRONTEND IGNORES
+
+# Compiled output
+frontend/cardiscover-frontend/dist
+frontend/cardiscover-frontend/tmp
+frontend/cardiscover-frontend/out-tsc
+frontend/cardiscover-frontend/bazel-out
+
+# Node
+frontend/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+frontend/cardiscover-frontend/.angular/cache
+.sass-cache/
+frontend/cardiscover-frontend/connect.lock
+frontend/cardiscover-frontend/coverage
+frontend/cardiscover-frontend/libpeerconnection.log
+testem.log
+frontend/cardiscover-frontend/typings
+
+# System files
+.DS_Store
+Thumbs.db
+
+
+
+
+########## BACKEND IGNORE
+
+HELP.md
+backend/cardiscover-backend/target/
+backend/cardiscover-backend/!.mvn/wrapper/maven-wrapper.jar
+backend/cardiscover-backend/!**/src/main/**/target/
+backend/cardiscover-backend/!**/src/test/**/target/
+backend/cardiscover-backend/application.properties
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+
+## Spring-boot biolerplace .gitignore ##
+*#
+*.iml
+*.ipr
+*.iws
+*.jar
+*.sw?
+*~
+.#*
+.*.md.html
+.DS_Store
+.attach_pid*
+.classpath
+.factorypath
+.gradle
+.idea
+.metadata
+.project
+.recommenders
+.settings
+.springBeans
+backend/cardiscover-backend/.vscode
+/code
+MANIFEST.MF
+_site/
+activemq-data
+bin
+build
+!/**/src/**/bin
+!/**/src/**/build
+build.log
+dependency-reduced-pom.xml
+dump.rdb
+interpolated*.xml
+lib/
+manifest.yml
+out
+overridedb.*
+target
+.flattened-pom.xml
+secrets.yml
+.gradletasknamecache
+.sts4-cache

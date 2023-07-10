@@ -1,0 +1,61 @@
+<div class="grid-list-container">
+    <div class="grid-list-item" >
+      <mat-card class="card-background">
+        <mat-card-header>
+          <div mat-card-avatar>
+            <mat-icon>flare</mat-icon>
+          </div>
+          <mat-card-title>Pick up details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content >
+          <form [formGroup]="carDiscoverForm" (ngSubmit)="getAvaliableCars()" class="form-container">
+            <mat-form-field class="location-input-parent" >
+              <mat-label>Pick Up</mat-label>
+              <input matInput placeholder="Ex. London" name="puLocation" formControlName="puLocation" >
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Pick up date</mat-label>
+              <mat-datetimepicker-toggle [for]="puDate" class="datetime-picker-toggle"   matSuffix></mat-datetimepicker-toggle>
+              <mat-datetimepicker #puDate type="datetime" [style]="{color:'green!important'}"> </mat-datetimepicker>
+              <input matInput formControlName="puDate" [matDatetimepicker]="puDate" required autocomplete="false" />
+          
+            </mat-form-field>
+        </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="grid-list-item">
+        <mat-card class="card-background">
+          <mat-card-header>
+            <div mat-card-avatar>
+              <mat-icon>dark_mode</mat-icon>
+            </div>
+            <mat-card-title>Drop off details</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form  [formGroup]="carDiscoverForm" (ngSubmit)="getAvaliableCars()" class="form-container">
+              <mat-form-field class="location-input-parent" >
+                <mat-label>Drop Off location</mat-label>
+                <input matInput placeholder="Ex. London" name="doLocation" formControlName="doLocation" >
+              </mat-form-field>
+              <mat-form-field>
+              <mat-label>Drop off date</mat-label>
+              <mat-datetimepicker-toggle [for]="doDate" class="datetime-picker-toggle"   matSuffix></mat-datetimepicker-toggle>
+              <mat-datetimepicker #doDate type="datetime" [style]="{color:'green!important'}"> </mat-datetimepicker>
+              <input matInput formControlName="doDate" [matDatetimepicker]="doDate" required autocomplete="false" />
+              </mat-form-field>
+            </form>
+          </mat-card-content>
+        </mat-card>
+    </div>
+  </div>
+
+  <mat-card id="unset-discover-button-style">
+    <mat-card-content class="center-me">
+      <button mat-fab extended color="primary"  (click)="getAvaliableCars()" type="submit" role="submit">
+        <mat-icon >directions_car</mat-icon>
+        Discover Cars
+      </button>
+    </mat-card-content>
+  </mat-card>
+  <!-- **** -->

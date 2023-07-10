@@ -1,0 +1,107 @@
+.grid-list-container{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-list-item {
+    padding: 3rem;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.location-input-parent {
+    margin: 0;
+    width: 100%;
+}
+
+#unset-discover-button-style{
+    border-radius: 0!important;
+    background-color: unset;
+    border-width: 0;
+    border-style: none!important;
+    border-color: unset;
+    box-shadow: none;
+    margin-top: -1rem;
+}
+
+.datetime-picker-toggle {
+    color: black !important;
+}
+
+.mdc-text-field__input::-webkit-calendar-picker-indicator {
+    display: block !important;
+}
+
+/* Not sure why this isn't avaliable globally */
+.center-me {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+
+.danger {
+    background-color: hsl(0, 77%, 47%);
+    color: white;
+
+}
+.shake {
+    animation: shake 0.5s linear forwards;
+    padding: 1rem;
+  }
+  
+  @keyframes shake {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    10%, 30%, 70%, 90% {
+      transform: translate(-2px, 0);
+    }
+    20%, 60% {
+      transform: translate(2px, 0);
+    }
+} 
+
+
+.card-background {
+    background-color: RGBA(105, 125, 175, .85);
+    color: white;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    border-radius: 2rem;
+}
+
+.grid-list-container{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+    .grid-list-container{
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+    .grid-list-item {
+        padding: 5rem;
+    }
+}
