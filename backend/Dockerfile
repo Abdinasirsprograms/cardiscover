@@ -9,7 +9,12 @@ COPY /cardiscover-backend .
 # Build the backend application using Maven
 RUN mvn clean package -DskipTests
 
-# Production stage
+# 
+# mvn install -Dmaven.test.skip=true
+
+
+# If you absolutely must, you can also use the maven.test.skip property to skip compiling the tests. maven.test.skip is honored by Surefire, 
+# Failsafe and the Compiler Plugin.
 FROM eclipse-temurin:17-jre
 
 WORKDIR /app
