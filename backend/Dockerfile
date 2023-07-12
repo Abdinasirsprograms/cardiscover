@@ -10,7 +10,7 @@ COPY /cardiscover-backend .
 RUN mvn clean package -DskipTests
 
 # Production stage
-FROM adoptopenjdk:11-jre-hotspot
+FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 

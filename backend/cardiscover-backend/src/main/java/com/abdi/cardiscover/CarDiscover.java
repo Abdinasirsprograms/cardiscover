@@ -5,11 +5,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 @SpringBootApplication
 @ComponentScan(basePackages = "com.abdi.cardiscover")
 @EnableJpaRepositories
-public class CarDiscover {
+@EnableAutoConfiguration
+public class CarDiscover extends SpringBootServletInitializer {
 
     
 
