@@ -11,34 +11,34 @@ export class carDiscoverHTTPService {
   constructor(private http: HttpClient) {
   }
   getLocationCars(doLocation:String, puLocation:String): Observable<carFormInterface> {
-    return this.http.post<carFormInterface>('localhost:80/cardiscover/api/location-cars', {"doLocation":doLocation, "puLocation":puLocation});
+    return this.http.post<carFormInterface>('http://abdinasirnoor.com/cardiscover/api/location-cars', {"doLocation":doLocation, "puLocation":puLocation});
   }
   getCars(doLocation:String, puLocation:String, doDate:Date, puDate:Date): Observable<carFormInterface> {
-    return this.http.post<carFormInterface>('localhost:80/cardiscover/api/get-avaliable-cars',
+    return this.http.post<carFormInterface>('http://abdinasirnoor.com/cardiscover/api/get-avaliable-cars',
     {"doLocation":doLocation, "puLocation":puLocation, "doDate":doDate,
       "puDate":puDate});
   }
   getAllCars(): Observable<carFormInterface[]> {
-    return this.http.get<carFormInterface[]>('localhost:80/cardiscover/api/get-all-cars');
+    return this.http.get<carFormInterface[]>('http://abdinasirnoor.com/cardiscover/api/get-all-cars');
   }
   deleteAllCars(): Observable<carFormInterface[]> {
-    return this.http.get<carFormInterface[]>('localhost:80/cardiscover/api/delete-all-cars');
+    return this.http.get<carFormInterface[]>('http://abdinasirnoor.com/cardiscover/api/delete-all-cars');
   }
   getCar(id:number): Observable<carFormInterface[]> {
     const options = id ?
    { params: new HttpParams().set('id', id) } : {};
-    return this.http.get<carFormInterface[]>('localhost:80/cardiscover/api/get-car', options);
+    return this.http.get<carFormInterface[]>('http://abdinasirnoor.com/cardiscover/api/get-car', options);
   }
   createCar(carFormData: carFormInterface): Observable<carFormInterface> {    
     // this'll create a car - not optimized from the backend since it's just 1 class that creates everything
     carFormData.id = 0; 
-    return this.http.post<carFormInterface>('localhost:80/cardiscover/api/create-car', carFormData);
+    return this.http.post<carFormInterface>('http://abdinasirnoor.com/cardiscover/api/create-car', carFormData);
   }
   modifyCar(locationData: carFormInterface): Observable<carFormInterface> {    
-    return this.http.post<carFormInterface>('localhost:80/cardiscover/api/modify-car', locationData);
+    return this.http.post<carFormInterface>('http://abdinasirnoor.com/cardiscover/api/modify-car', locationData);
   }
   bookCar(doLocation:String, puLocation:String, doDate:Date, puDate:Date, carID:number): Observable<carFormInterface> {    
-    return this.http.post<carFormInterface>('localhost:80/cardiscover/api/book-car', {
+    return this.http.post<carFormInterface>('http://abdinasirnoor.com/cardiscover/api/book-car', {
       "doLocation":doLocation,  "puLocation":puLocation, 
       "doDate":doDate, "puDate":puDate , "carID":carID
     });

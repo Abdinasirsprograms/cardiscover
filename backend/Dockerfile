@@ -8,7 +8,7 @@ COPY /cardiscover-backend .
 
 # Build the backend application using Maven
 RUN mvn clean package -DskipTests
-
+mvn clean package -Dmaven.test.skip=true
 # 
 # mvn install -Dmaven.test.skip=true
 
