@@ -27,14 +27,15 @@ At this time, the Dockerfile does image compose but due to how docker is contain
 * Database tables/models are defined in `repository` folder
 * The `entities` folder defines the link to the database tables in Java object form. I'm not using it to store any business logic beyond CRUD operations to minimize sideffects.
 
-The car object represents a collection of relationships with all other objects:
+## Objects
+The `Car` object represents a collection of relationships with all other objects:
 Supplier
 Agency
 Location
 Reservation
-Rate
-Brand
-SpecialtyClass - "Luxury, wheel-chair accessible, electric, etc."
+Price
+Make
+SpecialtyClass (Also was debating to call it "AuxillaryClass" - think cars/agencies/suppliers that may offer extra perks or ammenties such Luxury experinces, wheel-chair accessiblites, or a car is all electric, etc.)
 Size
 Model
 Color
