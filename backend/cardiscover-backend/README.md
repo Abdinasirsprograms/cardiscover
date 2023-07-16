@@ -4,7 +4,7 @@
 
 A backend web project created with Java SE 17.
 
-I'm using the Spring Web MVC (model-view-controller) framework with a MYSQL database but I chose to use spring hibernate ORM instead of .
+I'm using the Spring Web MVC (model-view-controller) framework with a MYSQL database.
 
 I built this project after 2 weeks of learning Java and used the starter template.
 ![LogoWithTagline](./src/main/resources/Logo/LogoLargeWithTagline.png)
