@@ -1,11 +1,11 @@
 # CarDiscover
 ## Your next destination awaits!
-![Logo](/src/main/resources/Logo/LogoWhiteBg.png)
+![Logo](./src/main/resources/Logo/LogoWhiteBg.png)
 
 This is a project created with a springboot backend using a MYSQL JDBC with the spring hibernate ORM.
 
 I built this project after 2 weeks of learning Java and used the starter template.
-![LogoWithTagline](/src/main/resources/Logo/LogoLargeWithTagline.png)
+![LogoWithTagline](./src/main/resources/Logo/LogoLargeWithTagline.png)
 
 The car object represents a collection of relationships with all other objects:
 Supplier
