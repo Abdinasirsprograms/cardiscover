@@ -2,7 +2,7 @@
 ## Your next destination awaits!
 ![Logo](./src/main/resources/Logo/LogoWhiteBg.png)
 
-A backend web project created with Java SE 17.
+A backend web project created with Java JDK 17.
 
 I'm using the Spring Web MVC (model-view-controller) framework with a MYSQL database.
 
