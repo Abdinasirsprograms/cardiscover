@@ -19,6 +19,7 @@ export class CardiscoverFormComponent implements OnInit {
   doLocation: String = '';
   puLocation: String = '';
   noInputView = false;
+  value: any;
 
   constructor(
     private formBuilder: FormBuilder

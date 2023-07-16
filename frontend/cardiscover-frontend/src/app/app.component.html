@@ -91,7 +91,7 @@
       <ng-template #filter>
         <button mat-stroked-button (click)="filterForSelected()" class="button-white-background">
           <mat-icon>filter_list</mat-icon>
-          Filter Selected
+          Compare Selected
         </button>
       </ng-template>
     </div>
@@ -99,23 +99,31 @@
 
     
   <results-table #carResults [dataSource]="carResultsDataSource" [displayedColumns] = "displayedColumns"
-  [showTable] = "showTable"
+ [showTable] = "showTable"
   (rowClick)="clickedRow($event)" [filteredCarResultsView]="filteredCarResultsView"
   ></results-table>
 
   <ng-container *ngIf="showDoLocationResults" >
     <results-table #doLocationResults [dataSource]="doLocationResultsDataSource" [displayedColumns] = "displayedColumns"
-    [showTable] = "showTable"
+   [showTable] = "showTable"
     (rowClick)="clickedRow($event)"
     ></results-table>
   </ng-container>
 
 
 
-  <results-table-actions [showControls]="showTable"
+  <results-table-actions [ngStyle]="{'display': showTable ? 'flex' : 'none'}"
   [addCarView]="addCarView"
   [editView] = "editView"
-  [rowsClicked]="rowsClicked" 
+  [lengthOfRows]="rowsClicked.length" 
+  [showStartCarReservationView] = "showCarDiscoverForm"
+  (clearSelectedClick) = "clearSelected"
+  (deleteAllCarsClick) = "deleteAllCars"
+  (bookCarClick) = "bookCar"
+  (modifyClick) = "modify"
+  (deleteRowsClick) = "deleteRows"
+
+
   ></results-table-actions>
 
 
