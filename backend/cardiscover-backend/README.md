@@ -2,10 +2,30 @@
 ## Your next destination awaits!
 ![Logo](./src/main/resources/Logo/LogoWhiteBg.png)
 
-This is a project created with a springboot backend using a MYSQL JDBC with the spring hibernate ORM.
+A backend web project created with Java SE 17.
+
+I'm using the Spring Web MVC (model-view-controller) framework with a MYSQL database but I chose to use spring hibernate ORM instead of .
 
 I built this project after 2 weeks of learning Java and used the starter template.
 ![LogoWithTagline](./src/main/resources/Logo/LogoLargeWithTagline.png)
+
+
+This project is laid out to have only just have [`CarDiscover.java`](./src/main/java/com/abdi/cardiscover/CarDiscover.java) class as the entry point, if you're using an IDE that has langauge support for Java & Maven, the class entry point is listed in the [`pom.xml`](./pom.xml) file. If the project fails to launch advising there's no entry point found, it means that the `start-class` node within the project -> protperties isn't being parsed or read properly. You can relaunch it by making sure your launching the afromentioned main function. 
+
+# Overview
+## Database
+I used spring's `datasource` and `preparedstatements()` to write MySQL statements but instead opted to use Spring's ORM which includes Spring's own `Hibernate` and the JPA `Jakarta Persistance API`. Spring's `Hibernate` APIs make it easy to implement CRUD (create-read-update-delete) biolerplate operations on tables. The JPA APIs control the connection to the Database, along with all management of data persistence, ensuring application data is always matching database data.
+
+The application.properties.sample define the database configuration settings - copy it and rename it to application.properties so spring can setup the ORM properly. The `spring.jpa.hibernate.ddl-auto` database schema proeprty is needs to be setup so properly so that if the application crashes unexpectldy and relaunches, you'll be prapared for what spring will do to the database - i.e. `create-drop` delete all the database and re-create it, which is very useful for local dev environment, but not so for prod. This setting can also be set to `none` to ensure spring doesn't do anything to the database scheme.
+
+## Docker
+At this time, the Dockerfile does image compose but due to how docker is containerizing and communicating with my host server, I'm unable to get past CORS (Cross Origin Resource Sharing) security policy errors when communicating with my host server and connecting to my host server's MySQL database via Docker's IP `172.17.0.1.` At this time I will need to re-think my entire website's infrastructure to accomodate Docker containers. I'm researching how I can use docker-compose with a MySQL DB service embedded - right now that's my biggest hurdle. The frontend can always be served by apache but I also want to incorporate the frontend. More to come.
+
+## Layout
+* Business logic is within `controller` folder with axuillary shared functionality stored within `utility` folder
+* API request parameters and request body data received by controllers are defined within `requestbody` folder
+* Database tables/models are defined in `repository` folder
+* The `entities` folder defines the link to the database tables in Java object form. I'm not using it to store any business logic beyond CRUD operations to minimize sideffects.
 
 The car object represents a collection of relationships with all other objects:
 Supplier
@@ -21,37 +41,5 @@ Color
 
 Each of the above objects can have a list of Car objects associated. 
 
-This makes collecting relationship-specific data, (i.e. get all suppliers that have cars with the rate of $13.65 per day), much easier. 
+This makes the car object nothing more then a thin veneer over the raw data so you can collect relationship-specific data without too much effort (i.e. get all cars with the rate of $13.65 per day that have supplier primary key of 4). 
 
-Routes:
-
-`/get-all-cars`
-
-`/delete-all-cars`
-
-`/create-car` - requires the following body params:
-    
-    *location: String
-    
-    *brand: String
-    
-    *size: String
-    
-    *model: String
-    
-    *color: String
-    
-    *supplier: String
-    
-    *rate: Float
-    
-    *doLocation: String 
-    
-    *puLocation: String
-    
-*Note that all the params are setup as a get-or-create. No routes are setup to check before creating.
-You can always delete and recreate a car object
-
-`/get-car` - requires a request param car ID: integer
-
-`/book-car` - requires a request param car ID: integer
