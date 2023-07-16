@@ -15,6 +15,8 @@ This project is laid out to have only just have [`CarDiscover.java`](./src/main/
 # Overview
 ## Database
 I used spring's `datasource` and `preparedstatements()` to write MySQL statements but instead opted to use Spring's ORM which includes Spring's own `Hibernate` and the JPA `Jakarta Persistance API`. Spring's `Hibernate` APIs make it easy to implement CRUD (create-read-update-delete) biolerplate operations on tables. The JPA APIs control the connection to the Database, along with all management of data persistence, ensuring application data is always matching database data.
+[Here's a great resource to learn more](https://www.javaguides.net/2018/12/what-is-difference-between-hibernate-and-spring-data-jpa.html) and here's a visual of the difference:
+![Jakarta Persistance API vs Spring's Hibernate Library](https://2.bp.blogspot.com/-qNxMJPEHiBY/XJi0nsgC39I/AAAAAAAAFyo/-r7_JnV5Nak1sN_BWEMCFPU1JahkQbIAACLcBGAs/s1600/hibernate-orm-mpping-latest.png)
 
 The application.properties.sample define the database configuration settings - copy it and rename it to application.properties so spring can setup the ORM properly. The `spring.jpa.hibernate.ddl-auto` database schema proeprty is needs to be setup so properly so that if the application crashes unexpectldy and relaunches, you'll be prapared for what spring will do to the database - i.e. `create-drop` delete all the database and re-create it, which is very useful for local dev environment, but not so for prod. This setting can also be set to `none` to ensure spring doesn't do anything to the database scheme.
 
