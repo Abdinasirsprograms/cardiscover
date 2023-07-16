@@ -9,18 +9,16 @@ I'm using the Spring Web MVC (model-view-controller) framework with a MYSQL data
 ![LogoWithTagline](./src/main/resources/Logo/LogoLargeWithTagline.png)
 
 
-This project is laid out to have only just have [`CarDiscover.java`](./src/main/java/com/abdi/cardiscover/CarDiscover.java) class as the entry point, if you're using an IDE that has langauge support for Java & Maven, the class entry point is listed in the [`pom.xml`](./pom.xml) file. If the project fails to launch advising there's no entry point found, it means that the `start-class` node within the project -> protperties isn't being parsed or read properly. You can relaunch it by making sure your launching the afromentioned main function. 
+[`CarDiscover.java`](./src/main/java/com/abdi/cardiscover/CarDiscover.java) class is the entry point, if you're using an IDE that has langauge support for Java & Maven, it's listed in the [`pom.xml`](./pom.xml) file. If the project fails to launch with "no entry point found,' it means that the `start-class` node in the pom file isn't being parsed or read properly. 
 
 # Overview
 ## Database
 
-Spring's Data `JPA` (Jakarta Persistance APIs) framework abstracts the JPA provider and makes it easy to implement the Domain-Driven Design (DDD) Repository pattern by generating queries based on method name conventions. Database tables/models are defined in the `repository` folder. 
+Spring's Data `JPA` (Jakarta Persistance APIs) framework uses the Domain-Driven Design (DDD) Repository pattern by generating queries based on method name conventions. Database tables/models are defined in the `repository` folder. 
 
+* You can write MySQL statements by injecting Spring Data's `datasource` into a controller. Then use `preparedstatements()` to prepare the MySQL statements, finally excute the respective operation - i.e `executeUpdate().` 
+* I chose to stick with Hibernate within Spring's Data JPA because it makes it easy to implement CRUD (create-read-update-delete) biolerplate operations by just using method names instead of testing and validating MySQL statements seperately. 
 Spring Data JPA uses the Java ORM library `Hibernate` as it's JPA provider by default. 
-
-You can write MySQL statements by injecting Spring Data's `datasource` into a controller. Then use `preparedstatements()` to prepare the MySQL statements, finally excute the respective operation - i.e `executeUpdate().` 
-
-Instead, I chose to stick with Hibernate within Spring's Data JPA because it makes it easy to implement CRUD (create-read-update-delete) biolerplate operations by just using method names instead of testing and validating MySQL statements seperately. 
 
 The application.properties.sample define the database configuration settings - copy it and rename it to application.properties so spring can setup the ORM properly. The `spring.jpa.hibernate.ddl-auto` database schema proeprty is needs to be setup so properly so that if the application crashes unexpectldy and relaunches, you'll be prapared for what spring will do to the database - i.e. `create-drop` delete all the database and re-create it, which is very useful for local dev environment, but not so for prod. This setting can also be set to `none` to ensure spring doesn't do anything to the database scheme.
 
