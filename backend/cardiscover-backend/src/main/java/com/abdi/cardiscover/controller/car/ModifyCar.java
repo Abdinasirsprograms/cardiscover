@@ -65,7 +65,7 @@ public class ModifyCar {
     }
 
     @PostMapping("/modify-car")
-    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
+    @CrossOrigin(origins = {"http://192.168.1.196:4200", "http://localhost:8080"})
     @ResponseBody
     public HashMap<String,String> modifyCar(@RequestBody Car requestParams) throws SQLException {
         // Find by returns a ref to the db object, hence the get() here.

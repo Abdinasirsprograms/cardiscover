@@ -71,7 +71,7 @@ public class CreateCar {
      * Create new cars
      */
     @PostMapping("/create-car")
-    @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:80"})
+    @CrossOrigin(origins = {"http://192.168.1.196:4200", "http://localhost:8080"})
     @ResponseBody
     public HashMap<String, String>  postLocationData(@RequestBody Car requestParams) throws SQLException {
         CarEntity newCar = CreateOrGetCarObjects.run(
