@@ -29,16 +29,16 @@ At this time, the Dockerfile does image compose but due to how docker is contain
 
 ## Objects
 The `Car` object represents a collection of relationships with all other objects:
-Supplier
-Agency
-Location
-Reservation
-Price
-Make
-SpecialtyClass (Also was debating to call it "AuxillaryClass" - think cars/agencies/suppliers that may offer extra perks or ammenties such Luxury experinces, wheel-chair accessiblites, or a car is all electric, etc.)
-Size
-Model
-Color
+* Supplier
+* Agency
+* Location
+* Reservation
+* Price
+* Make
+* SpecialtyClass (Also was debating to call it "AuxillaryClass" - think cars/agencies/suppliers that may offer extra perks or ammenties such Luxury experinces, wheel-chair accessiblites, or a car is all electric, etc.)
+* Size
+* Model
+* Color
 
 Each of the above objects can have a list of Car objects associated. 
 
