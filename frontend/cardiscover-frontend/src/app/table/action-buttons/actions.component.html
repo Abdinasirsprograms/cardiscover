@@ -1,5 +1,5 @@
  <!-- CAR ACTIONS -->
- <div class="grid-list-container"  >
+ <div class="grid-list-container"   [ngStyle]="{'display': showControls ? 'flex' : 'none'}">>
     <div class="grid-list-item">
       <ng-container *ngIf="(lengthOfRows == 0 && (editView || addCarView))">
         <button mat-flat-button color="warn" (click)="deleteAllCars()" >

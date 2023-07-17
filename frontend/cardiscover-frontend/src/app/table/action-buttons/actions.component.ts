@@ -16,6 +16,7 @@ export class ActionsComponent {
   @Input() editView = false;
   @Input() lengthOfRows: number = 0;
   @Input() showStartCarReservationView: boolean = true;
+  @Input() showControls: boolean = true;
 
   clearSelected(){
     this.clearSelectedClick.emit()

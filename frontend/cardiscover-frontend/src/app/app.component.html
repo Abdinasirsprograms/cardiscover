@@ -80,7 +80,7 @@
   <!-- End of error messages -->
 
   
-  <ng-container *ngIf="rowsClicked.length > 0" >
+  <ng-container *ngIf="rowsClicked.length > 0 || filteredCarResultsView === true" >
     <div class="filter-button-container">
       <ng-container *ngIf="filteredCarResultsView; else filter" >
         <button mat-stroked-button (click)="filterForSelected()" class="button-white-background">
@@ -112,7 +112,7 @@
 
 
 
-  <results-table-actions [ngStyle]="{'display': showTable ? 'flex' : 'none'}"
+  <results-table-actions [showControls]="showTable"
   [addCarView]="addCarView"
   [editView] = "editView"
   [lengthOfRows]="rowsClicked.length" 

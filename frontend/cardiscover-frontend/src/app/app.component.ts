@@ -78,6 +78,17 @@ export class AppComponent {
     }
   }
 
+
+  clearSelected(){
+    // reset the clicked rows to not selected state and clear the array
+    let rows = document.querySelectorAll(".added-to-row");
+    rows.forEach(row => {      
+      row.classList.add("not-chosen-hover-state")
+      row.classList.remove("added-to-row")
+    })
+    this.rowsClicked = [];
+  }
+
   // Shows all cars results table
   toggleEditView(){
     if(this.editView) {
@@ -210,17 +221,6 @@ export class AppComponent {
     // }
   }
 
-
-
-  clearSelected(){
-    // reset the clicked rows to not selected state and clear the array
-    let rows = document.querySelectorAll(".added-to-row");
-    rows.forEach(row => {      
-      row.classList.add("not-chosen-hover-state")
-      row.classList.remove("added-to-row")
-    })
-    this.rowsClicked = [];
-  }
 
   
   deleteAllCars(){
