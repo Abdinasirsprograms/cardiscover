@@ -10,12 +10,14 @@
 	</parent>
 	<groupId>com.abdi</groupId>
 	<artifactId>cardiscover</artifactId>
+	
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cardiscover</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
-                <start-class>com.abdi.cardiscover.CarDiscover</start-class>
+		<start-class>com.abdi.cardiscover.CarDiscover</start-class>
+		<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 	</properties>
 	<dependencies>
                 <dependency>
