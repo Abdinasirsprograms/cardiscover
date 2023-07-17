@@ -49,11 +49,11 @@ Thumbs.db
 ########## BACKEND IGNORE
 
 HELP.md
-backend/cardiscover-backend/target/
-backend/cardiscover-backend/!.mvn/wrapper/maven-wrapper.jar
-backend/cardiscover-backend/!**/src/main/**/target/
-backend/cardiscover-backend/!**/src/test/**/target/
-backend/cardiscover-backend/application.properties
+backend/target/
+backend/!.mvn/wrapper/maven-wrapper.jar
+backend/!**/src/main/**/target/
+backend/!**/src/test/**/target/
+backend/application.properties
 ### STS ###
 .apt_generated
 .classpath
@@ -104,7 +104,7 @@ build/
 .recommenders
 .settings
 .springBeans
-backend/cardiscover-backend/.vscode
+backend/.vscode
 /code
 MANIFEST.MF
 _site/
