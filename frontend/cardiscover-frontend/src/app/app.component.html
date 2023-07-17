@@ -16,7 +16,7 @@
         
     </mat-card-header>
     <mat-card-content>
-    <app-car-form></app-car-form>
+      <car-form #carForm></car-form>
     </mat-card-content>
   </mat-card>
   <!-- **** -->
@@ -91,7 +91,7 @@
       <ng-template #filter>
         <button mat-stroked-button (click)="filterForSelected()" class="button-white-background">
           <mat-icon>filter_list</mat-icon>
-          Compare Selected
+          filter selected
         </button>
       </ng-template>
     </div>
@@ -117,11 +117,11 @@
   [editView] = "editView"
   [lengthOfRows]="rowsClicked.length" 
   [showStartCarReservationView] = "showCarDiscoverForm"
-  (clearSelectedClick) = "clearSelected"
-  (deleteAllCarsClick) = "deleteAllCars"
-  (bookCarClick) = "bookCar"
-  (modifyClick) = "modify"
-  (deleteRowsClick) = "deleteRows"
+  (clearSelectedClick) = "clearSelected()"
+  (deleteAllCarsClick) = "deleteAllCars()"
+  (bookCarClick) = "bookCar()"
+  (modifyClick) = "modify()"
+  (deleteRowsClick) = "deleteRows()"
 
 
   ></results-table-actions>

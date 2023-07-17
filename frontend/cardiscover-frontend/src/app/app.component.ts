@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { AddCarFormComponent } from './add-car-form/car-form.component';
 import { CarDiscoverResultsTableDataSource } from '../car-discover-results-table.datasource';
 import { carDiscoverHTTPService } from '../car-discover-http.service';
 import { FormGroup } from '@angular/forms';
 import { ResultsTableComponent } from './table/results-table/results-table.component';
 import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.component';
+import { transition } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -45,8 +46,8 @@ export class AppComponent {
   @ViewChild('carResults') carResultsTableComponent!: ResultsTableComponent;
   @ViewChild('doLocationResults') doLocationResults!: ResultsTableComponent;
   @ViewChild('cardiscoverForm') cardiscoverForm!: CardiscoverFormComponent;
+  @ViewChild('carForm') addCarFormComponentChild!: AddCarFormComponent;
 
-  addCarFormComponentChild!: AddCarFormComponent;
 
   constructor(
     private carDiscover: carDiscoverHTTPService,
@@ -65,11 +66,14 @@ export class AppComponent {
         this.carResultsTableComponent.dataSource.setData([...this.rowsClicked]);
         this.carResultsTableComponent.displayedColumns = Object.keys(this.rowsClicked[0]);
         this.filteredCarResultsView = true;
+        this.clearSelected();
+
       } 
-      else{
+      else {
         this.rowsClicked = [];
         this.carResultsTableComponent.dataSource.setData(this.carResultsUnfiltered);
         this.filteredCarResultsView = false;
+        this.clearSelected();
       }
     }
   }
@@ -182,6 +186,9 @@ export class AppComponent {
       this.noInputView = false;
       this.showTableChooseCarText = true;
     })
+    // reset the carform because the form data somehow gets reset after the getCars
+    // method returns
+    this.cardiscoverForm = emittedData
   }
 
   clickedRow(emittedData: any){
@@ -221,7 +228,7 @@ export class AppComponent {
   }
 
   bookCar(){
-    const formData = this.cardiscoverForm.value;
+    const formData = this.cardiscoverForm;
     this.carDiscover.bookCar(formData.doLocation, formData.puLocation, 
       formData.doDate, formData.puDate, this.rowsClicked[0]).subscribe((response: any) => {
       console.log(formData.doLocation, formData.puLocation, 
@@ -237,7 +244,7 @@ export class AppComponent {
           let editCar = this.rowsClicked[this.chosenRowModifyPointer];
           this.addCarFormComponentChild.editView = true;
           this.addCarFormComponentChild.clearSelectedView = true;
-          this.carDiscover.getCar(editCar).subscribe(
+          this.carDiscover.getCar(editCar.id).subscribe(
             (responseData:any) => {
               if( Object.keys(responseData).length === 0){
                 console.error("Couldn't get car ID", editCar)
@@ -256,7 +263,7 @@ export class AppComponent {
                   supplier: responseData.supplier
                 });
               }else {
-                console.error("ITS NOT RENDERED YET??!!!")
+                console.error("NOT RENDERED YET??!!!")
 
               }
               console.log(this.addCarFormComponentChild.carForm.value.rate)
@@ -267,9 +274,13 @@ export class AppComponent {
           this.addCarView = true;
           this.editCarTextHeader = true;
           this.insertNewCarTextHeader = false;
+          window.scroll({top: 0, behavior: "smooth"})
         }
       }
-      // carForm.location = 
+      else {
+        console.error("Component hasn't rendered or is null!")
+        console.error(this.addCarFormComponentChild)
+      }
     }
   }
 

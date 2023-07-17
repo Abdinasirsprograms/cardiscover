@@ -14,8 +14,8 @@ export class CardiscoverFormComponent implements OnInit {
 
   carDiscoverForm!: FormGroup;
 
-  puDate?: Date;
-  doDate?: Date;
+  puDate!: Date;
+  doDate!: Date;
   doLocation: String = '';
   puLocation: String = '';
   noInputView = false;

@@ -9,13 +9,22 @@ import { DatePipe } from '@angular/common';
 
 
 @Component({
-  selector: 'app-car-form',
+  selector: 'car-form',
   templateUrl: './car-form.component.html',
   styleUrls: ['./car-form.component.css'],
 })
 export class AddCarFormComponent implements OnInit {
   
-  carForm!: FormGroup;
+  carForm: FormGroup = this.formBuilder.group({
+    brand: ['',Validators.required],
+    dropoffTime: [null, Validators.required],
+    location: ['',Validators.required],
+    model: ['', Validators.required],
+    pickupTime: [null, Validators.required],
+    rate: [null, Validators.required],
+    size: ['', Validators.required],
+    supplier: ['', Validators.required]
+  });;
   @Input() id: number | undefined;
   @Input() brand: String | undefined;
   @Input() dropoffTime: DatePipe | undefined;
