@@ -5,5 +5,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ![LogoWithTagline](/backend/src/main/resources/Logo/LogoLargeWithTagline.png)
 
 
-[car-discover-http.service.ts](/src/car-discover-http.service.ts) contains `carDiscoverHTTPService` class which is an injectable service that has all the functions for API endpoints.
+[car-discover-http.service.ts](/src/car-discover-http.service.ts) contains `carDiscoverHTTPService`, an injectable service that has all the functions for cardiscover's API endpoints.
 
+[car-discover-http.service.ts](/src/car-discover-results-table.datasource.ts) contains the `CarDiscoverResultsTableDataSource` table that extends from angular's `MatTableDataSource` to make the "results table" dynamic.
