@@ -50,7 +50,7 @@ public class GetCar {
 
     // Get all avaliable cars based the location, and the reservation's pick up & drop off date and time
     @PostMapping("/get-avaliable-cars")
-    @CrossOrigin(origins = {"http://192.168.1.196:4200", "http://localhost:8080"})
+    @CrossOrigin(origins = {"https://abdinasirnoor.com", "http://localhost:8080"})
     @ResponseBody
     // Serlizes the object as JSON due to the @ResponseBody annotation
     public List<HashMap<String,String>> getCars(@RequestBody Reservation requestParams) throws SQLException {
@@ -94,7 +94,7 @@ public class GetCar {
      * "ready for pickup."
      */
     @GetMapping("/get-car")
-    @CrossOrigin(origins = {"http://192.168.1.196:4200", "http://localhost:8080"})
+    @CrossOrigin(origins = {"https://abdinasirnoor.com", "http://localhost:8080"})
     @ResponseBody
     public HashMap<String,String> getCar(@RequestParam("id") Long id) throws SQLException {
         // Find by returns a ref to the db object, hence the get() here.
@@ -109,7 +109,7 @@ public class GetCar {
      * Get all cars for bulk editing
      */
     @GetMapping("/get-all-cars")
-    @CrossOrigin(origins = {"http://192.168.1.196:4200", "http://localhost:8080"})
+    @CrossOrigin(origins = {"https://abdinasirnoor.com", "http://localhost:8080"})
     @ResponseBody
     // Serlizes the object as JSON due to the @ResponseBody annotation
     public List<HashMap<String,String>> getLocationData() throws SQLException {

@@ -33,7 +33,7 @@ public class CreateReservation {
      * Book car flow
      */
     @PostMapping("/book-car")
-    @CrossOrigin(origins = {"http://192.168.1.196:4200", "http://localhost:8080"})
+    @CrossOrigin(origins = {"https://abdinasirnoor.com", "http://localhost:8080"})
     @ResponseBody
     // Serlizes the object as JSON due to the @ResponseBody annotation
     public HashMap<String,String> bookCar(@RequestBody Reservation requestParams) throws SQLException {

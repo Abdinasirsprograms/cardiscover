@@ -27,7 +27,7 @@ public class DeleteCar {
     }
         
     @GetMapping("/delete-all-cars")
-    @CrossOrigin(origins = {"http://192.168.1.196:4200", "http://localhost:8080"})
+    @CrossOrigin(origins = {"https://abdinasirnoor.com", "http://localhost:8080"})
     // Serlizes the object as JSON due to the @ResponseBody annotation
     public void deleteAllCar() throws SQLException {
         carRepository.deleteAll();
