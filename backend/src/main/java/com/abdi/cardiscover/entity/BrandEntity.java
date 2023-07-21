@@ -1,13 +1,8 @@
-package com.abdi.cardiscover.entity.brand;
+package com.abdi.cardiscover.entity;
 
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.abdi.cardiscover.entity.ImageEntity;
-import com.abdi.cardiscover.entity.ModelEntity;
-import com.abdi.cardiscover.entity.SizeEntity;
-import com.abdi.cardiscover.entity.SpecialtyClassEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

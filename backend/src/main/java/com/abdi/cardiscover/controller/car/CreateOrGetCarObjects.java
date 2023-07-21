@@ -5,15 +5,15 @@ import java.math.RoundingMode;
 
 import org.springframework.stereotype.Component;
 
+import com.abdi.cardiscover.entity.BrandEntity;
+import com.abdi.cardiscover.entity.CarEntity;
 import com.abdi.cardiscover.entity.ColorEntity;
+import com.abdi.cardiscover.entity.LocationEntity;
 import com.abdi.cardiscover.entity.ModelEntity;
 import com.abdi.cardiscover.entity.RateEntity;
 import com.abdi.cardiscover.entity.ReservationEntity;
 import com.abdi.cardiscover.entity.SizeEntity;
 import com.abdi.cardiscover.entity.SupplierEntity;
-import com.abdi.cardiscover.entity.brand.BrandEntity;
-import com.abdi.cardiscover.entity.car.CarEntity;
-import com.abdi.cardiscover.entity.location.LocationEntity;
 import com.abdi.cardiscover.repository.AgencyRepository;
 import com.abdi.cardiscover.repository.BrandRepository;
 import com.abdi.cardiscover.repository.CarRepository;
@@ -24,11 +24,11 @@ import com.abdi.cardiscover.repository.RateRepository;
 import com.abdi.cardiscover.repository.ReservationRepository;
 import com.abdi.cardiscover.repository.SizeRepository;
 import com.abdi.cardiscover.repository.SupplierRepository;
-import com.abdi.cardiscover.requestbody.Car;
+import com.abdi.cardiscover.requestbody.CarRequestBody;
 
 @Component 
 public class CreateOrGetCarObjects {
-    public static CarEntity run(Car requestParams,
+    public static CarEntity run(CarRequestBody requestParams,
     CarRepository carRepository,
     ColorRepository colorRepository,
     LocationRepository locationRepository,

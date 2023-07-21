@@ -1,17 +1,7 @@
-package com.abdi.cardiscover.entity.car;
+package com.abdi.cardiscover.entity;
 
 
 import java.util.List;
-
-import com.abdi.cardiscover.entity.ReservationEntity;
-import com.abdi.cardiscover.entity.ColorEntity;
-import com.abdi.cardiscover.entity.ModelEntity;
-import com.abdi.cardiscover.entity.RateEntity;
-import com.abdi.cardiscover.entity.ReservationEntity;
-import com.abdi.cardiscover.entity.SizeEntity;
-import com.abdi.cardiscover.entity.SupplierEntity;
-import com.abdi.cardiscover.entity.brand.BrandEntity;
-import com.abdi.cardiscover.entity.location.LocationEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

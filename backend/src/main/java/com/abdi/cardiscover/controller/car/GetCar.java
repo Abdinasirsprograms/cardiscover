@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.abdi.cardiscover.entity.CarEntity;
+import com.abdi.cardiscover.entity.LocationEntity;
 import com.abdi.cardiscover.entity.ReservationEntity;
-import com.abdi.cardiscover.entity.car.CarEntity;
-import com.abdi.cardiscover.entity.location.LocationEntity;
 import com.abdi.cardiscover.repository.CarRepository;
 import com.abdi.cardiscover.repository.LocationRepository;
 import com.abdi.cardiscover.repository.ReservationRepository;
 import com.abdi.cardiscover.repository.SupplierRepository;
-import com.abdi.cardiscover.requestbody.Car;
+import com.abdi.cardiscover.requestbody.CarRequestBody;
 import com.abdi.cardiscover.requestbody.Reservation;
 import com.abdi.cardiscover.utility.CleanCarData;
 

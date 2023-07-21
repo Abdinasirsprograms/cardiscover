@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.abdi.cardiscover.entity.car.CarEntity;
+import com.abdi.cardiscover.entity.CarEntity;
 
 
 @Repository

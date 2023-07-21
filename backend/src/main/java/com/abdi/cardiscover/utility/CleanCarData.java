@@ -6,8 +6,8 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
+import com.abdi.cardiscover.entity.CarEntity;
 import com.abdi.cardiscover.entity.ReservationEntity;
-import com.abdi.cardiscover.entity.car.CarEntity;
 
 public class CleanCarData {
     public static HashMap<String, String> clean(CarEntity car){

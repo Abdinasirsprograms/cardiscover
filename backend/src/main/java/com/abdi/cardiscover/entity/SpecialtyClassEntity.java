@@ -3,8 +3,6 @@ package com.abdi.cardiscover.entity;
 
 import java.util.ArrayList;
 
-import com.abdi.cardiscover.entity.brand.BrandEntity;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

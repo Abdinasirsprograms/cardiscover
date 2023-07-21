@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 import org.springframework.format.annotation.DateTimeFormat;
 
 // This class maps JSON POST objects to Java objects via the @RequestBody  
-public class Car {
+public class CarRequestBody {
     private Long id;
     private String location;
     private String brand;
@@ -21,7 +21,7 @@ public class Car {
     private GregorianCalendar doDate;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private GregorianCalendar puDate;
-    public Car(String location, String brand, String size, String model, String color, String supplier,
+    public CarRequestBody(String location, String brand, String size, String model, String color, String supplier,
             BigDecimal rate) {
         this.location = location;
         this.brand = brand;

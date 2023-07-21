@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.abdi.cardiscover.entity.car.CarEntity;
+import com.abdi.cardiscover.entity.CarEntity;
 import com.abdi.cardiscover.repository.AgencyRepository;
 import com.abdi.cardiscover.repository.BrandRepository;
 import com.abdi.cardiscover.repository.CarRepository;
@@ -23,7 +23,7 @@ import com.abdi.cardiscover.repository.RateRepository;
 import com.abdi.cardiscover.repository.ReservationRepository;
 import com.abdi.cardiscover.repository.SizeRepository;
 import com.abdi.cardiscover.repository.SupplierRepository;
-import com.abdi.cardiscover.requestbody.Car;
+import com.abdi.cardiscover.requestbody.CarRequestBody;
 import com.abdi.cardiscover.utility.CleanCarData;
 
 @Component 
@@ -67,7 +67,7 @@ public class ModifyCar {
     @PostMapping("/modify-car")
     @CrossOrigin(origins = {"http://192.168.1.196:4200", "http://localhost:8080"})
     @ResponseBody
-    public HashMap<String,String> modifyCar(@RequestBody Car requestParams) throws SQLException {
+    public HashMap<String,String> modifyCar(@RequestBody CarRequestBody requestParams) throws SQLException {
         // Find by returns a ref to the db object, hence the get() here.
         CarEntity newCar = CreateOrGetCarObjects.run(
             requestParams,
