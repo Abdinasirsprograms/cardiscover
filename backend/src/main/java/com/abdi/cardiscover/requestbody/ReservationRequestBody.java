@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
-public class Reservation {
+public class ReservationRequestBody {
     private String doLocation;
     private String puLocation;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

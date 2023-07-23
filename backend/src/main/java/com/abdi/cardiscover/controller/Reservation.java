@@ -1,4 +1,4 @@
-package com.abdi.cardiscover.controller.reservation;
+package com.abdi.cardiscover.controller;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -17,15 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.abdi.cardiscover.repository.CarRepository;
 
-import com.abdi.cardiscover.requestbody.Reservation;
+import com.abdi.cardiscover.requestbody.ReservationRequestBody;
 
 @Component 
 @RestController
-public class CreateReservation {
+public class Reservation {
     private final CarRepository carRepository;
 
     @Autowired
-    CreateReservation(CarRepository carRepository){
+    Reservation(CarRepository carRepository){
         this.carRepository = carRepository;
     }
 

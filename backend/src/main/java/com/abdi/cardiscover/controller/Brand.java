@@ -1,4 +1,4 @@
-package com.abdi.cardiscover.controller.brand;
+package com.abdi.cardiscover.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,13 +25,13 @@ import com.abdi.cardiscover.repository.LocationRepository;
 import com.abdi.cardiscover.repository.ReservationRepository;
 import com.abdi.cardiscover.repository.SupplierRepository;
 import com.abdi.cardiscover.requestbody.CarRequestBody;
-import com.abdi.cardiscover.requestbody.Reservation;
-import com.abdi.cardiscover.utility.CleanCarData;
+import com.abdi.cardiscover.requestbody.ReservationRequestBody;
+import com.abdi.cardiscover.service.CleanCarData;
 
 
 @Component 
 @RestController
-public class CreateBrand {
+public class Brand {
     // private final CarRepository carRepository;
     // private final LocationRepository locationRepository;
     // private final ReservationRepository reservationRepository;

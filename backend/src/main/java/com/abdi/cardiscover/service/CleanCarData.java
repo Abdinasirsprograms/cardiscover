@@ -1,4 +1,4 @@
-package com.abdi.cardiscover.utility;
+package com.abdi.cardiscover.service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
