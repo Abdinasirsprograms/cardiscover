@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { AddCarFormComponent } from './add-car-form/car-form.component';
 import { CarDiscoverResultsTableDataSource } from '../car-discover-results-table.datasource';
 import { carDiscoverHTTPService } from '../car-discover-http.service';
+import { locationHttpService } from 'src/services/location/location.service';
 import { FormGroup } from '@angular/forms';
 import { ResultsTableComponent } from './table/results-table/results-table.component';
 import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.component';
@@ -51,6 +52,7 @@ export class AppComponent {
 
   constructor(
     private carDiscover: carDiscoverHTTPService,
+    private locationService: locationHttpService
     ) {}
 
   /* 
@@ -170,7 +172,7 @@ export class AppComponent {
 
   getAvaliableCars(emittedData: any){
     const formData = emittedData
-    this.carDiscover.getCars(formData.doLocation, formData.puLocation, formData.doDate, formData.puDate).subscribe((response: any) => {
+    this.locationService.getCars(formData.doLocation, formData.puLocation, formData.doDate, formData.puDate).subscribe((response: any) => {
       // if nothing gets returned
       if( Object.keys(response).length === 0){
         if(this.noInputView) this.noInputView = false

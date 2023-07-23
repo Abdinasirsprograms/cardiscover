@@ -130,11 +130,11 @@ public class CarEntity {
     public void setColor(ColorEntity color) {
         this.color = color;
     }
-    public ReservationEntity getReservation() {
-        return reservation;
+    public List<ReservationEntity> getReservations() {
+        return reservations;
     }
     public void setReservation(ReservationEntity reservation) {
-        this.reservation = reservation;
+        this.reservations.add(reservation);
     }
     public SupplierEntity getSupplier() {
         return supplier;

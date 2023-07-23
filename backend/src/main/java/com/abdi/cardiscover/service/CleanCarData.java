@@ -14,18 +14,18 @@ public class CleanCarData {
         HashMap<String, String> results_cleaned = new HashMap<>();
         SimpleDateFormat converDateObjToString = new SimpleDateFormat ("E yyyy.MM.dd hh:mm:ss a zzz");
         if(car == null){return results_cleaned;}
-        ReservationEntity availbilityEntity = car.getReservation();
-        if(availbilityEntity != null){
+        List<ReservationEntity> reservations = car.getReservations();
+        if(reservations.size() == 1){
             results_cleaned.put("reserved", "Car is booked");
-            GregorianCalendar puTime = availbilityEntity.getPickupTime();
-            GregorianCalendar doTime = availbilityEntity.getDropoffTime();
+            GregorianCalendar puTime = reservations.get(0).getPickupTime();
+            GregorianCalendar doTime = reservations.get(0).getDropoffTime();
             if(puTime != null){
-                results_cleaned.put("pickupTime", converDateObjToString.format(car.getReservation().getPickupTime().getTime()));
+                results_cleaned.put("pickupTime", converDateObjToString.format(car.getReservations().get(0).getPickupTime().getTime()));
             } else {
                 results_cleaned.put("pickupTime"," ");
             }
             if(doTime != null){
-                results_cleaned.put("dropoffTime", converDateObjToString.format(car.getReservation().getDropoffTime().getTime()));
+                results_cleaned.put("dropoffTime", converDateObjToString.format(car.getReservations().get(0).getDropoffTime().getTime()));
             } else {
                 results_cleaned.put("dropoffTime"," ");
             }

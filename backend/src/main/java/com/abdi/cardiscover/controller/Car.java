@@ -104,60 +104,19 @@ public class Car {
             supplierRepository
         );
 
-        if(newCar.getReservation() != null){
-            if(newCar.getReservation().getCars().size() < 1){
-                List<CarEntity> oneCarList = new ArrayList<>();
-                oneCarList.add(newCar);
-                newCar.getReservation().setCar(oneCarList);
-            }
-        }
+        // if(newCar.getReservations() != null){
+        //     if(newCar.getReservations().getCars().size() < 1){
+        //         List<CarEntity> oneCarList = new ArrayList<>();
+        //         oneCarList.add(newCar);
+        //         newCar.getReservations().setCar(oneCarList);
+        //     }
+        // }
 
         newCar.getLocation().addCar(newCar);
         CarEntity savedCar = carRepository.save(newCar);
         return CleanCarData.clean(savedCar);
 
         };
-
-
-
-    // Get all avaliable cars based the location, and the reservation's pick up & drop off date and time
-    @PostMapping("/get-avaliable-cars")
-    @ResponseBody
-    // Serlizes the object as JSON due to the @ResponseBody annotation
-    public List<HashMap<String,String>> getCars(@RequestBody ReservationRequestBody requestParams) throws SQLException {
-        GregorianCalendar puTime = requestParams.getPuDate();
-        String puLocation = requestParams.getPuLocation();
-        GregorianCalendar doTime = requestParams.getDoDate();
-        String doLocation = requestParams.getDoLocation();
-        List<HashMap<String,String>> emptyResult = new ArrayList<>();
-        ReservationEntity puTimeRecord = reservationRepository.findByPickupTime(puTime);
-        ReservationEntity doTimeRecord = reservationRepository.findByPickupTime(doTime);
-        
-        // One-way trip if DO location and PU location are equal - DO location can also be blank
-        if(puLocation.equalsIgnoreCase(doLocation) || doLocation.isEmpty()){
-            LocationEntity location = locationRepository.findByName(puLocation);
-            if(location == null) return emptyResult;
-            List<CarEntity> cars = location.getCars();
-            return CleanCarData.cleanListOfCarData(cars);
-        } 
-
-        List<HashMap<String,String>> doLocationResults = new ArrayList<>();
-        List<HashMap<String,String>> puLocationResults = new ArrayList<>();
-        LocationEntity puLocationEntity = locationRepository.findByName(puLocation);
-        LocationEntity doLocationEntity = locationRepository.findByName(doLocation);
-        
-        if(doLocationEntity == null || puLocation == null ) return emptyResult;
-        
-        List<CarEntity> puLocationCars = puLocationEntity.getCars();
-        List<CarEntity> doLocationCars = doLocationEntity.getCars();
-        if(puLocationCars == null && doLocationCars == null){ return doLocationResults;}
-        puLocationResults = CleanCarData.cleanListOfCarData(puLocationCars);
-        doLocationResults = CleanCarData.cleanListOfCarData(doLocationCars);
-        puLocationResults.addAll(doLocationResults);
-        
-        return puLocationResults;
-    }
-
 
     /*
      * Get cars JUST based on location, allowing last-minute scheduling for cars with short reservations.
