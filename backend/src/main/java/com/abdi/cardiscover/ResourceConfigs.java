@@ -9,6 +9,7 @@ package com.abdi.cardiscover;
  * @author Abdinasir
  */
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -32,4 +33,9 @@ public class ResourceConfigs implements WebMvcConfigurer
 		.addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS)
 		.setCachePeriod(3000);
     };
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedOrigins("http://192.168.1.196:4200", "http://localhost:8080");
+    }
 };

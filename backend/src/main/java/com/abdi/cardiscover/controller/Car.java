@@ -158,6 +158,7 @@ public class Car {
         return puLocationResults;
     }
 
+
     /*
      * Get cars JUST based on location, allowing last-minute scheduling for cars with short reservations.
      * Extra time can be added to each reservation, this will allow suppliers to customize how long they may 
@@ -171,7 +172,6 @@ public class Car {
         CarEntity car = carRepository.findById(id).get();
         return CleanCarData.clean(car);
     }
-
 
     
         
@@ -216,9 +216,6 @@ public class Car {
     }
 
 
-
-
-        
     @Component 
     public class CreateOrGetCarObjects {
         public static CarEntity run(CarRequestBody requestParams,
