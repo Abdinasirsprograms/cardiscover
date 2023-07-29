@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -19,12 +20,12 @@ public class ReservationEntity {
     private Long id;
     private GregorianCalendar pickupTime;
     private GregorianCalendar dropoffTime;
-    @OneToMany(cascade = CascadeType.DETACH)
-    private List<CarEntity> car = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.DETACH)
+    private List<CarEntity> cars = new ArrayList<>();
     public ReservationEntity(){}
-    public ReservationEntity(GregorianCalendar dateAvailableFrom, GregorianCalendar dateAvailableUntill){
-        this.pickupTime = dateAvailableFrom;
-        this.dropoffTime = dateAvailableUntill;
+    public ReservationEntity(GregorianCalendar pickupTime, GregorianCalendar dropoffTime){
+        this.pickupTime = pickupTime;
+        this.dropoffTime = dropoffTime;
     }
 
     public Long getId() {
@@ -33,7 +34,7 @@ public class ReservationEntity {
 
     @Override
     public String toString() {
-        return "AvailabilityEntity [dropOffTime=" + pickupTime + ", pickUpTime=" + dropoffTime + ", car=" + car + "]";
+        return "AvailabilityEntity [dropOffTime=" + pickupTime + ", pickUpTime=" + dropoffTime + ", car=" + cars + "]";
     }
     public GregorianCalendar getPickupTime() {
         return pickupTime;
@@ -48,10 +49,10 @@ public class ReservationEntity {
         this.dropoffTime = pickUpTime;
     }
     public List<CarEntity> getCars() {
-        return car;
+        return cars;
     }
-    public void setCar(List<CarEntity> car) {
-        this.car = car;
+    public void setCar(CarEntity car) {
+        this.cars.add(car);
     }
 
 }

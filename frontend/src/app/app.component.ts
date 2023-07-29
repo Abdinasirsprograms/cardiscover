@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { ResultsTableComponent } from './table/results-table/results-table.component';
 import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.component';
 import { transition } from '@angular/animations';
+import { ReservationHTTPService } from 'src/services/reservation/reservation.service';
 
 @Component({
   selector: 'app-root',
@@ -52,7 +53,8 @@ export class AppComponent {
 
   constructor(
     private carDiscover: carDiscoverHTTPService,
-    private locationService: locationHttpService
+    private locationService: locationHttpService,
+    private reservationService: ReservationHTTPService
     ) {}
 
   /* 
@@ -230,11 +232,12 @@ export class AppComponent {
   }
 
   bookCar(){
-    const formData = this.cardiscoverForm;
-    this.carDiscover.bookCar(formData.doLocation, formData.puLocation, 
-      formData.doDate, formData.puDate, this.rowsClicked[0]).subscribe((response: any) => {
-      console.log(formData.doLocation, formData.puLocation, 
-        formData.doDate, formData.puDate, this.rowsClicked[0])})
+    let formData = this.cardiscoverForm.carDiscoverForm.value;
+    console.log("this is the payload", formData.doLocation, formData.puLocation, 
+      formData.doDate, formData.puDate, this.rowsClicked[0].id)
+    this.reservationService.bookCar(formData.doLocation, formData.puLocation, 
+      formData.doDate, formData.puDate, this.rowsClicked[0].id).subscribe((response: any) => {
+      console.log("CAR BOOKED!!")})
   }
 
   modify(){

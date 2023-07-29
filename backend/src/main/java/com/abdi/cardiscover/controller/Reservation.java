@@ -2,38 +2,44 @@ package com.abdi.cardiscover.controller;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.abdi.cardiscover.entity.CarEntity;
+import com.abdi.cardiscover.entity.ReservationEntity;
 import com.abdi.cardiscover.repository.CarRepository;
-
+import com.abdi.cardiscover.repository.ReservationRepository;
 import com.abdi.cardiscover.requestbody.ReservationRequestBody;
+import com.abdi.cardiscover.service.CleanCarData;
 
 @Component 
 @RestController
+@RequestMapping("/reservation/")
 public class Reservation {
     private final CarRepository carRepository;
-
+    private final ReservationRepository reservationRepository;    
     @Autowired
-    Reservation(CarRepository carRepository){
+    Reservation(CarRepository carRepository, ReservationRepository reservationRepository){
         this.carRepository = carRepository;
+        this.reservationRepository = reservationRepository;
     }
 
     /*
      * Book car flow
      */
     @PostMapping("/book-car")
-    @CrossOrigin(origins = {"http://192.168.1.196:4200", "http://localhost:8080"})
     @ResponseBody
     // Serlizes the object as JSON due to the @ResponseBody annotation
     public HashMap<String,String> bookCar(@RequestBody ReservationRequestBody requestParams) throws SQLException {
@@ -42,15 +48,47 @@ public class Reservation {
         * Might be better to create a seperate script 
         * that handles just creating the DB.
         */
-        Long reqstCarId = requestParams.getCarId();
+        Long reqstCarId = requestParams.getId();
         String reqstDoLocation = requestParams.getDoLocation();
         String reqstPuLocation = requestParams.getPuLocation();
         SimpleDateFormat converDateObjToString = new SimpleDateFormat ("E yyyy.MM.dd hh:mm:ss a zzz");
         GregorianCalendar reqstPuDate = requestParams.getPuDate();
         GregorianCalendar reqstDoDate = requestParams.getDoDate();
-        
+        Optional<CarEntity> findRequestedCar = this.carRepository.findById(reqstCarId);
         HashMap<String, String> results_cleaned = new HashMap<>();
+        if(findRequestedCar.isPresent() == false) return results_cleaned;
+        CarEntity requestedCar = findRequestedCar.get();
+        if(requestedCar == null) return results_cleaned;
+
+        ReservationEntity reservation = new ReservationEntity(reqstPuDate, reqstDoDate);
+        if(requestedCar.getReservations().isEmpty() == true){
+                reservation.setCar(requestedCar);
+                this.reservationRepository.save(reservation);
+                requestedCar.setReservation(reservation);
+                return CleanCarData.clean(requestedCar);
+        } else {
+            System.out.println("Requested car wasn't booked, it has all these reservation...." + requestedCar.getReservations());
+        }
         return results_cleaned;
     }
     
+    @GetMapping("/get-all-bookings")
+    @ResponseBody
+    public List<List<HashMap<String,String>>> getAllReservations() throws SQLException {
+        List<List<HashMap<String, String>>> results_cleaned = new ArrayList<>();
+        List<ReservationEntity> allReservations = this.reservationRepository.findAll();
+        for (ReservationEntity reservation : allReservations) {
+            List<CarEntity> allCarsWithReservations = reservation.getCars();
+            System.out.println("\nThis is all cars with reservations " + allCarsWithReservations);
+            results_cleaned.add(CleanCarData.cleanListOfCarData(allCarsWithReservations));
+        }
+        return results_cleaned;
+    }
+        
+    @GetMapping("/delete-all-bookings")
+    // Serlizes the object as JSON due to the @ResponseBody annotation
+    public void deleteAllBookings() throws SQLException {
+        reservationRepository.deleteAll();
+    }
+
 }

@@ -7,32 +7,27 @@ import { carFormInterface } from './car-form.interface';
   providedIn: 'root'
 })
 export class carDiscoverHTTPService {
-  private BASE_API_URL = 'http://192.168.1.196:8080/'
+  private BASE_API_URL = 'http://192.168.1.196:8080/car/'
   constructor(private http: HttpClient) {
   }
   getAllCars(): Observable<carFormInterface[]> {
-    return this.http.get<carFormInterface[]>(this.BASE_API_URL + 'car/get-all-cars');
+    return this.http.get<carFormInterface[]>(this.BASE_API_URL + 'get-all-cars');
   }
   deleteAllCars(): Observable<carFormInterface[]> {
-    return this.http.get<carFormInterface[]>(this.BASE_API_URL + 'car/delete-all-cars');
+    return this.http.get<carFormInterface[]>(this.BASE_API_URL + 'delete-all-cars');
   }
   getCar(id:number): Observable<carFormInterface[]> {
     const options = id ?
    { params: new HttpParams().set('id', id) } : {};
-    return this.http.get<carFormInterface[]>(this.BASE_API_URL + 'car/get-car', options);
+    return this.http.get<carFormInterface[]>(this.BASE_API_URL + 'get-car', options);
   }
   createCar(carFormData: carFormInterface): Observable<carFormInterface> {    
     // this'll create a car - not optimized from the backend since it's just 1 class that creates everything
     carFormData.id = 0; 
-    return this.http.post<carFormInterface>(this.BASE_API_URL + 'car/create-car', carFormData);
+    return this.http.post<carFormInterface>(this.BASE_API_URL + 'create-car', carFormData);
   }
   modifyCar(locationData: carFormInterface): Observable<carFormInterface> {    
-    return this.http.post<carFormInterface>(this.BASE_API_URL + 'car/modify-car', locationData);
+    return this.http.post<carFormInterface>(this.BASE_API_URL + 'modify-car', locationData);
   }
-  bookCar(doLocation:String, puLocation:String, doDate:Date, puDate:Date, carID:number): Observable<carFormInterface> {    
-    return this.http.post<carFormInterface>(this.BASE_API_URL + 'car/book-car', {
-      "doLocation":doLocation,  "puLocation":puLocation, 
-      "doDate":doDate, "puDate":puDate , "carID":carID
-    });
-  }
+
 }

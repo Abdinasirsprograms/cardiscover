@@ -14,29 +14,66 @@ public class CleanCarData {
         HashMap<String, String> results_cleaned = new HashMap<>();
         SimpleDateFormat converDateObjToString = new SimpleDateFormat ("E yyyy.MM.dd hh:mm:ss a zzz");
         if(car == null){return results_cleaned;}
-        List<ReservationEntity> reservations = car.getReservations();
-        if(reservations.size() == 1){
-            results_cleaned.put("reserved", "Car is booked");
-            GregorianCalendar puTime = reservations.get(0).getPickupTime();
-            GregorianCalendar doTime = reservations.get(0).getDropoffTime();
-            if(puTime != null){
-                results_cleaned.put("pickupTime", converDateObjToString.format(car.getReservations().get(0).getPickupTime().getTime()));
-            } else {
-                results_cleaned.put("pickupTime"," ");
-            }
-            if(doTime != null){
-                results_cleaned.put("dropoffTime", converDateObjToString.format(car.getReservations().get(0).getDropoffTime().getTime()));
-            } else {
-                results_cleaned.put("dropoffTime"," ");
+        if(car.getReservations() != null){
+            List<ReservationEntity> reservations = car.getReservations();
+            if(reservations.size() == 1){
+                results_cleaned.put("reserved", "Car is booked");
+                GregorianCalendar puTime = reservations.get(0).getPickupTime();
+                GregorianCalendar doTime = reservations.get(0).getDropoffTime();
+                if(puTime != null){
+                    results_cleaned.put("pickupTime", converDateObjToString.format(car.getReservations().get(0).getPickupTime().getTime()));
+                } else {
+                    results_cleaned.put("pickupTime"," ");
+                }
+                if(doTime != null){
+                    results_cleaned.put("dropoffTime", converDateObjToString.format(car.getReservations().get(0).getDropoffTime().getTime()));
+                } else {
+                    results_cleaned.put("dropoffTime"," ");
+                }
             }
         }
-        results_cleaned.put("id", car.getId().toString());
-        results_cleaned.put("location", car.getLocation().getName());
-        results_cleaned.put("brand", car.getBrand().getName());
-        results_cleaned.put("size", car.getSize().getName());
-        results_cleaned.put("model", car.getModel().getName());
-        results_cleaned.put("supplier", car.getSupplier().getName());
-        results_cleaned.put("rate", car.getRate().getRate().toString());
+
+        String carId = "";
+        if(car.getId() != null){
+            carId = car.getId().toString();
+        }
+
+        String carLocation = "";
+        if(car.getLocation() != null){
+            carLocation = car.getLocation().getName();
+        }
+        
+        String carBrand = "";
+        if(car.getBrand() != null){
+            carBrand = car.getBrand().getName();
+        }
+        
+        String carSize = "";
+        if(car.getSize() != null){
+            carSize = car.getSize().getName();
+        }
+
+        String carModel = "";
+        if(car.getModel() != null){
+            carModel = car.getModel().getName();
+        }
+        String carSupplier = "";
+        if(car.getSupplier() != null){
+            carSupplier = car.getSupplier().getName();
+        }
+        String carRate = "";
+        if(car.getRate() != null){
+            carRate = car.getRate().getRate().toString();
+        }
+
+
+        results_cleaned.put("id", carId);
+        results_cleaned.put("location", carLocation);
+        results_cleaned.put("brand", carBrand);
+        results_cleaned.put("size", carSize);
+        results_cleaned.put("model",  carModel);
+        results_cleaned.put("supplier",carSupplier);
+        results_cleaned.put("rate", carRate);
         return results_cleaned;
     };
 
@@ -53,6 +90,7 @@ public class CleanCarData {
 
     public static List<HashMap<String,String>> cleanCarDataIterable(Iterable<CarEntity> car){
         List<HashMap<String,String>> results = new ArrayList<>();
+        if(car == null) return results;
         for (CarEntity carEntity : car) {
             results.add(clean(carEntity));
         }

@@ -32,7 +32,7 @@ public class CarEntity {
     private RateEntity rate;
     @ManyToOne(cascade = CascadeType.ALL)
     private SizeEntity size;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.DETACH)
     private List<ReservationEntity> reservations;
     
     
