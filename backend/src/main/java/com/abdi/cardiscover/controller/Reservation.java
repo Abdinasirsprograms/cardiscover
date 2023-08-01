@@ -62,16 +62,11 @@ public class Reservation {
         if(requestedCar == null) return results_cleaned;
 
         ReservationEntity reservation = new ReservationEntity(reqstPuDate, reqstDoDate);
-        // if(requestedCar.getReservations().isEmpty() == true){
         reservation.setCar(requestedCar);
         requestedCar.setReservation(reservation);
         this.reservationRepository.save(reservation);
         this.carRepository.save(requestedCar);
         return CleanCarData.clean(requestedCar);
-        // } else {
-        //     System.out.println("Requested car wasn't booked, it has all these reservation...." + requestedCar.getReservations());
-        // }
-        // return results_cleaned;
     }
     
     @GetMapping("/get-all-bookings")

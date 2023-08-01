@@ -2,6 +2,7 @@ package com.abdi.cardiscover.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -74,11 +75,15 @@ public class Location {
         List<CarEntity> AvaliableCarsAtLocation = locationResult.getCars();
         for (CarEntity currentCar : AvaliableCarsAtLocation) {
             List<ReservationEntity> carReservations = currentCar.getReservations();
-            if(carReservations.size() > 1){
+            if(carReservations.size() >= 1){
                 for (ReservationEntity reservation : carReservations) {
                     GregorianCalendar reservationDropOff = reservation.getDropoffTime();
+                    // static GregorianCalendar puTimeInstance = puTime.getInstance();
                     if(reservationDropOff.before(puTime)){
                         AvaliableCarsWithinPickUpWindow.add(currentCar);
+                        // reservationDropOff;
+                    } else {
+                        System.out.println("AHHHH THIS CAR IS BOOKED DURING YOUR PICKUP WINDOW");
                     }
                 }
             } else {
@@ -86,7 +91,7 @@ public class Location {
                 AvaliableCarsWithinPickUpWindow.add(currentCar);
             }
         }
-        return CleanCarData.cleanListOfCarData(AvaliableCarsAtLocation);
+        return CleanCarData.cleanListOfCarData(AvaliableCarsWithinPickUpWindow);
     }
    
 }
