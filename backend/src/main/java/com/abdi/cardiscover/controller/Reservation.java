@@ -11,6 +11,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -93,4 +94,22 @@ public class Reservation {
         reservationRepository.deleteAll();
     }
 
+    @GetMapping("/delete-booking/{id}")
+    // Serlizes the object as JSON due to the @ResponseBody annotation
+    public void deleteBooking(@PathVariable Long id) throws SQLException {
+        reservationRepository.deleteById(id);
+    }
+
+
+    @GetMapping("/get-booking/{id}")
+    @ResponseBody
+    public List<HashMap<String,String>> getReservation(@PathVariable Long id) throws SQLException {
+        List<HashMap<String, String>> results_cleaned = new ArrayList<>();
+        Optional<ReservationEntity> findReservation = reservationRepository.findById(id);
+        if(findReservation != null) {
+            ReservationEntity reservation = findReservation.get();
+            results_cleaned = CleanCarData.cleanListOfCarData(reservation.getCars());
+        }
+        return results_cleaned;
+    }
 }

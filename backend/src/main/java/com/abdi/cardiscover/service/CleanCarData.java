@@ -17,7 +17,7 @@ public class CleanCarData {
         if(car.getReservations() != null){
             List<ReservationEntity> reservations = car.getReservations();
             if(reservations.size() >= 1){
-                results_cleaned.put("reserved", "Car is booked");
+                results_cleaned.put("reservation_id", reservations.get(0).getId().toString());
                 GregorianCalendar puTime = reservations.get(0).getPickupTime();
                 GregorianCalendar doTime = reservations.get(0).getDropoffTime();
                 if(puTime != null){
