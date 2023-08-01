@@ -23,7 +23,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatNativeDatetimeModule, MatDatetimepickerModule} from  '@mat-datetimepicker/core';
 import { ResultsTableComponent } from './table/results-table/results-table.component';
 import { ActionsComponent } from './table/action-buttons/actions.component';
-import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.component'
+import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.component';
+import { ReservationComponent } from './reservation/reservation/reservation.component'
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.co
     AddCarFormComponent,
     ResultsTableComponent,
     ActionsComponent,
-    CardiscoverFormComponent
+    CardiscoverFormComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,

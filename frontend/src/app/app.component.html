@@ -1,7 +1,9 @@
 
 <main >
   <div class="image-background"></div>
-  <!-- Insert new car form -->
+
+  <reservation-component (getAllBookings)="getAllBookings()" [hideBookingsButtonText]="hideBookingsButtonText"></reservation-component>
+  <!-- Add or Edit car(s) -->
   <mat-card [ngStyle]="{'display': addCarView ? 'block' : 'none'}">
     <mat-card-header> 
         <ng-container *ngIf="(insertNewCarTextHeader)">
@@ -13,15 +15,13 @@
         <ng-container *ngIf="editCarTextHeader && rowsClicked.length > 1">
           Editing Multiple Cars 
         </ng-container>
-        
     </mat-card-header>
     <mat-card-content>
       <car-form #carForm></car-form>
     </mat-card-content>
   </mat-card>
-  <!-- **** -->
 
-  <!-- Add or Edit car options -->
+  <!-- Add, Edit and reset view options -->
   <mat-grid-list cols=2 rows=1 rowHeight="2:1" gutterSize="33%">
     <mat-grid-tile >
       <ng-container *ngIf="(addCarView); else addCar" > 
@@ -79,7 +79,7 @@
   </ng-container>
   <!-- End of error messages -->
 
-  
+  <!-- Filter -->
   <ng-container *ngIf="rowsClicked.length > 0 || filteredCarResultsView === true" >
     <div class="filter-button-container">
       <ng-container *ngIf="filteredCarResultsView; else filter" >
@@ -96,15 +96,43 @@
       </ng-template>
     </div>
   </ng-container>      
-
-    
+<!-- End of filter options -->
+  
+  <!-- Pick up results table -->
+  <!-- <ng-container *ngIf="cardiscoverForm !== null && showTable">
+    <mat-card>
+      <mat-card-content>
+        <h2>Vehicles avaliable at {{ cardiscoverForm.puLocation}}</h2>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>  -->
   <results-table #carResults [dataSource]="carResultsDataSource" [displayedColumns] = "displayedColumns"
  [showTable] = "showTable"
   (rowClick)="clickedRow($event)" [filteredCarResultsView]="filteredCarResultsView"
   ></results-table>
 
+  <!-- Drop off results table -->
   <ng-container *ngIf="showDoLocationResults" >
+    <ng-container *ngIf="cardiscoverForm">
+      <mat-card>
+        <mat-card-content>
+          <h2>Vehicles avaliable at {{cardiscoverForm.doLocation}}</h2>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
     <results-table #doLocationResults [dataSource]="doLocationResultsDataSource" [displayedColumns] = "displayedColumns"
+   [showTable] = "showTable"
+    (rowClick)="clickedRow($event)"
+    ></results-table>
+  </ng-container>
+  
+  <ng-container *ngIf="showBookingResults" >
+    <mat-card>
+      <mat-card-content>
+        <h2>Reservations</h2>
+      </mat-card-content>
+    </mat-card>
+    <results-table #bookingsResults [dataSource]="bookingResultsDataSource" [displayedColumns] = "displayedColumns"
    [showTable] = "showTable"
     (rowClick)="clickedRow($event)"
     ></results-table>
@@ -129,7 +157,7 @@
 
   <!-- Car discover form -->
   <ng-container *ngIf="editView === false && showCarDiscoverForm === true">
-    <cardiscover-form #cardiscoverForm (formSubmitted) ="getAvaliableCars($event)"></cardiscover-form>
+    <cardiscover-form #cardiscoverForm (formSubmitted)="getAvaliableCars($event)"></cardiscover-form>
   </ng-container>
 
 </main>

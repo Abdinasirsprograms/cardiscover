@@ -61,26 +61,28 @@ public class Reservation {
         if(requestedCar == null) return results_cleaned;
 
         ReservationEntity reservation = new ReservationEntity(reqstPuDate, reqstDoDate);
-        if(requestedCar.getReservations().isEmpty() == true){
-                reservation.setCar(requestedCar);
-                this.reservationRepository.save(reservation);
-                requestedCar.setReservation(reservation);
-                return CleanCarData.clean(requestedCar);
-        } else {
-            System.out.println("Requested car wasn't booked, it has all these reservation...." + requestedCar.getReservations());
-        }
-        return results_cleaned;
+        // if(requestedCar.getReservations().isEmpty() == true){
+        reservation.setCar(requestedCar);
+        requestedCar.setReservation(reservation);
+        this.reservationRepository.save(reservation);
+        this.carRepository.save(requestedCar);
+        return CleanCarData.clean(requestedCar);
+        // } else {
+        //     System.out.println("Requested car wasn't booked, it has all these reservation...." + requestedCar.getReservations());
+        // }
+        // return results_cleaned;
     }
     
     @GetMapping("/get-all-bookings")
     @ResponseBody
-    public List<List<HashMap<String,String>>> getAllReservations() throws SQLException {
-        List<List<HashMap<String, String>>> results_cleaned = new ArrayList<>();
+    public List<HashMap<String,String>> getAllReservations() throws SQLException {
+        List<HashMap<String, String>> results_cleaned = new ArrayList<>();
         List<ReservationEntity> allReservations = this.reservationRepository.findAll();
         for (ReservationEntity reservation : allReservations) {
             List<CarEntity> allCarsWithReservations = reservation.getCars();
-            System.out.println("\nThis is all cars with reservations " + allCarsWithReservations);
-            results_cleaned.add(CleanCarData.cleanListOfCarData(allCarsWithReservations));
+            for (CarEntity car : allCarsWithReservations) {
+                results_cleaned.add(CleanCarData.clean(car));
+            }
         }
         return results_cleaned;
     }

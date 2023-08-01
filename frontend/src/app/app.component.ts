@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { AddCarFormComponent } from './add-car-form/car-form.component';
 import { CarDiscoverResultsTableDataSource } from '../car-discover-results-table.datasource';
 import { carDiscoverHTTPService } from '../car-discover-http.service';
@@ -17,7 +17,7 @@ import { ReservationHTTPService } from 'src/services/reservation/reservation.ser
 })
 
 
-export class AppComponent {
+export class AppComponent  {
 
 
   rowsClicked: any[] = [];
@@ -36,6 +36,8 @@ export class AppComponent {
   editView = false;
   // additional DO location results table 
   showDoLocationResults = false;
+  showBookingResults = false;
+  hideBookingsButtonText = false;
   noInputView = false;
   filteredCarResultsView = false;
   responseCarId = 0;
@@ -43,8 +45,11 @@ export class AppComponent {
   showTableChooseCarText = false;
   chosenRowModifyPointer = 0;
   previousChosenRowModifyPointer = 0;
+  
   carResultsDataSource = new CarDiscoverResultsTableDataSource();
   doLocationResultsDataSource = new CarDiscoverResultsTableDataSource();
+  bookingResultsDataSource = new CarDiscoverResultsTableDataSource();
+  @ViewChild('bookingsResults') bookingResultsTableComponent!: ResultsTableComponent;
   @ViewChild('carResults') carResultsTableComponent!: ResultsTableComponent;
   @ViewChild('doLocationResults') doLocationResults!: ResultsTableComponent;
   @ViewChild('cardiscoverForm') cardiscoverForm!: CardiscoverFormComponent;
@@ -62,6 +67,7 @@ export class AppComponent {
   * Functions for toggling views
   *
   */
+
 
   filterForSelected(){
     if(this.showTable){
@@ -225,6 +231,51 @@ export class AppComponent {
     // }
   }
 
+  getAllBookings(){
+    if(this.showBookingResults){
+      this.bookingResultsDataSource.setData([]);
+      this.bookingResultsTableComponent.showTable = false;
+      this.noResult = false;  
+      this.showCarDiscoverForm = true;
+      this.hideBookingsButtonText = false;
+      this.showBookingResults = false
+      return
+    }
+    this.noInputView = false;
+    this.showBookingResults = true;
+    // this.editView = true;
+    this.reservationService.getAllBookings().subscribe((response: any) => {
+      if( Object.keys(response).length === 0){
+        if(this.noResult === true){
+          document.body.querySelector(".shake")?.getAnimations()[0].play();
+        }
+        this.noResult = true;  
+        if(this.showBookingResults){
+          this.showBookingResults = false;
+        }
+        return;
+      }
+      // Show table results with all cars response
+      this.bookingResultsDataSource.setData([...response]);
+      // bookingResultsDataSource = new CarDiscoverResultsTableDataSource();
+      // @ViewChild('bookingsResults') bookingResultsTableComponent!: ResultsTableComponent;
+      this.bookingResultsTableComponent.displayedColumns = Object.keys(response[0]);
+      // Ensure the car's ID is always at the front if present
+      let idPos = this.bookingResultsTableComponent.displayedColumns.indexOf("id")
+      if(idPos !== -1){
+        this.bookingResultsTableComponent.displayedColumns.splice(idPos, 1);
+        this.bookingResultsTableComponent.displayedColumns.unshift("id");
+      }
+      // This will show only the car results table with controls,  
+      // showDoLocationResults needs to be set to true to also show doLocation results table
+      this.bookingResultsTableComponent.showTable = true;
+      this.noResult = false;  
+      this.showCarDiscoverForm = false;
+      this.hideBookingsButtonText = true;
+  
+    })
+
+  }
 
   
   deleteAllCars(){

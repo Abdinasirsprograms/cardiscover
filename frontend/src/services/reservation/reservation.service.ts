@@ -22,4 +22,7 @@ export class ReservationHTTPService {
       "doDate":doDate, "puDate":puDate , "id":carID
     });
   }
+  getAllBookings(): Observable<carFormInterface> {    
+    return this.http.get<carFormInterface>(this.BASE_API_URL + 'get-all-bookings');
+  }
 }

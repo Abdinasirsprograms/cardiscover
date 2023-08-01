@@ -16,52 +16,49 @@ public class CleanCarData {
         if(car == null){return results_cleaned;}
         if(car.getReservations() != null){
             List<ReservationEntity> reservations = car.getReservations();
-            if(reservations.size() == 1){
+            if(reservations.size() >= 1){
                 results_cleaned.put("reserved", "Car is booked");
                 GregorianCalendar puTime = reservations.get(0).getPickupTime();
                 GregorianCalendar doTime = reservations.get(0).getDropoffTime();
                 if(puTime != null){
                     results_cleaned.put("pickupTime", converDateObjToString.format(car.getReservations().get(0).getPickupTime().getTime()));
-                } else {
-                    results_cleaned.put("pickupTime"," ");
                 }
                 if(doTime != null){
                     results_cleaned.put("dropoffTime", converDateObjToString.format(car.getReservations().get(0).getDropoffTime().getTime()));
-                } else {
-                    results_cleaned.put("dropoffTime"," ");
-                }
+                } 
             }
         }
-
+        // Manual checks for all the objects 
         String carId = "";
+        String carLocation = "";
+        String carBrand = "";
+        String carSize = "";
+        String carModel = "";
+        String carSupplier = "";
+        String carRate = "";
+        
         if(car.getId() != null){
             carId = car.getId().toString();
         }
 
-        String carLocation = "";
         if(car.getLocation() != null){
             carLocation = car.getLocation().getName();
         }
         
-        String carBrand = "";
         if(car.getBrand() != null){
             carBrand = car.getBrand().getName();
         }
         
-        String carSize = "";
         if(car.getSize() != null){
             carSize = car.getSize().getName();
         }
 
-        String carModel = "";
         if(car.getModel() != null){
             carModel = car.getModel().getName();
         }
-        String carSupplier = "";
         if(car.getSupplier() != null){
             carSupplier = car.getSupplier().getName();
         }
-        String carRate = "";
         if(car.getRate() != null){
             carRate = car.getRate().getRate().toString();
         }

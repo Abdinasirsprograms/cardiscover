@@ -172,5 +172,11 @@ public class CarEntity {
     public void setSize(SizeEntity size) {
         this.size = size;
     }
+    public ReservationEntity getReservation() {
+        return reservation;
+    }
+    public void setReservations(List<ReservationEntity> reservations) {
+        this.reservations = reservations;
+    }
 
 }
