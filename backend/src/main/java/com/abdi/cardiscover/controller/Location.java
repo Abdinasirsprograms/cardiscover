@@ -80,12 +80,13 @@ public class Location {
                         "LEFT JOIN car_entity_reservations carReservationTable ON carTable.id = carReservationTable.car_entity_id " +
                         "LEFT JOIN reservation_entity reservationTable ON carReservationTable.reservations_id = reservationTable.id " +
                         "WHERE carTable.location_id = ? " +
-                        "AND (reservationTable.id IS NULL OR reservationTable.dropoff_time < ? OR reservationTable.pickup_time > ?)";
+                        "AND (reservationTable.id IS NULL OR reservationTable.dropoff_time < ?)";
 
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setLong(1, locationResult.getId());
+            // Not sure I need to check for the requested dropoff time....
+            // statement.setTimestamp(2, new Timestamp(doTime.getTimeInMillis()));
             statement.setTimestamp(2, new Timestamp(puTime.getTimeInMillis()));
-            statement.setTimestamp(3, new Timestamp(doTime.getTimeInMillis()));
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
