@@ -75,7 +75,7 @@ public class Location {
         if(locationResult == null) return emptyResult;
         List<CarEntity> AvaliableCarsAtLocation = new ArrayList<>();
         try (Connection connection = dataSource.getConnection()) {
-            String sql ="SELECT DISTINCT c.* " +
+            String sql ="SELECT DISTINCT carTable.* " +
                         "FROM car_entity carTable " +
                         "LEFT JOIN car_entity_reservations carReservationTable ON carTable.id = carReservationTable.car_entity_id " +
                         "LEFT JOIN reservation_entity reservationTable ON carReservationTable.reservations_id = reservationTable.id " +
