@@ -1,16 +1,22 @@
 package com.abdi.cardiscover.controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
+
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
+
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,17 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.abdi.cardiscover.entity.CarEntity;
 import com.abdi.cardiscover.entity.LocationEntity;
-import com.abdi.cardiscover.entity.ReservationEntity;
-import com.abdi.cardiscover.repository.AgencyRepository;
-import com.abdi.cardiscover.repository.BrandRepository;
+
+
 import com.abdi.cardiscover.repository.CarRepository;
-import com.abdi.cardiscover.repository.ColorRepository;
 import com.abdi.cardiscover.repository.LocationRepository;
-import com.abdi.cardiscover.repository.ModelRepository;
-import com.abdi.cardiscover.repository.RateRepository;
-import com.abdi.cardiscover.repository.ReservationRepository;
-import com.abdi.cardiscover.repository.SizeRepository;
-import com.abdi.cardiscover.repository.SupplierRepository;
+
 import com.abdi.cardiscover.requestbody.ReservationRequestBody;
 import com.abdi.cardiscover.service.CleanCarData;
 
@@ -39,10 +39,14 @@ import com.abdi.cardiscover.service.CleanCarData;
 public class Location {
 
     private final LocationRepository locationRepository;
+    private final DataSource dataSource;
+    private final CarRepository carRepository;
 
     @Autowired
-    Location(LocationRepository locationRepository){
+    Location(LocationRepository locationRepository, DataSource dataSource, CarRepository carRepository){
         this.locationRepository = locationRepository;
+        this.dataSource = dataSource;
+        this.carRepository = carRepository;
     }
 
 
@@ -65,33 +69,37 @@ public class Location {
         // get pickup data
         String locationName = requestParams.getPuLocation();
         GregorianCalendar puTime = requestParams.getPuDate();
-        String puLocation = requestParams.getPuLocation();
         GregorianCalendar doTime = requestParams.getDoDate();
-        String doLocation = requestParams.getDoLocation();
 
         LocationEntity locationResult = locationRepository.findByName(locationName);
         if(locationResult == null) return emptyResult;
-        List<CarEntity> AvaliableCarsWithinPickUpWindow = new ArrayList<>();
-        List<CarEntity> AvaliableCarsAtLocation = locationResult.getCars();
-        for (CarEntity currentCar : AvaliableCarsAtLocation) {
-            List<ReservationEntity> carReservations = currentCar.getReservations();
-            if(carReservations.size() >= 1){
-                for (ReservationEntity reservation : carReservations) {
-                    GregorianCalendar reservationDropOff = reservation.getDropoffTime();
-                    // static GregorianCalendar puTimeInstance = puTime.getInstance();
-                    if(reservationDropOff.before(puTime)){
-                        AvaliableCarsWithinPickUpWindow.add(currentCar);
-                        // reservationDropOff;
-                    } else {
-                        System.out.println("AHHHH THIS CAR IS BOOKED DURING YOUR PICKUP WINDOW");
-                    }
-                }
-            } else {
-                // no reservation
-                AvaliableCarsWithinPickUpWindow.add(currentCar);
+        List<CarEntity> AvaliableCarsAtLocation = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection()) {
+            String sql ="SELECT DISTINCT c.* " +
+                        "FROM car_entity carTable " +
+                        "LEFT JOIN car_entity_reservations carReservationTable ON carTable.id = carReservationTable.car_entity_id " +
+                        "LEFT JOIN reservation_entity reservationTable ON carReservationTable.reservations_id = reservationTable.id " +
+                        "WHERE carTable.location_id = ? " +
+                        "AND (reservationTable.id IS NULL OR reservationTable.dropoff_time < ? OR reservationTable.pickup_time > ?)";
+
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setLong(1, locationResult.getId());
+            statement.setTimestamp(2, new Timestamp(puTime.getTimeInMillis()));
+            statement.setTimestamp(3, new Timestamp(doTime.getTimeInMillis()));
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                // Process each row of the result set
+                Long id = resultSet.getLong("id");
+                Optional<CarEntity> findCar = carRepository.findById(id);
+                if(findCar == null) continue;
+                CarEntity currentCar = findCar.get(); 
+                AvaliableCarsAtLocation.add(currentCar);
             }
+        }catch (SQLException e) {
+            e.printStackTrace();
         }
-        return CleanCarData.cleanListOfCarData(AvaliableCarsWithinPickUpWindow);
+        return CleanCarData.cleanListOfCarData(AvaliableCarsAtLocation);
     }
    
 }
