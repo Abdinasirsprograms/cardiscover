@@ -5,6 +5,8 @@
     align-items: center;
     flex-wrap: nowrap;
     margin: 3rem 0;
+    min-width: 100%;
+    background: white;
 }
 
 .grid-list-item {

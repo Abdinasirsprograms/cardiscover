@@ -25,4 +25,7 @@ export class ReservationHTTPService {
   getAllBookings(): Observable<carFormInterface> {    
     return this.http.get<carFormInterface>(this.BASE_API_URL + 'get-all-bookings');
   }
+  getBooking(reservationID:Number): Observable<carFormInterface> {    
+    return this.http.get<carFormInterface>(this.BASE_API_URL + 'get-booking/' + reservationID);
+  }
 }

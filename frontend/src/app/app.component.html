@@ -9,7 +9,10 @@
         <ng-container *ngIf="(insertNewCarTextHeader)">
           Insert A New Car
         </ng-container>
-        <ng-container *ngIf="editCarTextHeader && rowsClicked.length <= 1">
+        <ng-container *ngIf="showBookingResults && rowsClicked.length <= 1">
+          Edit Reservation
+        </ng-container>
+        <ng-container *ngIf="editCarTextHeader && rowsClicked.length <= 1 && showBookingResults === false">
           Edit Car
         </ng-container>
         <ng-container *ngIf="editCarTextHeader && rowsClicked.length > 1">
@@ -145,6 +148,9 @@
   [editView] = "editView"
   [lengthOfRows]="rowsClicked.length" 
   [showStartCarReservationView] = "showCarDiscoverForm"
+  [showBookingResults] = "showBookingResults"
+  [showTable] = "showTable"
+
   (clearSelectedClick) = "clearSelected()"
   (deleteAllCarsClick) = "deleteAllCars()"
   (bookCarClick) = "bookCar()"

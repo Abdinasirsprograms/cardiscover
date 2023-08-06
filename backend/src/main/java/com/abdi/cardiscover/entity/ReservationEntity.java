@@ -51,6 +51,9 @@ public class ReservationEntity {
     public List<CarEntity> getCars() {
         return cars;
     }
+    public CarEntity getCar() {
+        return cars.get(0);
+    }
     public void setCar(CarEntity car) {
         this.cars.add(car);
     }

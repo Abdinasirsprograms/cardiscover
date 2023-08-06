@@ -98,12 +98,12 @@ public class Reservation {
 
     @GetMapping("/get-booking/{id}")
     @ResponseBody
-    public List<HashMap<String,String>> getReservation(@PathVariable Long id) throws SQLException {
-        List<HashMap<String, String>> results_cleaned = new ArrayList<>();
+    public HashMap<String,String> getReservation(@PathVariable Long id) throws SQLException {
+        HashMap<String, String> results_cleaned = new HashMap<>();
         Optional<ReservationEntity> findReservation = reservationRepository.findById(id);
         if(findReservation != null) {
             ReservationEntity reservation = findReservation.get();
-            results_cleaned = CleanCarData.cleanListOfCarData(reservation.getCars());
+            results_cleaned = CleanCarData.clean(reservation.getCar());
         }
         return results_cleaned;
     }

@@ -3,7 +3,7 @@ import { AddCarFormComponent } from './add-car-form/car-form.component';
 import { CarDiscoverResultsTableDataSource } from '../car-discover-results-table.datasource';
 import { carDiscoverHTTPService } from '../car-discover-http.service';
 import { locationHttpService } from 'src/services/location/location.service';
-import { FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { ResultsTableComponent } from './table/results-table/results-table.component';
 import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.component';
 import { transition } from '@angular/animations';
@@ -55,7 +55,7 @@ export class AppComponent  {
   @ViewChild('cardiscoverForm') cardiscoverForm!: CardiscoverFormComponent;
   @ViewChild('carForm') addCarFormComponentChild!: AddCarFormComponent;
 
-
+  temporaryCarForm!:FormGroup;
   constructor(
     private carDiscover: carDiscoverHTTPService,
     private locationService: locationHttpService,
@@ -118,9 +118,8 @@ export class AppComponent  {
       this.noInputView = false;
       this.insertNewCarTextHeader = true;
       this.rowsClicked = [];
-      if(this.addCarView === false){
-        this.showCarDiscoverForm = true;
-      }
+      this.addCarView = false;
+      this.showCarDiscoverForm = true;
     } 
     else {
       this.noInputView = false;
@@ -239,6 +238,7 @@ export class AppComponent  {
       this.showCarDiscoverForm = true;
       this.hideBookingsButtonText = false;
       this.showBookingResults = false
+      this.showTable = false
       return
     }
     this.noInputView = false;
@@ -272,7 +272,7 @@ export class AppComponent  {
       this.noResult = false;  
       this.showCarDiscoverForm = false;
       this.hideBookingsButtonText = true;
-  
+      this.showTable = true;
     })
 
   }
@@ -307,28 +307,80 @@ export class AppComponent  {
                 return;
               }
               if(this.addCarFormComponentChild){
+                if(this.temporaryCarForm){
+                  this.addCarFormComponentChild.carForm = this.temporaryCarForm;
+                }
                 this.addCarFormComponentChild.carForm.patchValue({
-                  id: responseData.id,
+                  id: Number.parseInt(responseData.id),
+                  reservation_id: Number.parseInt(responseData.reservation_id),
                   brand: responseData.brand,
-                  dropoffTime: responseData.dropoffTime,
+                  dropoffTime: new Date(Date.parse(responseData.dropoffTime)),
                   location: responseData.location,
                   model: responseData.model,
-                  pickupTime: responseData.pickupTime,
+                  pickupTime: new Date(Date.parse(responseData.pickupTime)),
                   rate: responseData.rate,
                   size: responseData.size,
                   supplier: responseData.supplier
+                });
+                this.addCarFormComponentChild.location = responseData.location;
+              }else {
+                console.error("NOT RENDERED YET??!!!")
+
+              }
+              console.log(this.addCarFormComponentChild.carForm.value)
+              this.responseCarId = parseInt(responseData.id)
+            }
+          );
+          // this.addCarFormComponentChild.carForm = updatedCarForm;
+          this.addCarView = true;
+          this.editCarTextHeader = true;
+          this.insertNewCarTextHeader = false;
+          window.scroll({top: 0, behavior: "smooth"})
+        }
+      }
+      else {
+        console.error("Component hasn't rendered or is null!")
+        console.error(this.addCarFormComponentChild)
+      }
+    }
+    if(this.showBookingResults){
+      if(this.addCarFormComponentChild){
+        if(this.rowsClicked.length > 0){
+          // Will allow using Next & Previous button
+          this.previousChosenRowModifyPointer = this.chosenRowModifyPointer
+          let editBooking = this.rowsClicked[this.chosenRowModifyPointer];
+          this.addCarFormComponentChild.editView = true;
+          // this.addCarFormComponentChild.clearSelectedView = true;
+          this.reservationService.getBooking(editBooking.reservation_id).subscribe(
+            (responseData:any) => {
+              if( Object.keys(responseData).length === 0){
+                console.error("Couldn't get booking ID", editBooking)
+                return;
+              }
+              if(this.addCarFormComponentChild){
+              console.log("this is the response data", responseData)
+                this.addCarFormComponentChild.carForm.patchValue({
+                  location: null,
+                  id: Number.parseInt(responseData.id),
+                  reservation_id: Number.parseInt(responseData.reservation_id),
+                  dropoffTime: new Date(Date.parse(responseData.dropoffTime)),
+                  pickupTime: new Date(Date.parse(responseData.pickupTime)),
                 });
               }else {
                 console.error("NOT RENDERED YET??!!!")
 
               }
-              console.log(this.addCarFormComponentChild.carForm.value.rate)
+              this.temporaryCarForm = this.addCarFormComponentChild.carForm;
+              console.log(this.addCarFormComponentChild.carForm.value)
+              
               this.responseCarId = parseInt(responseData.id)
             }
           );
+          this.addCarFormComponentChild.carForm.removeControl('location');
+          this.addCarFormComponentChild.location = '';
 
           this.addCarView = true;
-          this.editCarTextHeader = true;
+          // this.editCarTextHeader = true;
           this.insertNewCarTextHeader = false;
           window.scroll({top: 0, behavior: "smooth"})
         }
