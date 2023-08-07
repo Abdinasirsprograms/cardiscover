@@ -17,7 +17,6 @@ export class AddCarFormComponent implements OnInit,OnChanges {
   
   carForm: FormGroup = this.formBuilder.group({
     id: [null],
-    reservation_id: [null],
     brand: ['',Validators.required],
     dropoffTime: [null, Validators.required],
     location: ['',Validators.required],
@@ -58,7 +57,10 @@ export class AddCarFormComponent implements OnInit,OnChanges {
 
   ngOnInit(): void {
     this.carForm.controls['id'].disable()
-    this.carForm.controls['reservation_id'].disable()
+    if(this.reservation_id !== -1){
+      this.carForm.addControl('reservation_id',  this.formBuilder.control(this.reservation_id, [Validators.required]))
+      this.carForm.controls['reservation_id'].disable()
+    }
   };
   //   this.carForm = this.formBuilder.group({
   //     brand: ['',Validators.required],

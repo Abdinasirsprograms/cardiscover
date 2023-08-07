@@ -3,7 +3,7 @@ import { AddCarFormComponent } from './add-car-form/car-form.component';
 import { CarDiscoverResultsTableDataSource } from '../car-discover-results-table.datasource';
 import { carDiscoverHTTPService } from '../car-discover-http.service';
 import { locationHttpService } from 'src/services/location/location.service';
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ResultsTableComponent } from './table/results-table/results-table.component';
 import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.component';
 import { transition } from '@angular/animations';
@@ -57,6 +57,7 @@ export class AppComponent  {
 
   temporaryCarForm!:FormGroup;
   constructor(
+    private formBuilder: FormBuilder, 
     private carDiscover: carDiscoverHTTPService,
     private locationService: locationHttpService,
     private reservationService: ReservationHTTPService
@@ -312,7 +313,6 @@ export class AppComponent  {
                 }
                 this.addCarFormComponentChild.carForm.patchValue({
                   id: Number.parseInt(responseData.id),
-                  reservation_id: Number.parseInt(responseData.reservation_id),
                   brand: responseData.brand,
                   dropoffTime: new Date(Date.parse(responseData.dropoffTime)),
                   location: responseData.location,
@@ -322,6 +322,16 @@ export class AppComponent  {
                   size: responseData.size,
                   supplier: responseData.supplier
                 });
+                console.table(responseData);
+                if('reservation_id' in responseData){
+                  this.addCarFormComponentChild.carForm.patchValue({
+                    reservation_id: Number.parseInt(responseData.reservation_id),
+                  });
+                  this.addCarFormComponentChild.reservation_id = responseData.reservation_id;
+                } else {
+                  this.addCarFormComponentChild.carForm.removeControl('reservation_id');
+                  this.addCarFormComponentChild.reservation_id = -1;
+                }
                 this.addCarFormComponentChild.location = responseData.location;
               }else {
                 console.error("NOT RENDERED YET??!!!")
@@ -331,7 +341,6 @@ export class AppComponent  {
               this.responseCarId = parseInt(responseData.id)
             }
           );
-          // this.addCarFormComponentChild.carForm = updatedCarForm;
           this.addCarView = true;
           this.editCarTextHeader = true;
           this.insertNewCarTextHeader = false;
@@ -376,7 +385,7 @@ export class AppComponent  {
               this.responseCarId = parseInt(responseData.id)
             }
           );
-          this.addCarFormComponentChild.carForm.removeControl('location');
+          // this.addCarFormComponentChild.carForm.removeControl('location');
           this.addCarFormComponentChild.location = '';
 
           this.addCarView = true;
