@@ -16,10 +16,12 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,6 +61,18 @@ public class Location {
     * add to cars with reservations date range
     * return both arrays
     */
+
+    // Get all avaliable cars at the location
+    @GetMapping("/{locationName}")
+    @ResponseBody
+    public List<String> getLocationNames(@PathVariable String locationName) throws SQLException{
+        List<String> locationNames = new ArrayList<>();
+        List<LocationEntity> locations = locationRepository.findByNameStartingWith(locationName);
+        for (LocationEntity locationEntity : locations) {
+            locationNames.add(locationEntity.toString());
+        }
+        return locationNames;
+    }
 
     // Get all avaliable cars at the location
     @PostMapping("/get-avaliable-cars")
@@ -101,6 +115,7 @@ public class Location {
             e.printStackTrace();
         }
         return CleanCarData.cleanListOfCarData(AvaliableCarsAtLocation);
+    
     }
    
 }
