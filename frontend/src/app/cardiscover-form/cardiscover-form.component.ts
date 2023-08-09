@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map, Observable } from 'rxjs';
 import { carDiscoverHTTPService } from 'src/car-discover-http.service';
 
 @Component({
@@ -11,7 +12,10 @@ import { carDiscoverHTTPService } from 'src/car-discover-http.service';
 
 export class CardiscoverFormComponent implements OnInit {
   @Output() formSubmitted: EventEmitter<any> = new EventEmitter();
-
+  @Output() filterForPickUpLocationName: EventEmitter<any> = new EventEmitter();
+  @Output() filterForDropoffLocationName: EventEmitter<any> = new EventEmitter();
+  @Input() filteredPickupOptions!: Observable<String[]>;
+  @Input() filteredDropoffOptions!: Observable<String[]>;
   carDiscoverForm!: FormGroup;
 
   puDate!: Date;
@@ -25,11 +29,9 @@ export class CardiscoverFormComponent implements OnInit {
     private formBuilder: FormBuilder
   ){};
 
+
   getAvaliableCars(){
-    // this.LocationDataService.getLocationCars(this.doLocation, this.puLocation).subscribe(data => {
-    //   this.dataSource.setData(data)
-    //   this.showTable = true;
-    // })
+
     const formData = this.carDiscoverForm.value;
     if(formData.doLocation === "" && formData.puLocation === ""){
       this.noInputView = true;
@@ -37,7 +39,14 @@ export class CardiscoverFormComponent implements OnInit {
     }
     this.formSubmitted.emit(formData);
   }
-  
+
+  puLocationInput(locationInput: Event){
+    this.filterForPickUpLocationName.emit(locationInput)
+  }
+
+  doLocationInput(locationInput: Event){
+    this.filterForDropoffLocationName.emit(locationInput)
+  }
   ngOnInit(): void {
     this.carDiscoverForm = this.formBuilder.group({
         doDate: [DatePipe],
@@ -45,5 +54,6 @@ export class CardiscoverFormComponent implements OnInit {
         puLocation: ['',Validators.required],
         puDate: [DatePipe],
       });
-  }
+    };
+
 }

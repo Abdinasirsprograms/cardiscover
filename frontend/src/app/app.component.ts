@@ -8,7 +8,7 @@ import { ResultsTableComponent } from './table/results-table/results-table.compo
 import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.component';
 import { transition } from '@angular/animations';
 import { ReservationHTTPService } from 'src/services/reservation/reservation.service';
-
+import { of } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -89,6 +89,27 @@ export class AppComponent  {
     }
   }
 
+  filterForPickUpLocationName(event:any){
+    let currentString = event.target.value;
+    if(currentString.length >= 3){
+      if(event.keycode !== 8){
+        this.locationService.getLocationNames(currentString).subscribe((responseData) => {
+          this.cardiscoverForm.filteredPickupOptions = of(responseData)
+        })
+      }
+    }
+  }
+
+  filterForDropoffLocationName(event:any){
+    let currentString = event.target.value;
+    if(currentString.length >= 3){
+      if(event.keycode !== 8){
+        this.locationService.getLocationNames(currentString).subscribe((responseData) => {
+          this.cardiscoverForm.filteredDropoffOptions = of(responseData)
+        })
+      }
+    }
+  }
 
   clearSelected(){
     // reset the clicked rows to not selected state and clear the array

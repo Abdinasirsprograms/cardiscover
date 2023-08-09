@@ -69,7 +69,7 @@ public class Location {
         List<String> locationNames = new ArrayList<>();
         List<LocationEntity> locations = locationRepository.findByNameStartingWith(locationName);
         for (LocationEntity locationEntity : locations) {
-            locationNames.add(locationEntity.toString());
+            locationNames.add(locationEntity.getName());
         }
         return locationNames;
     }

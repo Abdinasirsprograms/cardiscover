@@ -163,7 +163,13 @@
 
   <!-- Car discover form -->
   <ng-container *ngIf="editView === false && showCarDiscoverForm === true">
-    <cardiscover-form #cardiscoverForm (formSubmitted)="getAvaliableCars($event)"></cardiscover-form>
+    <cardiscover-form 
+    #cardiscoverForm 
+    (formSubmitted)="getAvaliableCars($event)"
+    (filterForPickUpLocationName)="filterForPickUpLocationName($event)" 
+    (filterForDropoffLocationName)="filterForDropoffLocationName($event)" 
+
+    ></cardiscover-form>
   </ng-container>
 
 </main>

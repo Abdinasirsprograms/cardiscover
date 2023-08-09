@@ -25,6 +25,7 @@ import { ResultsTableComponent } from './table/results-table/results-table.compo
 import { ActionsComponent } from './table/action-buttons/actions.component';
 import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.component';
 import { ReservationComponent } from './reservation/reservation/reservation.component'
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,8 @@ import { ReservationComponent } from './reservation/reservation/reservation.comp
   MatNativeDatetimeModule,
   // MatMomentDatetimeModule,
   MatDatetimepickerModule,
+  MatAutocompleteModule
+
   ],
   providers: [CarDiscoverResultsTableDataSource, carDiscoverHTTPService],
   bootstrap: [AppComponent]
