@@ -62,6 +62,18 @@ public class Location {
     * return both arrays
     */
 
+    // get 3 random locations that have vehicles avaliables 
+    @GetMapping("/suggest-locations")
+    @ResponseBody
+    public List<String> suggestLocations() throws SQLException{
+        List<String> locationNames = new ArrayList<>();
+        List<LocationEntity> locations = locationRepository.findFirst3ByOrderByNameDesc();
+        for (LocationEntity locationEntity : locations) {
+            locationNames.add(locationEntity.getName());
+        }
+        return locationNames;
+    }
+
     // Get all avaliable cars at the location
     @GetMapping("/{locationName}")
     @ResponseBody

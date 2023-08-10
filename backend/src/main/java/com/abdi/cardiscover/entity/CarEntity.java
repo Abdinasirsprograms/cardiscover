@@ -22,7 +22,7 @@ public class CarEntity {
     private ModelEntity model;
     @ManyToOne(cascade = CascadeType.ALL)
     private ColorEntity color;
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne(cascade = CascadeType.ALL)
     private ReservationEntity reservation;
     @ManyToOne(cascade = CascadeType.ALL)
     private SupplierEntity supplier;
@@ -32,7 +32,7 @@ public class CarEntity {
     private RateEntity rate;
     @ManyToOne(cascade = CascadeType.ALL)
     private SizeEntity size;
-    @ManyToMany(cascade = CascadeType.DETACH)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private List<ReservationEntity> reservations;
     
     

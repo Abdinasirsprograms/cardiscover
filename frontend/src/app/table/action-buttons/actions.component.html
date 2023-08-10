@@ -7,9 +7,9 @@
           Delete all cars
         </button>
       </ng-container>
-      <ng-container *ngIf="lengthOfRows >= 1 && (editView || addCarView)">
+      <ng-container *ngIf="lengthOfRows >= 1 && (editView || addCarView || showBookingResults)">
       <!-- TABLE ACTION/REQUIRES ROW DETAILS -->
-      <button mat-flat-button color="warn" (click)="deleteRows()" >
+      <button mat-flat-button color="warn" (click)="deleteRows($event)" >
         <mat-icon>delete_forever</mat-icon>
         Delete Selected
       </button>

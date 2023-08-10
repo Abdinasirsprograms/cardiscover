@@ -43,6 +43,9 @@ export class CardiscoverFormComponent implements OnInit {
   puLocationInput(locationInput: Event){
     this.filterForPickUpLocationName.emit(locationInput)
   }
+  setDoLocation(value:String){
+    this.carDiscoverForm.controls['doLocation'].patchValue(value);
+  }
 
   doLocationInput(locationInput: Event){
     this.filterForDropoffLocationName.emit(locationInput)

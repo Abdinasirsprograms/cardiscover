@@ -15,11 +15,11 @@
               <mat-label>Pick Up</mat-label>
               <input type="text"
               aria-label="Input Location"
-              placeholder="Ex. London" formControlName="puLocation" 
+              placeholder="Ex. London" name="puLocation" formControlName="puLocation" 
               matInput
               (keydown)="puLocationInput($event)"
               [matAutocomplete]="auto1">
-              <mat-autocomplete autoActiveFirstOption #pickupAutoComplete #auto1="matAutocomplete">
+              <mat-autocomplete autoActiveFirstOption #pickupAutoComplete #auto1="matAutocomplete" (optionSelected)="setDoLocation($event.option.value)">
                 <mat-option *ngFor="let option of filteredPickupOptions | async" [value]="option">
                   {{option}}
                 </mat-option>

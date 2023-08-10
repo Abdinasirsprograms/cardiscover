@@ -10,7 +10,10 @@ export class ReservationHTTPService {
   private BASE_API_URL = 'http://192.168.1.196:8080/reservation/'
 
   constructor(private http: HttpClient) { }
-
+  deleteReservation(reservation_id: Number){
+    return this.http.get<void>(this.BASE_API_URL + 'delete-booking/' + reservation_id)
+    //  new Observable<void>()
+  }
   bookCar(doLocation:String, puLocation:String, doDate:Date, puDate:Date, carID:Number): Observable<carFormInterface> {    
     console.log("this is at the http client service level");
     console.table({

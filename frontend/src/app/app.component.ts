@@ -422,7 +422,12 @@ export class AppComponent  {
     }
   }
 
-  deleteRows(){}
+  deleteRows(event: any){
+    console.log("delete this record: ", this.rowsClicked[0]);
+    if(this.showBookingResults){
+      this.reservationService.deleteReservation(this.rowsClicked[0].reservation_id).subscribe();
+    }
+  }
 
 
 

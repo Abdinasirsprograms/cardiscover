@@ -33,6 +33,12 @@
     color: white!important;
 
 }
+
+.warn {
+    background-color: hsl(51, 100%, 70%);
+
+}
+
 .shake {
     animation: shake 0.5s linear forwards;
     padding: 1rem;

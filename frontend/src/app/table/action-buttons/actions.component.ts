@@ -40,8 +40,8 @@ export class ActionsComponent {
 
   }
 
-  deleteRows(){
-    this.deleteRowsClick.emit()
+  deleteRows(event:any){
+    this.deleteRowsClick.emit(event)
 
   }
 
