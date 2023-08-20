@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
@@ -32,7 +34,12 @@ public class CarEntity {
     private RateEntity rate;
     @ManyToOne(cascade = CascadeType.ALL)
     private SizeEntity size;
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(
+        name = "car_reservations",
+        joinColumns = @JoinColumn(name = "car_entity_id"),
+        inverseJoinColumns = @JoinColumn(name = "reservation_entity_id")
+    )
     private List<ReservationEntity> reservations;
     
     
@@ -136,6 +143,9 @@ public class CarEntity {
     public void setReservation(ReservationEntity reservation) {
         this.reservations.add(reservation);
     }
+    public void removeReservation(ReservationEntity reservation) {
+        this.reservations.remove(reservation);
+    }
     public SupplierEntity getSupplier() {
         return supplier;
     }
@@ -175,8 +185,6 @@ public class CarEntity {
     public ReservationEntity getReservation() {
         return reservation;
     }
-    public void setReservations(List<ReservationEntity> reservations) {
-        this.reservations = reservations;
-    }
+
 
 }

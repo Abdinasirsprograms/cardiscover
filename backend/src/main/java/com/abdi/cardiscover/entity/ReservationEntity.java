@@ -20,7 +20,7 @@ public class ReservationEntity {
     private Long id;
     private GregorianCalendar pickupTime;
     private GregorianCalendar dropoffTime;
-    @ManyToMany(cascade = CascadeType.DETACH)
+    @ManyToMany(mappedBy = "reservations")
     private List<CarEntity> cars = new ArrayList<>();
     public ReservationEntity(){}
     public ReservationEntity(GregorianCalendar pickupTime, GregorianCalendar dropoffTime){

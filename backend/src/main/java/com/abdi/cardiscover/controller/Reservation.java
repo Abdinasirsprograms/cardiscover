@@ -92,7 +92,17 @@ public class Reservation {
     @GetMapping("/delete-booking/{id}")
     // Serlizes the object as JSON due to the @ResponseBody annotation
     public void deleteBooking(@PathVariable Long id) throws SQLException {
-        reservationRepository.deleteById(id);
+        Optional<ReservationEntity> optionalReservation = reservationRepository.findById(id);
+        if(optionalReservation.isPresent() == true){
+            ReservationEntity reservation = optionalReservation.get();
+            List<CarEntity> carReservations = reservation.getCars();
+            for (CarEntity car : carReservations) {
+                reservation.getCars().remove(car);
+                car.removeReservation(reservation);
+                carRepository.save(car);
+                reservationRepository.delete(reservation);
+            }
+        }
     }
 
 
