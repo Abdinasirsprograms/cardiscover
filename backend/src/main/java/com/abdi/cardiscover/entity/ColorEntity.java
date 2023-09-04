@@ -21,7 +21,7 @@ public class ColorEntity {
   @OneToMany(cascade = CascadeType.ALL)
   private List<ModelEntity> models = new ArrayList<>();
   
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.PERSIST)
   private List<CarEntity> car = new ArrayList<>();
 //   the default constructor exists only for the sake of JPA.
   protected ColorEntity() {}

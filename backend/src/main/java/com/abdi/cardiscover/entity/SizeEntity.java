@@ -19,10 +19,10 @@ public class SizeEntity {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Long id;
   private String name;
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.PERSIST)
   private List<ModelEntity> models = new ArrayList<>();
   
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.PERSIST)
   private List<BrandEntity> brands = new ArrayList<>();
 //   the default constructor exists only for the sake of JPA.
   protected SizeEntity() {}

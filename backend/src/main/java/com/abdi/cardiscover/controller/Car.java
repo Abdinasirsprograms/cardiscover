@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -132,6 +133,39 @@ public class Car {
         return CleanCarData.clean(car);
     }
 
+    @GetMapping("/delete-car/{id}")
+    // Serlizes the object as JSON due to the @ResponseBody annotation
+    public void deleteCar(@PathVariable Long id) throws SQLException {
+        Optional<CarEntity> optionalCar = carRepository.findById(id);
+        if(optionalCar.isPresent() != true){
+            return;
+        }
+        CarEntity car = optionalCar.get();
+        // Decided to use the car repo as the place to delete reservation entities
+        List<ReservationEntity> reservations = car.getReservations();
+        List<Long> reservationIds = new ArrayList<>();
+        for (ReservationEntity reservationEntity : reservations) {
+            reservationIds.add(reservationEntity.getId());
+            // car.removeReservation(reservationEntity);
+            // car.getLocation().removeCar(car);
+            // car.removeLocation();
+            // locationRepository.save(car.getLocation());
+            //     System.out.println("\n\n\nREMOVING RESERVATION ENTITY FROM CAR\n\n\n\n\n\n");
+            // car.removeReservation(reservationEntity);
+            //     // carRepository.save(car);    
+            //     System.out.println("\n\n\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n\n\n\n\n\n");
+        }
+        car.getLocation().removeCar(car);
+        carRepository.save(car);
+        for (Long reservationId : reservationIds) {
+            System.out.println("\n\n\n*******DELETING RESERVATION******\n\n\n\n\n\n");
+            reservationRepository.deleteById(reservationId);
+            System.out.println("\n\n\n*************\n\n\n\n\n\n");
+        }
+        // for (ReservationEntity reservation: reservations) {
+        // }
+        carRepository.delete(car);
+    }
     
         
     /*

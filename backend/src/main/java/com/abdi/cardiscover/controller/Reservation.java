@@ -96,8 +96,8 @@ public class Reservation {
         if(optionalReservation.isPresent() == true){
             ReservationEntity reservation = optionalReservation.get();
             List<CarEntity> carReservations = reservation.getCars();
+            // Decided to use the car repo as the place to delete reservation entities
             for (CarEntity car : carReservations) {
-                reservation.getCars().remove(car);
                 car.removeReservation(reservation);
                 carRepository.save(car);
                 reservationRepository.delete(reservation);

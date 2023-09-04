@@ -16,6 +16,9 @@ export class carDiscoverHTTPService {
   deleteAllCars(): Observable<carFormInterface[]> {
     return this.http.get<carFormInterface[]>(this.BASE_API_URL + 'delete-all-cars');
   }
+  deleteCar(id:number): Observable<carFormInterface[]> {
+    return this.http.get<carFormInterface[]>(this.BASE_API_URL + 'delete-car/' + id);
+  }
   getCar(id:number): Observable<carFormInterface[]> {
     const options = id ?
    { params: new HttpParams().set('id', id) } : {};

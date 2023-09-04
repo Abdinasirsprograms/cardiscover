@@ -301,7 +301,9 @@ export class AppComponent  {
 
   
   deleteAllCars(){
-    this.carDiscover.deleteAllCars().subscribe()
+    if(this.rowsClicked.length >= 2){
+      this.carDiscover.deleteAllCars().subscribe()
+    }
   }
 
   bookCar(){
@@ -423,9 +425,12 @@ export class AppComponent  {
   }
 
   deleteRows(event: any){
-    console.log("delete this record: ", this.rowsClicked[0]);
     if(this.showBookingResults){
       this.reservationService.deleteReservation(this.rowsClicked[0].reservation_id).subscribe();
+    }
+    if(this.editView){
+      console.log("delete this record one record: ", this.rowsClicked[0]);
+      this.carDiscover.deleteCar(this.rowsClicked[0].id).subscribe();
     }
   }
 

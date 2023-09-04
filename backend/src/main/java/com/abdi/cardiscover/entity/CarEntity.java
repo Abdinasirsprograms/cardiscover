@@ -18,23 +18,23 @@ public class CarEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private LocationEntity location;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private ModelEntity model;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private ColorEntity color;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private ReservationEntity reservation;
-    @ManyToOne(cascade = CascadeType.ALL)
+    // @ManyToOne(cascade = CascadeType.PERSIST)
+    // private ReservationEntity reservation;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private SupplierEntity supplier;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private BrandEntity brand;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private RateEntity rate;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private SizeEntity size;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
         name = "car_reservations",
         joinColumns = @JoinColumn(name = "car_entity_id"),
@@ -57,7 +57,6 @@ public class CarEntity {
         this.model = model;
         this.color = color;
         this.supplier = supplier;
-        this.reservation = reservation;
         this.rate = rate;
         this.brand = brand;
         this.size = size;
@@ -90,7 +89,6 @@ public class CarEntity {
         this.model = model;
         this.color = color;
         this.supplier = supplier;
-        this.reservation = reservation;
         this.rate = rate;
         this.brand = brand;
     };
@@ -138,13 +136,16 @@ public class CarEntity {
         this.color = color;
     }
     public List<ReservationEntity> getReservations() {
-        return reservations;
+        return this.reservations;
     }
     public void setReservation(ReservationEntity reservation) {
         this.reservations.add(reservation);
     }
     public void removeReservation(ReservationEntity reservation) {
         this.reservations.remove(reservation);
+    }
+    public void removeLocation() {
+        this.location = null;
     }
     public SupplierEntity getSupplier() {
         return supplier;
@@ -161,8 +162,8 @@ public class CarEntity {
     @Override
     public String toString() {
         String formatAsString = "CarEntity [id=" + id;
-        if(reservation != null){
-            formatAsString += ", reservation = " + reservation.toString();
+        if(reservations != null){
+            formatAsString += ", reservations = " + reservations.toString();
         }
         formatAsString += ", location= " + location.toString() +  ", model=" + model.toString() + "rate=" + rate.toString() + "]";
         return formatAsString;
@@ -182,9 +183,7 @@ public class CarEntity {
     public void setSize(SizeEntity size) {
         this.size = size;
     }
-    public ReservationEntity getReservation() {
-        return reservation;
-    }
+
 
 
 }
