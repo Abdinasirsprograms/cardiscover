@@ -38,12 +38,12 @@ public class Reservation {
     }
 
     /*
-     * Book car flow
+     * Reserve car flow
      */
-    @PostMapping("/book-car")
+    @PostMapping("/reserve-car")
     @ResponseBody
     // Serlizes the object as JSON due to the @ResponseBody annotation
-    public HashMap<String,String> bookCar(@RequestBody ReservationRequestBody requestParams) throws SQLException {
+    public HashMap<String,String> reserveCar(@RequestBody ReservationRequestBody requestParams) throws SQLException {
         /* 
         * In the event the application starts without the DB.
         * Might be better to create a seperate script 
