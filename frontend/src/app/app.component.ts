@@ -306,11 +306,11 @@ export class AppComponent  {
     }
   }
 
-  bookCar(){
+  reserveCar(){
     let formData = this.cardiscoverForm.carDiscoverForm.value;
     console.log("this is the payload", formData.doLocation, formData.puLocation, 
       formData.doDate, formData.puDate, this.rowsClicked[0].id)
-    this.reservationService.bookCar(formData.doLocation, formData.puLocation, 
+    this.reservationService.reserveCar(formData.doLocation, formData.puLocation, 
       formData.doDate, formData.puDate, this.rowsClicked[0].id).subscribe((response: any) => {
       
     })

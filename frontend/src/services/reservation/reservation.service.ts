@@ -14,13 +14,13 @@ export class ReservationHTTPService {
     return this.http.get<void>(this.BASE_API_URL + 'delete-reservation/' + reservation_id)
     //  new Observable<void>()
   }
-  bookCar(doLocation:String, puLocation:String, doDate:Date, puDate:Date, carID:Number): Observable<carFormInterface> {    
+  reserveCar(doLocation:String, puLocation:String, doDate:Date, puDate:Date, carID:Number): Observable<carFormInterface> {    
     console.log("this is at the http client service level");
     console.table({
       "doLocation":doLocation,  "puLocation":puLocation, 
       "doDate":doDate, "puDate":puDate , "id":carID
     })
-    return this.http.post<carFormInterface>(this.BASE_API_URL + 'book-car', {
+    return this.http.post<carFormInterface>(this.BASE_API_URL + 'reserve-car', {
       "doLocation":doLocation,  "puLocation":puLocation, 
       "doDate":doDate, "puDate":puDate , "id":carID
     });

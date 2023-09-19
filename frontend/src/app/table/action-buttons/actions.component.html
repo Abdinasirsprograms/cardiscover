@@ -23,7 +23,7 @@
         <h2 class="highlight-text remove-margin">Choose a car to modify</h2>
       </ng-container>
       <ng-container *ngIf="editView == false && addCarView == false && showReservationResults == false">
-        <h2 class="highlight-text remove-margin">Choose a car to book for your Trip!</h2>
+        <h2 class="highlight-text remove-margin">Choose a car to reserve for your Trip!</h2>
       </ng-container>
       <ng-container *ngIf="lengthOfRows < 1 && editView == false && addCarView == false && showReservationResults == true">
         <h2 class="highlight-text remove-margin">Choose Reservaion to change</h2>
@@ -36,9 +36,9 @@
       </ng-container>
       <ng-container *ngIf="lengthOfRows == 1 && showStartCarReservationView">
         <ng-container *ngIf="showStartCarReservationView">
-          <button mat-flat-button (click)="bookCar()">
+          <button mat-flat-button (click)="reserveCar()">
             <mat-icon>play_lesson</mat-icon>
-            Book car!
+            Reserve car!
           </button>
         </ng-container>
       </ng-container>
@@ -46,7 +46,7 @@
         <ng-container *ngIf="lengthOfRows > 1 && showStartCarReservationView">
           <button mat-flat-button (click)="modify()">
             <mat-icon>play_lesson</mat-icon>
-            Book Multiple Cars!
+            Reserve Multiple Cars!
           </button>
       </ng-container>
     </div >
