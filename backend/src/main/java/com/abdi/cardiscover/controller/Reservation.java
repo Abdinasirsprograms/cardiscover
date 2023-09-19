@@ -69,7 +69,7 @@ public class Reservation {
         return CleanCarData.clean(requestedCar);
     }
     
-    @GetMapping("/get-all-bookings")
+    @GetMapping("/get-all-reservations")
     @ResponseBody
     public List<HashMap<String,String>> getAllReservations() throws SQLException {
         List<HashMap<String, String>> results_cleaned = new ArrayList<>();
@@ -83,15 +83,15 @@ public class Reservation {
         return results_cleaned;
     }
         
-    @GetMapping("/delete-all-bookings")
+    @GetMapping("/delete-all-reservations")
     // Serlizes the object as JSON due to the @ResponseBody annotation
-    public void deleteAllBookings() throws SQLException {
+    public void deleteAllReservations() throws SQLException {
         reservationRepository.deleteAll();
     }
 
-    @GetMapping("/delete-booking/{id}")
+    @GetMapping("/delete-reservation/{id}")
     // Serlizes the object as JSON due to the @ResponseBody annotation
-    public void deleteBooking(@PathVariable Long id) throws SQLException {
+    public void deleteReservation(@PathVariable Long id) throws SQLException {
         Optional<ReservationEntity> optionalReservation = reservationRepository.findById(id);
         if(optionalReservation.isPresent() == true){
             ReservationEntity reservation = optionalReservation.get();
@@ -106,7 +106,7 @@ public class Reservation {
     }
 
 
-    @GetMapping("/get-booking/{id}")
+    @GetMapping("/get-reservation/{id}")
     @ResponseBody
     public HashMap<String,String> getReservation(@PathVariable Long id) throws SQLException {
         HashMap<String, String> results_cleaned = new HashMap<>();
