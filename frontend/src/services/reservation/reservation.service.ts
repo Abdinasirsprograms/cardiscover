@@ -11,7 +11,7 @@ export class ReservationHTTPService {
 
   constructor(private http: HttpClient) { }
   deleteReservation(reservation_id: Number){
-    return this.http.get<void>(this.BASE_API_URL + 'delete-booking/' + reservation_id)
+    return this.http.get<void>(this.BASE_API_URL + 'delete-reservation/' + reservation_id)
     //  new Observable<void>()
   }
   bookCar(doLocation:String, puLocation:String, doDate:Date, puDate:Date, carID:Number): Observable<carFormInterface> {    
@@ -25,10 +25,10 @@ export class ReservationHTTPService {
       "doDate":doDate, "puDate":puDate , "id":carID
     });
   }
-  getAllBookings(): Observable<carFormInterface> {    
-    return this.http.get<carFormInterface>(this.BASE_API_URL + 'get-all-bookings');
+  getAllReservations(): Observable<carFormInterface> {    
+    return this.http.get<carFormInterface>(this.BASE_API_URL + 'get-all-reservations');
   }
-  getBooking(reservationID:Number): Observable<carFormInterface> {    
-    return this.http.get<carFormInterface>(this.BASE_API_URL + 'get-booking/' + reservationID);
+  getReservation(reservationID:Number): Observable<carFormInterface> {    
+    return this.http.get<carFormInterface>(this.BASE_API_URL + 'get-reservation/' + reservationID);
   }
 }

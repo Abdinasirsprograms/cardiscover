@@ -36,8 +36,8 @@ export class AppComponent  {
   editView = false;
   // additional DO location results table 
   showDoLocationResults = false;
-  showBookingResults = false;
-  hideBookingsButtonText = false;
+  showReservationResults = false;
+  hideReservationsButtonText = false;
   noInputView = false;
   filteredCarResultsView = false;
   responseCarId = 0;
@@ -48,8 +48,8 @@ export class AppComponent  {
   
   carResultsDataSource = new CarDiscoverResultsTableDataSource();
   doLocationResultsDataSource = new CarDiscoverResultsTableDataSource();
-  bookingResultsDataSource = new CarDiscoverResultsTableDataSource();
-  @ViewChild('bookingsResults') bookingResultsTableComponent!: ResultsTableComponent;
+  reservationResultsDataSource = new CarDiscoverResultsTableDataSource();
+  @ViewChild('reservationsResults') reservationResultsTableComponent!: ResultsTableComponent;
   @ViewChild('carResults') carResultsTableComponent!: ResultsTableComponent;
   @ViewChild('doLocationResults') doLocationResults!: ResultsTableComponent;
   @ViewChild('cardiscoverForm') cardiscoverForm!: CardiscoverFormComponent;
@@ -252,48 +252,48 @@ export class AppComponent  {
     // }
   }
 
-  getAllBookings(){
-    if(this.showBookingResults){
-      this.bookingResultsDataSource.setData([]);
-      this.bookingResultsTableComponent.showTable = false;
+  getAllReservations(){
+    if(this.showReservationResults){
+      this.reservationResultsDataSource.setData([]);
+      this.reservationResultsTableComponent.showTable = false;
       this.noResult = false;  
       this.showCarDiscoverForm = true;
-      this.hideBookingsButtonText = false;
-      this.showBookingResults = false
+      this.hideReservationsButtonText = false;
+      this.showReservationResults = false
       this.showTable = false
       return
     }
     this.noInputView = false;
-    this.showBookingResults = true;
+    this.showReservationResults = true;
     // this.editView = true;
-    this.reservationService.getAllBookings().subscribe((response: any) => {
+    this.reservationService.getAllReservations().subscribe((response: any) => {
       if( Object.keys(response).length === 0){
         if(this.noResult === true){
           document.body.querySelector(".shake")?.getAnimations()[0].play();
         }
         this.noResult = true;  
-        if(this.showBookingResults){
-          this.showBookingResults = false;
+        if(this.showReservationResults){
+          this.showReservationResults = false;
         }
         return;
       }
       // Show table results with all cars response
-      this.bookingResultsDataSource.setData([...response]);
-      // bookingResultsDataSource = new CarDiscoverResultsTableDataSource();
-      // @ViewChild('bookingsResults') bookingResultsTableComponent!: ResultsTableComponent;
-      this.bookingResultsTableComponent.displayedColumns = Object.keys(response[0]);
+      this.reservationResultsDataSource.setData([...response]);
+      // reservationResultsDataSource = new CarDiscoverResultsTableDataSource();
+      // @ViewChild('reservationsResults') reservationResultsTableComponent!: ResultsTableComponent;
+      this.reservationResultsTableComponent.displayedColumns = Object.keys(response[0]);
       // Ensure the car's ID is always at the front if present
-      let idPos = this.bookingResultsTableComponent.displayedColumns.indexOf("id")
+      let idPos = this.reservationResultsTableComponent.displayedColumns.indexOf("id")
       if(idPos !== -1){
-        this.bookingResultsTableComponent.displayedColumns.splice(idPos, 1);
-        this.bookingResultsTableComponent.displayedColumns.unshift("id");
+        this.reservationResultsTableComponent.displayedColumns.splice(idPos, 1);
+        this.reservationResultsTableComponent.displayedColumns.unshift("id");
       }
       // This will show only the car results table with controls,  
       // showDoLocationResults needs to be set to true to also show doLocation results table
-      this.bookingResultsTableComponent.showTable = true;
+      this.reservationResultsTableComponent.showTable = true;
       this.noResult = false;  
       this.showCarDiscoverForm = false;
-      this.hideBookingsButtonText = true;
+      this.hideReservationsButtonText = true;
       this.showTable = true;
     })
 
@@ -312,7 +312,8 @@ export class AppComponent  {
       formData.doDate, formData.puDate, this.rowsClicked[0].id)
     this.reservationService.bookCar(formData.doLocation, formData.puLocation, 
       formData.doDate, formData.puDate, this.rowsClicked[0].id).subscribe((response: any) => {
-      console.log("CAR BOOKED!!")})
+      
+    })
   }
 
   modify(){
@@ -375,18 +376,18 @@ export class AppComponent  {
         console.error(this.addCarFormComponentChild)
       }
     }
-    if(this.showBookingResults){
+    if(this.showReservationResults){
       if(this.addCarFormComponentChild){
         if(this.rowsClicked.length > 0){
           // Will allow using Next & Previous button
           this.previousChosenRowModifyPointer = this.chosenRowModifyPointer
-          let editBooking = this.rowsClicked[this.chosenRowModifyPointer];
+          let editReservation = this.rowsClicked[this.chosenRowModifyPointer];
           this.addCarFormComponentChild.editView = true;
           // this.addCarFormComponentChild.clearSelectedView = true;
-          this.reservationService.getBooking(editBooking.reservation_id).subscribe(
+          this.reservationService.getReservation(editReservation.reservation_id).subscribe(
             (responseData:any) => {
               if( Object.keys(responseData).length === 0){
-                console.error("Couldn't get booking ID", editBooking)
+                console.error("Couldn't get reservation ID", editReservation)
                 return;
               }
               if(this.addCarFormComponentChild){
@@ -425,7 +426,7 @@ export class AppComponent  {
   }
 
   deleteRows(event: any){
-    if(this.showBookingResults){
+    if(this.showReservationResults){
       this.reservationService.deleteReservation(this.rowsClicked[0].reservation_id).subscribe();
     }
     if(this.editView){
