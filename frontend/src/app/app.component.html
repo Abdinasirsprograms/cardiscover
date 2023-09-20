@@ -101,6 +101,10 @@
   </ng-container>      
 <!-- End of filter options -->
   
+  <ng-container *ngIf="showCarReservedText === true">
+    <h2>Car Reserved!✔</h2>
+  </ng-container>
+
   <!-- Pick up results table -->
   <!-- <ng-container *ngIf="cardiscoverForm !== null && showTable">
     <mat-card>
@@ -136,7 +140,7 @@
       </mat-card-content>
     </mat-card>
     <results-table #reservationsResults [dataSource]="reservationResultsDataSource" [displayedColumns] = "displayedColumns"
-   [showTable] = "showTable"
+   [showTable] = "showReservations"
     (rowClick)="clickedRow($event)"
     ></results-table>
   </ng-container>

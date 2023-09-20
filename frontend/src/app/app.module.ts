@@ -26,6 +26,8 @@ import { ActionsComponent } from './table/action-buttons/actions.component';
 import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.component';
 import { ReservationComponent } from './reservation/reservation/reservation.component'
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {Component} from '@angular/core';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -57,12 +59,11 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-      // use this if you want to use native javascript dates and INTL API if available
-  MatNativeDatetimeModule,
-  // MatMomentDatetimeModule,
-  MatDatetimepickerModule,
-  MatAutocompleteModule
-
+    MatNativeDatetimeModule,
+    MatDatetimepickerModule,
+    MatAutocompleteModule,
+    MatButtonModule, 
+    MatSnackBarModule
   ],
   providers: [CarDiscoverResultsTableDataSource, carDiscoverHTTPService],
   bootstrap: [AppComponent]

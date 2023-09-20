@@ -9,6 +9,7 @@ import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.co
 import { transition } from '@angular/animations';
 import { ReservationHTTPService } from 'src/services/reservation/reservation.service';
 import { of } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -38,6 +39,8 @@ export class AppComponent  {
   showDoLocationResults = false;
   showReservationResults = false;
   hideReservationsButtonText = false;
+  hideResultsTable = false;
+  showReservations = false;
   noInputView = false;
   filteredCarResultsView = false;
   responseCarId = 0;
@@ -45,7 +48,7 @@ export class AppComponent  {
   showTableChooseCarText = false;
   chosenRowModifyPointer = 0;
   previousChosenRowModifyPointer = 0;
-  
+  showCarReservedText = false;
   carResultsDataSource = new CarDiscoverResultsTableDataSource();
   doLocationResultsDataSource = new CarDiscoverResultsTableDataSource();
   reservationResultsDataSource = new CarDiscoverResultsTableDataSource();
@@ -60,7 +63,8 @@ export class AppComponent  {
     private formBuilder: FormBuilder, 
     private carDiscover: carDiscoverHTTPService,
     private locationService: locationHttpService,
-    private reservationService: ReservationHTTPService
+    private reservationService: ReservationHTTPService,
+    private snackBar: MatSnackBar
     ) {}
 
   /* 
@@ -252,15 +256,20 @@ export class AppComponent  {
     // }
   }
 
+  resetView(){
+
+    this.noResult = false;  
+    this.showCarDiscoverForm = true;
+    this.hideReservationsButtonText = false;
+    this.showReservationResults = false
+    this.showTable = false
+    this.showCarReservedText = false;
+    this.clearSelected()
+  }
+
   getAllReservations(){
     if(this.showReservationResults){
-      this.reservationResultsDataSource.setData([]);
-      this.reservationResultsTableComponent.showTable = false;
-      this.noResult = false;  
-      this.showCarDiscoverForm = true;
-      this.hideReservationsButtonText = false;
-      this.showReservationResults = false
-      this.showTable = false
+      this.resetView()
       return
     }
     this.noInputView = false;
@@ -295,10 +304,15 @@ export class AppComponent  {
       this.showCarDiscoverForm = false;
       this.hideReservationsButtonText = true;
       this.showTable = true;
+      if(this.hideResultsTable){
+        this.carResultsDataSource.setData([])
+        this.showTable = false;
+      }
     })
 
   }
 
+  
   
   deleteAllCars(){
     if(this.rowsClicked.length >= 2){
@@ -308,12 +322,19 @@ export class AppComponent  {
 
   reserveCar(){
     let formData = this.cardiscoverForm.carDiscoverForm.value;
-    console.log("this is the payload", formData.doLocation, formData.puLocation, 
-      formData.doDate, formData.puDate, this.rowsClicked[0].id)
+    console.log("this is the payload", formData.doLocation, 
+    formData.puLocation, formData.doDate, formData.puDate, this.rowsClicked[0].id)
+
     this.reservationService.reserveCar(formData.doLocation, formData.puLocation, 
       formData.doDate, formData.puDate, this.rowsClicked[0].id).subscribe((response: any) => {
-      
+        this.resetView()
+        this.clearSelected();
+        this.hideResultsTable = true;
+        this.getAllReservations();
+        this.snackBar.open("Car has been reserved","Dismiss")._dismissAfter(6_000);
     })
+    
+
   }
 
   modify(){
@@ -427,12 +448,19 @@ export class AppComponent  {
 
   deleteRows(event: any){
     if(this.showReservationResults){
-      this.reservationService.deleteReservation(this.rowsClicked[0].reservation_id).subscribe();
+        this.rowsClicked.forEach(rowElement => {
+          this.reservationService.deleteReservation(rowElement.reservation_id).subscribe();
+        });
+        this.getAllReservations();
+
     }
     if(this.editView){
-      console.log("delete this record one record: ", this.rowsClicked[0]);
-      this.carDiscover.deleteCar(this.rowsClicked[0].id).subscribe();
+      this.rowsClicked.forEach(rowElement => {
+        this.carDiscover.deleteCar(rowElement.id).subscribe();
+      });
+      this.toggleEditView();
     }
+    this.snackBar.open("Items have been deleted", "Dismiss")._dismissAfter(6_000);
   }
 
 
