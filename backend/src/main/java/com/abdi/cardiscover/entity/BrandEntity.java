@@ -28,6 +28,8 @@ public class BrandEntity {
   private List<ModelEntity> models = new ArrayList<>();  
   @ManyToMany(cascade = CascadeType.DETACH)
   private List<SpecialtyClassEntity> specialtyclasses = new ArrayList<>();  
+  @OneToMany(cascade = CascadeType.DETACH)
+  private List<CarEntity> cars;
   @ManyToOne(cascade = CascadeType.ALL)
   private SizeEntity sizes;
   //   the default constructor exists only for the sake of JPA.
@@ -75,4 +77,7 @@ public class BrandEntity {
   public void setLogo(ImageEntity logo) {
     this.logo = logo;
   }
+
+  
+
 }

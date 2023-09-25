@@ -6,10 +6,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./reservation.component.css']
 })
 export class ReservationComponent {
-  @Output() getAllBookings: EventEmitter<any> = new EventEmitter();
-  @Input() hideBookingsButtonText: boolean = false;
-  emittGetBookings(){
-    this.getAllBookings.emit()
+  @Output() getAllReservations: EventEmitter<any> = new EventEmitter();
+  @Input() hideReservationsButtonText: boolean = false;
+  emittGetReservations(){
+    this.getAllReservations.emit()
     
   }
 }

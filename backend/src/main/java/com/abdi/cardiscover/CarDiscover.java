@@ -19,6 +19,7 @@ public class CarDiscover extends SpringBootServletInitializer {
     
     public static void main(String[] args) {
         SpringApplication.run(CarDiscover.class, args);
+        // SpringApplication.st(DemoDataInitilizer.class, args).start();
     }
 
     
@@ -26,5 +27,7 @@ public class CarDiscover extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(CarDiscover.class);
     }
+
+
 
 }

@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ActionsComponent {
   @Output() clearSelectedClick: EventEmitter<any> = new EventEmitter();
   @Output() deleteAllCarsClick: EventEmitter<any> = new EventEmitter();
-  @Output() bookCarClick: EventEmitter<any> = new EventEmitter();
+  @Output() reserveCarClick: EventEmitter<any> = new EventEmitter();
   @Output() modifyClick: EventEmitter<any> = new EventEmitter();
   @Output() deleteRowsClick: EventEmitter<any> = new EventEmitter();
 
@@ -17,7 +17,7 @@ export class ActionsComponent {
   @Input() lengthOfRows: number = 0;
   @Input() showStartCarReservationView: boolean = true;
   @Input() showControls: boolean = true;
-  @Input() showBookingResults: boolean = true;
+  @Input() showReservationResults: boolean = true;
   @Input() showTable: boolean = false;
 
   clearSelected(){
@@ -30,8 +30,8 @@ export class ActionsComponent {
   this.deleteAllCarsClick.emit()
   }
 
-  bookCar(){
-    this.bookCarClick.emit()
+  reserveCar(){
+    this.reserveCarClick.emit()
     
   }
 
@@ -40,8 +40,8 @@ export class ActionsComponent {
 
   }
 
-  deleteRows(){
-    this.deleteRowsClick.emit()
+  deleteRows(event:any){
+    this.deleteRowsClick.emit(event)
 
   }
 

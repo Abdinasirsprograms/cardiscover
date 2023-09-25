@@ -8,7 +8,8 @@ import { ResultsTableComponent } from './table/results-table/results-table.compo
 import { CardiscoverFormComponent } from './cardiscover-form/cardiscover-form.component';
 import { transition } from '@angular/animations';
 import { ReservationHTTPService } from 'src/services/reservation/reservation.service';
-
+import { of } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -36,8 +37,10 @@ export class AppComponent  {
   editView = false;
   // additional DO location results table 
   showDoLocationResults = false;
-  showBookingResults = false;
-  hideBookingsButtonText = false;
+  showReservationResults = false;
+  hideReservationsButtonText = false;
+  hideResultsTable = false;
+  showReservations = false;
   noInputView = false;
   filteredCarResultsView = false;
   responseCarId = 0;
@@ -45,11 +48,11 @@ export class AppComponent  {
   showTableChooseCarText = false;
   chosenRowModifyPointer = 0;
   previousChosenRowModifyPointer = 0;
-  
+  showCarReservedText = false;
   carResultsDataSource = new CarDiscoverResultsTableDataSource();
   doLocationResultsDataSource = new CarDiscoverResultsTableDataSource();
-  bookingResultsDataSource = new CarDiscoverResultsTableDataSource();
-  @ViewChild('bookingsResults') bookingResultsTableComponent!: ResultsTableComponent;
+  reservationResultsDataSource = new CarDiscoverResultsTableDataSource();
+  @ViewChild('reservationsResults') reservationResultsTableComponent!: ResultsTableComponent;
   @ViewChild('carResults') carResultsTableComponent!: ResultsTableComponent;
   @ViewChild('doLocationResults') doLocationResults!: ResultsTableComponent;
   @ViewChild('cardiscoverForm') cardiscoverForm!: CardiscoverFormComponent;
@@ -60,7 +63,8 @@ export class AppComponent  {
     private formBuilder: FormBuilder, 
     private carDiscover: carDiscoverHTTPService,
     private locationService: locationHttpService,
-    private reservationService: ReservationHTTPService
+    private reservationService: ReservationHTTPService,
+    private snackBar: MatSnackBar
     ) {}
 
   /* 
@@ -89,6 +93,27 @@ export class AppComponent  {
     }
   }
 
+  filterForPickUpLocationName(event:any){
+    let currentString = event.target.value;
+    if(currentString.length >= 3){
+      if(event.keycode !== 8){
+        this.locationService.getLocationNames(currentString).subscribe((responseData) => {
+          this.cardiscoverForm.filteredPickupOptions = of(responseData)
+        })
+      }
+    }
+  }
+
+  filterForDropoffLocationName(event:any){
+    let currentString = event.target.value;
+    if(currentString.length >= 3){
+      if(event.keycode !== 8){
+        this.locationService.getLocationNames(currentString).subscribe((responseData) => {
+          this.cardiscoverForm.filteredDropoffOptions = of(responseData)
+        })
+      }
+    }
+  }
 
   clearSelected(){
     // reset the clicked rows to not selected state and clear the array
@@ -231,65 +256,85 @@ export class AppComponent  {
     // }
   }
 
-  getAllBookings(){
-    if(this.showBookingResults){
-      this.bookingResultsDataSource.setData([]);
-      this.bookingResultsTableComponent.showTable = false;
-      this.noResult = false;  
-      this.showCarDiscoverForm = true;
-      this.hideBookingsButtonText = false;
-      this.showBookingResults = false
-      this.showTable = false
+  resetView(){
+
+    this.noResult = false;  
+    this.showCarDiscoverForm = true;
+    this.hideReservationsButtonText = false;
+    this.showReservationResults = false
+    this.showTable = false
+    this.showCarReservedText = false;
+    this.clearSelected()
+  }
+
+  getAllReservations(){
+    if(this.showReservationResults){
+      this.resetView()
       return
     }
     this.noInputView = false;
-    this.showBookingResults = true;
+    this.showReservationResults = true;
     // this.editView = true;
-    this.reservationService.getAllBookings().subscribe((response: any) => {
+    this.reservationService.getAllReservations().subscribe((response: any) => {
       if( Object.keys(response).length === 0){
         if(this.noResult === true){
           document.body.querySelector(".shake")?.getAnimations()[0].play();
         }
         this.noResult = true;  
-        if(this.showBookingResults){
-          this.showBookingResults = false;
+        if(this.showReservationResults){
+          this.showReservationResults = false;
         }
         return;
       }
       // Show table results with all cars response
-      this.bookingResultsDataSource.setData([...response]);
-      // bookingResultsDataSource = new CarDiscoverResultsTableDataSource();
-      // @ViewChild('bookingsResults') bookingResultsTableComponent!: ResultsTableComponent;
-      this.bookingResultsTableComponent.displayedColumns = Object.keys(response[0]);
+      this.reservationResultsDataSource.setData([...response]);
+      // reservationResultsDataSource = new CarDiscoverResultsTableDataSource();
+      // @ViewChild('reservationsResults') reservationResultsTableComponent!: ResultsTableComponent;
+      this.reservationResultsTableComponent.displayedColumns = Object.keys(response[0]);
       // Ensure the car's ID is always at the front if present
-      let idPos = this.bookingResultsTableComponent.displayedColumns.indexOf("id")
+      let idPos = this.reservationResultsTableComponent.displayedColumns.indexOf("id")
       if(idPos !== -1){
-        this.bookingResultsTableComponent.displayedColumns.splice(idPos, 1);
-        this.bookingResultsTableComponent.displayedColumns.unshift("id");
+        this.reservationResultsTableComponent.displayedColumns.splice(idPos, 1);
+        this.reservationResultsTableComponent.displayedColumns.unshift("id");
       }
       // This will show only the car results table with controls,  
       // showDoLocationResults needs to be set to true to also show doLocation results table
-      this.bookingResultsTableComponent.showTable = true;
+      this.reservationResultsTableComponent.showTable = true;
       this.noResult = false;  
       this.showCarDiscoverForm = false;
-      this.hideBookingsButtonText = true;
+      this.hideReservationsButtonText = true;
       this.showTable = true;
+      if(this.hideResultsTable){
+        this.carResultsDataSource.setData([])
+        this.showTable = false;
+      }
     })
 
   }
 
   
+  
   deleteAllCars(){
-    this.carDiscover.deleteAllCars().subscribe()
+    if(this.rowsClicked.length >= 2){
+      this.carDiscover.deleteAllCars().subscribe()
+    }
   }
 
-  bookCar(){
+  reserveCar(){
     let formData = this.cardiscoverForm.carDiscoverForm.value;
-    console.log("this is the payload", formData.doLocation, formData.puLocation, 
-      formData.doDate, formData.puDate, this.rowsClicked[0].id)
-    this.reservationService.bookCar(formData.doLocation, formData.puLocation, 
+    console.log("this is the payload", formData.doLocation, 
+    formData.puLocation, formData.doDate, formData.puDate, this.rowsClicked[0].id)
+
+    this.reservationService.reserveCar(formData.doLocation, formData.puLocation, 
       formData.doDate, formData.puDate, this.rowsClicked[0].id).subscribe((response: any) => {
-      console.log("CAR BOOKED!!")})
+        this.resetView()
+        this.clearSelected();
+        this.hideResultsTable = true;
+        this.getAllReservations();
+        this.snackBar.open("Car has been reserved","Dismiss")._dismissAfter(6_000);
+    })
+    
+
   }
 
   modify(){
@@ -352,18 +397,18 @@ export class AppComponent  {
         console.error(this.addCarFormComponentChild)
       }
     }
-    if(this.showBookingResults){
+    if(this.showReservationResults){
       if(this.addCarFormComponentChild){
         if(this.rowsClicked.length > 0){
           // Will allow using Next & Previous button
           this.previousChosenRowModifyPointer = this.chosenRowModifyPointer
-          let editBooking = this.rowsClicked[this.chosenRowModifyPointer];
+          let editReservation = this.rowsClicked[this.chosenRowModifyPointer];
           this.addCarFormComponentChild.editView = true;
           // this.addCarFormComponentChild.clearSelectedView = true;
-          this.reservationService.getBooking(editBooking.reservation_id).subscribe(
+          this.reservationService.getReservation(editReservation.reservation_id).subscribe(
             (responseData:any) => {
               if( Object.keys(responseData).length === 0){
-                console.error("Couldn't get booking ID", editBooking)
+                console.error("Couldn't get reservation ID", editReservation)
                 return;
               }
               if(this.addCarFormComponentChild){
@@ -401,7 +446,22 @@ export class AppComponent  {
     }
   }
 
-  deleteRows(){}
+  deleteRows(event: any){
+    if(this.showReservationResults){
+        this.rowsClicked.forEach(rowElement => {
+          this.reservationService.deleteReservation(rowElement.reservation_id).subscribe();
+        });
+        this.getAllReservations();
+
+    }
+    if(this.editView){
+      this.rowsClicked.forEach(rowElement => {
+        this.carDiscover.deleteCar(rowElement.id).subscribe();
+      });
+      this.toggleEditView();
+    }
+    this.snackBar.open("Items have been deleted", "Dismiss")._dismissAfter(6_000);
+  }
 
 
 

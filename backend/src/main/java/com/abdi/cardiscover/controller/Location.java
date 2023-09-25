@@ -62,14 +62,26 @@ public class Location {
     * return both arrays
     */
 
-    // Get all avaliable cars at the location
+    // get random locations
+    @GetMapping("/suggest-locations")
+    @ResponseBody
+    public List<String> suggestLocations() throws SQLException{
+        List<String> locationNames = new ArrayList<>();
+        List<LocationEntity> locations = locationRepository.findFirst3ByOrderByNameDesc();
+        for (LocationEntity locationEntity : locations) {
+            locationNames.add(locationEntity.getName());
+        }
+        return locationNames;
+    }
+
+    // Get location names that start with the given string
     @GetMapping("/{locationName}")
     @ResponseBody
     public List<String> getLocationNames(@PathVariable String locationName) throws SQLException{
         List<String> locationNames = new ArrayList<>();
         List<LocationEntity> locations = locationRepository.findByNameStartingWith(locationName);
         for (LocationEntity locationEntity : locations) {
-            locationNames.add(locationEntity.toString());
+            locationNames.add(locationEntity.getName());
         }
         return locationNames;
     }
@@ -89,13 +101,13 @@ public class Location {
         if(locationResult == null) return emptyResult;
         List<CarEntity> AvaliableCarsAtLocation = new ArrayList<>();
         try (Connection connection = dataSource.getConnection()) {
+            System.out.println("time stamp: " + new Timestamp(puTime.getTimeInMillis()).toString());
             String sql ="SELECT DISTINCT carTable.* " +
-                        "FROM car_entity carTable " +
-                        "LEFT JOIN car_entity_reservations carReservationTable ON carTable.id = carReservationTable.car_entity_id " +
-                        "LEFT JOIN reservation_entity reservationTable ON carReservationTable.reservations_id = reservationTable.id " +
-                        "WHERE carTable.location_id = ? " +
-                        "AND (reservationTable.id IS NULL OR reservationTable.dropoff_time < ?)";
-
+            "FROM car_entity carTable " +
+            "LEFT JOIN car_reservations carReservationTable ON carTable.id = carReservationTable.car_entity_id " +
+            "LEFT JOIN reservation_entity reservationTable ON carReservationTable.reservation_entity_id = reservationTable.id " +
+            "WHERE carTable.location_id = ? " +
+            "AND (reservationTable.id IS NULL OR reservationTable.dropoff_time < ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setLong(1, locationResult.getId());
             // Not sure I need to check for the requested dropoff time....

@@ -24,7 +24,7 @@ public class SupplierEntity {
   private ImageEntity logo;
   @ManyToMany(cascade = CascadeType.ALL)
   private List<AgencyEntity> agencies;
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.PERSIST)
   private List<CarEntity> cars = new ArrayList<>();
 //   the default constructor exists only for the sake of JPA.
   protected SupplierEntity() {}

@@ -38,12 +38,12 @@ public class Reservation {
     }
 
     /*
-     * Book car flow
+     * Reserve car flow
      */
-    @PostMapping("/book-car")
+    @PostMapping("/reserve-car")
     @ResponseBody
     // Serlizes the object as JSON due to the @ResponseBody annotation
-    public HashMap<String,String> bookCar(@RequestBody ReservationRequestBody requestParams) throws SQLException {
+    public HashMap<String,String> reserveCar(@RequestBody ReservationRequestBody requestParams) throws SQLException {
         /* 
         * In the event the application starts without the DB.
         * Might be better to create a seperate script 
@@ -69,7 +69,7 @@ public class Reservation {
         return CleanCarData.clean(requestedCar);
     }
     
-    @GetMapping("/get-all-bookings")
+    @GetMapping("/get-all-reservations")
     @ResponseBody
     public List<HashMap<String,String>> getAllReservations() throws SQLException {
         List<HashMap<String, String>> results_cleaned = new ArrayList<>();
@@ -83,20 +83,30 @@ public class Reservation {
         return results_cleaned;
     }
         
-    @GetMapping("/delete-all-bookings")
+    @GetMapping("/delete-all-reservations")
     // Serlizes the object as JSON due to the @ResponseBody annotation
-    public void deleteAllBookings() throws SQLException {
+    public void deleteAllReservations() throws SQLException {
         reservationRepository.deleteAll();
     }
 
-    @GetMapping("/delete-booking/{id}")
+    @GetMapping("/delete-reservation/{id}")
     // Serlizes the object as JSON due to the @ResponseBody annotation
-    public void deleteBooking(@PathVariable Long id) throws SQLException {
-        reservationRepository.deleteById(id);
+    public void deleteReservation(@PathVariable Long id) throws SQLException {
+        Optional<ReservationEntity> optionalReservation = reservationRepository.findById(id);
+        if(optionalReservation.isPresent() == true){
+            ReservationEntity reservation = optionalReservation.get();
+            List<CarEntity> carReservations = reservation.getCars();
+            // Decided to use the car repo as the place to delete reservation entities
+            for (CarEntity car : carReservations) {
+                car.removeReservation(reservation);
+                carRepository.save(car);
+                reservationRepository.delete(reservation);
+            }
+        }
     }
 
 
-    @GetMapping("/get-booking/{id}")
+    @GetMapping("/get-reservation/{id}")
     @ResponseBody
     public HashMap<String,String> getReservation(@PathVariable Long id) throws SQLException {
         HashMap<String, String> results_cleaned = new HashMap<>();

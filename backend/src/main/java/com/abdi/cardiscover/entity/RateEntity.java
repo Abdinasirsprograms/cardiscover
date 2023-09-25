@@ -20,7 +20,7 @@ public class RateEntity {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Long id;
   private BigDecimal rate;
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.PERSIST)
   private List<CarEntity> cars = new ArrayList<>();
 //   the default constructor exists only for the sake of JPA.
   public RateEntity() {}

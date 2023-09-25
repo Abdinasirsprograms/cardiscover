@@ -2,17 +2,17 @@
 <main >
   <div class="image-background"></div>
 
-  <reservation-component (getAllBookings)="getAllBookings()" [hideBookingsButtonText]="hideBookingsButtonText"></reservation-component>
+  <reservation-component (getAllReservations)="getAllReservations()" [hideReservationsButtonText]="hideReservationsButtonText"></reservation-component>
   <!-- Add or Edit car(s) -->
   <mat-card [ngStyle]="{'display': addCarView ? 'block' : 'none'}">
     <mat-card-header> 
         <ng-container *ngIf="(insertNewCarTextHeader)">
           Insert A New Car
         </ng-container>
-        <ng-container *ngIf="showBookingResults && rowsClicked.length <= 1">
+        <ng-container *ngIf="showReservationResults && rowsClicked.length <= 1">
           Edit Reservation
         </ng-container>
-        <ng-container *ngIf="editCarTextHeader && rowsClicked.length <= 1 && showBookingResults === false">
+        <ng-container *ngIf="editCarTextHeader && rowsClicked.length <= 1 && showReservationResults === false">
           Edit Car
         </ng-container>
         <ng-container *ngIf="editCarTextHeader && rowsClicked.length > 1">
@@ -61,9 +61,9 @@
   </mat-grid-list>
 
     
-  <!-- Display error messages -->
+  <!-- Display warning message if no vehicles avaliable -->
   <ng-container *ngIf="noResult" > 
-      <mat-card class="no-result danger shake">  
+      <mat-card class="no-result warn shake">  
         <mat-card-title  class="no-result">No Results!</mat-card-title>  
         <mat-card-content >
           Please try altering your itinerary to get results.
@@ -80,7 +80,7 @@
         </mat-card-content>
       </mat-card>
   </ng-container>
-  <!-- End of error messages -->
+  <!-- End of warning messages -->
 
   <!-- Filter -->
   <ng-container *ngIf="rowsClicked.length > 0 || filteredCarResultsView === true" >
@@ -101,6 +101,10 @@
   </ng-container>      
 <!-- End of filter options -->
   
+  <ng-container *ngIf="showCarReservedText === true">
+    <h2>Car Reserved!✔</h2>
+  </ng-container>
+
   <!-- Pick up results table -->
   <!-- <ng-container *ngIf="cardiscoverForm !== null && showTable">
     <mat-card>
@@ -129,14 +133,14 @@
     ></results-table>
   </ng-container>
   
-  <ng-container *ngIf="showBookingResults" >
+  <ng-container *ngIf="showReservationResults" >
     <mat-card>
       <mat-card-content>
         <h2>Reservations</h2>
       </mat-card-content>
     </mat-card>
-    <results-table #bookingsResults [dataSource]="bookingResultsDataSource" [displayedColumns] = "displayedColumns"
-   [showTable] = "showTable"
+    <results-table #reservationsResults [dataSource]="reservationResultsDataSource" [displayedColumns] = "displayedColumns"
+   [showTable] = "showReservations"
     (rowClick)="clickedRow($event)"
     ></results-table>
   </ng-container>
@@ -148,14 +152,14 @@
   [editView] = "editView"
   [lengthOfRows]="rowsClicked.length" 
   [showStartCarReservationView] = "showCarDiscoverForm"
-  [showBookingResults] = "showBookingResults"
+  [showReservationResults] = "showReservationResults"
   [showTable] = "showTable"
 
   (clearSelectedClick) = "clearSelected()"
   (deleteAllCarsClick) = "deleteAllCars()"
-  (bookCarClick) = "bookCar()"
+  (reserveCarClick) = "reserveCar()"
   (modifyClick) = "modify()"
-  (deleteRowsClick) = "deleteRows()"
+  (deleteRowsClick) = "deleteRows($event)"
 
 
   ></results-table-actions>
@@ -163,7 +167,13 @@
 
   <!-- Car discover form -->
   <ng-container *ngIf="editView === false && showCarDiscoverForm === true">
-    <cardiscover-form #cardiscoverForm (formSubmitted)="getAvaliableCars($event)"></cardiscover-form>
+    <cardiscover-form 
+    #cardiscoverForm 
+    (formSubmitted)="getAvaliableCars($event)"
+    (filterForPickUpLocationName)="filterForPickUpLocationName($event)" 
+    (filterForDropoffLocationName)="filterForDropoffLocationName($event)" 
+
+    ></cardiscover-form>
   </ng-container>
 
 </main>
