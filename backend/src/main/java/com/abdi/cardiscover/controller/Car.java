@@ -90,7 +90,7 @@ public class Car {
      */
     @PostMapping("/create-car")
     @ResponseBody
-    public HashMap<String, String>  postLocationData(@RequestBody CarRequestBody requestParams) throws SQLException {
+    public HashMap<String, String>  createCar(@RequestBody CarRequestBody requestParams) throws SQLException {
         CarEntity newCar = CreateOrGetCarObjects.run(
             requestParams,
             carRepository,

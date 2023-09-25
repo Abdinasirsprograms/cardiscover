@@ -1,0 +1,382 @@
+Location,Brand,Size,Model,Color,Supplier,Rate
+New York,Toyota,Compact,Corolla,Red,Enterprise,21.15
+Los Angeles,Honda,Midsize,Accord,Blue,Hertz,22.40
+Paris,Ford,SUV,Explorer,Black,Avis,25.75
+London,Chevrolet,Full-size,Impala,White,Budget,18.99
+Tokyo,Nissan,Compact,Altima,Silver,Enterprise,20.80
+San Francisco,BMW,Midsize,3 Series,Gray,Hertz,24.60
+Sydney,Mercedes-Benz,Full-size,E-Class,Red,Avis,29.95
+Toronto,Audi,Compact,A4,Blue,Budget,26.30
+Dubai,Volkswagen,SUV,Tiguan,Black,Enterprise,23.75
+Mumbai,Tesla,Full-size,Model S,White,Hertz,32.10
+Singapore,Toyota,Compact,Camry,Silver,Avis,20.45
+Rio de Janeiro,Honda,Midsize,Civic,Gray,Budget,19.80
+Hong Kong,Chevrolet,Full-size,Malibu,Red,Enterprise,18.15
+Rome,Nissan,Compact,Sentra,Blue,Hertz,21.90
+Berlin,BMW,SUV,X5,White,Avis,27.50
+Amsterdam,Mercedes-Benz,Full-size,CLS,Black,Budget,28.75
+Shanghai,Audi,Compact,A3,Gray,Enterprise,24.25
+Cape Town,Volkswagen,Midsize,Passat,Black,Hertz,20.05
+Buenos Aires,Tesla,Full-size,Model 3,Red,Avis,30.60
+Munich,Toyota,Compact,Yaris,Blue,Budget,19.35
+Barcelona,Honda,Midsize,Fit,White,Enterprise,22.10
+Seoul,Chevrolet,SUV,Equinox,Gray,Hertz,23.95
+Beijing,Nissan,Full-size,Maxima,Red,Avis,25.20
+Milan,BMW,Compact,1 Series,Blue,Budget,21.35
+Vienna,Mercedes-Benz,Full-size,S-Class,Silver,Enterprise,29.25
+Dublin,Audi,Compact,Q3,Gray,Hertz,24.90
+Zurich,Volkswagen,Midsize,Arteon,Red,Avis,26.80
+Copenhagen,Tesla,Full-size,Model X,Blue,Budget,32.70
+Stockholm,Toyota,Compact,Corolla,White,Enterprise,21.80
+Prague,Honda,Midsize,Accord,Silver,Hertz,22.65
+Bangkok,Chevrolet,Full-size,Malibu,Gray,Budget,19.45
+Istanbul,Nissan,Compact,Altima,Red,Enterprise,20.60
+Athens,BMW,SUV,X3,Blue,Hertz,25.40
+Lisbon,Mercedes-Benz,Full-size,GLC,White,Avis,27.95
+Oslo,Audi,Compact,A4,Black,Budget,24.05
+Warsaw,Volkswagen,Midsize,Passat,Silver,Enterprise,21.50
+Helsinki,Tesla,Full-size,Model Y,Gray,Hertz,31.15
+Moscow,Toyota,Compact,Corolla,Red,Avis,20.25
+Bangalore,Honda,Midsize,Amaze,Blue,Budget,19.30
+Seville,Chevrolet,SUV,Traverse,White,Enterprise,23.10
+Vienna,Toyota,Compact,Camry,Gray,Hertz,22.45
+Rome,BMW,Midsize,5 Series,Black,Avis,26.70
+Barcelona,Mercedes-Benz,Full-size,GLA,Red,Budget,28.80
+Amsterdam,Audi,Compact,A1,White,Enterprise,24.85
+Shanghai,Volkswagen,Midsize,Passat,Gray,Hertz,21.75
+Cape Town,Tesla,SUV,Model Y,Blue,Avis,32.90
+Buenos Aires,Toyota,Compact,Corolla,Red,Budget,20.90
+Munich,Honda,Midsize,Civic,Black,Enterprise,22.55
+Beijing,Chevrolet,Full-size,Impala,White,Hertz,18.85
+Milan,Nissan,Compact,Altima,Gray,Avis,23.40
+Vienna,BMW,SUV,X5,Red,Budget,27.15
+Dublin,Mercedes-Benz,Full-size,CLS,Silver,Enterprise,29.60
+Zurich,Audi,Compact,A3,Blue,Hertz,25.30
+Copenhagen,Volkswagen,Midsize,Golf,Silver,Avis,22.70
+Stockholm,Tesla,Full-size,Model S,Gray,Budget,30.25
+Prague,Toyota,Compact,Corolla,Red,Enterprise,20.35
+Bangkok,Honda,Midsize,Accord,White,Hertz,23.75
+Istanbul,Chevrolet,SUV,Equinox,Black,Avis,26.40
+Athens,Nissan,Full-size,Maxima,Blue,Budget,25.50
+Lisbon,BMW,Compact,1 Series,Gray,Enterprise,24.20
+Oslo,Mercedes-Benz,Full-size,GLC,Red,Hertz,28.15
+Warsaw,Audi,Compact,Q3,White,Avis,22.35
+Helsinki,Volkswagen,Midsize,Passat,Black,Budget,21.40
+Moscow,Tesla,Full-size,Model 3,Blue,Enterprise,31.90
+Bangalore,Toyota,Compact,Etios,Gray,Hertz,19.20
+Seville,Honda,Midsize,Fit,Red,Avis,20.80
+Vienna,Chevrolet,SUV,Traverse,White,Budget,24.05
+Rome,Nissan,Compact,Juke,Gray,Enterprise,22.25
+Barcelona,BMW,Midsize,3 Series,Blue,Hertz,25.40
+Amsterdam,Mercedes-Benz,Full-size,E-Class,Silver,Avis,27.55
+Shanghai,Audi,Compact,Q5,Red,Enterprise,29.60
+Cape Town,Volkswagen,Midsize,Golf,Silver,Hertz,24.95
+Buenos Aires,Tesla,Full-size,Model X,Blue,Budget,31.20
+Munich,Toyota,Compact,Yaris,Gray,Enterprise,19.65
+Beijing,Honda,Midsize,Civic,Red,Hertz,21.05
+Milan,Chevrolet,Full-size,Impala,White,Avis,28.30
+Vienna,Nissan,Compact,Micra,Blue,Budget,23.10
+Dublin,BMW,Midsize,5 Series,Silver,Enterprise,26.75
+Zurich,Mercedes-Benz,Full-size,S-Class,Black,Hertz,29.20
+Copenhagen,Audi,Compact,A4,Red,Avis,25.85
+Stockholm,Volkswagen,Midsize,Passat,Gray,Budget,22.20
+Prague,Tesla,Full-size,Model Y,Blue,Enterprise,30.50
+Bangkok,Toyota,Compact,Vios,Red,Hertz,18.90
+Istanbul,Honda,Midsize,Accord,White,Avis,20.15
+Athens,Chevrolet,Full-size,Malibu,Gray,Budget,24.40
+Lisbon,Nissan,Compact,Leaf,Blue,Enterprise,23.55
+Oslo,BMW,Midsize,3 Series,White,Hertz,26.20
+Warsaw,Mercedes-Benz,Full-size,GLA,Black,Avis,27.95
+Helsinki,Audi,Compact,Q3,Gray,Budget,24.50
+Moscow,Volkswagen,Midsize,Passat,Red,Enterprise,22.75
+Bangalore,Tesla,Full-size,Model X,Silver,Hertz,31.40
+Seville,Toyota,Compact,Corolla,Blue,Avis,21.35
+Vienna,Honda,Midsize,Accord,White,Budget,23.40
+Rome,Chevrolet,Full-size,Impala,Gray,Enterprise,26.65
+Barcelona,Nissan,Compact,Altima,Red,Hertz,25.20
+Amsterdam,BMW,Midsize,5 Series,Blue,Avis,28.45
+Shanghai,Mercedes-Benz,Full-size,E-Class,Silver,Budget,29.70
+Cape Town,Audi,Compact,A3,Black,Enterprise,24.95
+Buenos Aires,Volkswagen,Midsize,Golf,Gray,Hertz,21.85
+Munich,Tesla,Full-size,Model S,Red,Enterprise,30.20
+Beijing,Toyota,Compact,Corolla,Blue,Hertz,22.65
+Milan,Honda,Midsize,Civic,White,Avis,23.80
+Vienna,Chevrolet,Full-size,Malibu,Black,Budget,26.05
+Dublin,Nissan,Compact,Altima,Gray,Enterprise,25.10
+Zurich,BMW,SUV,X5,Red,Hertz,28.85
+Copenhagen,Mercedes-Benz,Compact,A-Class,Blue,Avis,23.60
+Stockholm,Audi,Midsize,A4,Black,Budget,22.95
+Prague,Volkswagen,Full-size,Passat,White,Enterprise,20.70
+Bangkok,Tesla,Compact,Model 3,Gray,Hertz,27.30
+Istanbul,Toyota,Midsize,Corolla,Red,Avis,19.95
+Athens,Honda,Midsize,Accord,Blue,Budget,23.20
+Lisbon,Chevrolet,Full-size,Impala,Black,Enterprise,27.25
+Oslo,Nissan,Compact,Micra,White,Hertz,22.40
+Warsaw,BMW,Midsize,3 Series,Gray,Avis,25.65
+Helsinki,Mercedes-Benz,Full-size,E-Class,Red,Budget,29.10
+Moscow,Audi,Compact,Q5,Silver,Enterprise,26.75
+Bangalore,Volkswagen,Midsize,Passat,Black,Hertz,23.10
+Seville,Tesla,Full-size,Model Y,Blue,Avis,32.50
+Vienna,Toyota,Compact,Camry,Gray,Budget,21.65
+Rome,Honda,Midsize,Civic,Red,Enterprise,24.40
+Barcelona,Chevrolet,Full-size,Impala,Black,Hertz,27.05
+Amsterdam,Nissan,Compact,Altima,White,Avis,26.10
+Shanghai,BMW,SUV,X3,Silver,Enterprise,23.85
+Cape Town,Mercedes-Benz,Full-size,GLC,Gray,Hertz,25.40
+Buenos Aires,Audi,Compact,Q3,Red,Budget,22.15
+Munich,Volkswagen,Midsize,Passat,Blue,Enterprise,20.90
+Beijing,Tesla,Full-size,Model X,White,Hertz,30.60
+Milan,Toyota,Compact,Camry,Gray,Avis,21.85
+Vienna,Honda,Midsize,Accord,Red,Budget,25.10
+Dublin,Chevrolet,Full-size,Impala,Black,Enterprise,28.55
+Zurich,Nissan,Compact,Leaf,Silver,Hertz,24.30
+Copenhagen,BMW,Compact,1 Series,Red,Avis,27.75
+Stockholm,Mercedes-Benz,Full-size,S-Class,White,Budget,31.20
+Prague,Audi,Compact,A3,Gray,Enterprise,28.85
+Bangkok,Volkswagen,Midsize,Passat,Black,Hertz,26.10
+Istanbul,Tesla,Full-size,Model S,Red,Avis,29.45
+Athens,Toyota,Compact,Corolla,Blue,Budget,23.60
+Lisbon,Honda,Midsize,Accord,White,Enterprise,25.85
+Oslo,Chevrolet,Full-size,Malibu,Black,Hertz,27.80
+Warsaw,Nissan,Compact,Micra,Red,Avis,24.55
+Helsinki,BMW,Compact,2 Series,Gray,Budget,22.40
+Moscow,Mercedes-Benz,Full-size,E-Class,Blue,Enterprise,30.35
+Bangalore,Audi,Compact,A4,White,Hertz,26.90
+Seville,Volkswagen,Midsize,Golf,Red,Budget,23.45
+Vienna,Tesla,Full-size,Model 3,Silver,Enterprise,28.70
+Rome,Toyota,Compact,Corolla,Blue,Hertz,21.25
+Barcelona,Honda,Midsize,Civic,Gray,Avis,22.70
+Amsterdam,Chevrolet,Full-size,Impala,White,Budget,26.15
+Shanghai,Nissan,Compact,Altima,Black,Enterprise,29.40
+Cape Town,BMW,SUV,X5,Red,Hertz,31.85
+Buenos Aires,Mercedes-Benz,Full-size,E-Class,Blue,Avis,30.20
+Munich,Audi,Compact,A3,Gray,Enterprise,27.95
+Beijing,Volkswagen,Midsize,Passat,White,Hertz,24.20
+Milan,Tesla,Full-size,Model S,Black,Avis,32.15
+Vienna,Toyota,Compact,Camry,Red,Budget,23.70
+Dublin,Honda,Midsize,Accord,Gray,Enterprise,28.05
+Zurich,Chevrolet,Full-size,Malibu,White,Hertz,27.10
+Copenhagen,Nissan,Compact,Leaf,Blue,Avis,23.95
+Stockholm,BMW,Compact,1 Series,Silver,Budget,21.80
+Prague,Mercedes-Benz,Full-size,S-Class,Red,Enterprise,30.15
+Bangkok,Audi,Compact,Q5,Black,Hertz,28.80
+Istanbul,Volkswagen,Midsize,Golf,Gray,Avis,25.35
+Athens,Tesla,Full-size,Model X,Blue,Budget,32.40
+Lisbon,Toyota,Compact,Corolla,Red,Enterprise,22.95
+Oslo,Honda,Midsize,Civic,White,Hertz,24.20
+Warsaw,Chevrolet,Full-size,Impala,Gray,Avis,27.65
+Helsinki,Nissan,Compact,Altima,Black,Budget,23.20
+Moscow,BMW,Full-size,5 Series,Red,Enterprise,29.45
+Bangalore,Mercedes-Benz,Full-size,E-Class,Blue,Hertz,30.90
+Seville,Audi,Compact,A3,Silver,Avis,24.75
+Vienna,Volkswagen,Midsize,Passat,Gray,Budget,22.70
+Rome,Tesla,Full-size,Model 3,White,Enterprise,31.95
+Barcelona,Toyota,Compact,Camry,Black,Hertz,23.60
+Amsterdam,Honda,Midsize,Accord,Gray,Avis,26.85
+Shanghai,Chevrolet,Full-size,Impala,Red,Budget,29.10
+Cape Town,Nissan,Compact,Altima,Blue,Enterprise,24.85
+Buenos Aires,BMW,SUV,X3,Gray,Hertz,28.60
+Munich,Mercedes-Benz,Full-size,S-Class,White,Avis,30.75
+Beijing,Audi,Compact,Q3,Black,Budget,26.50
+Milan,Volkswagen,Midsize,Passat,Gray,Enterprise,23.75
+Vienna,Tesla,Full-size,Model X,Red,Hertz,32.60
+Dublin,Toyota,Compact,Camry,Blue,Avis,22.35
+Zurich,Honda,Midsize,Accord,Silver,Budget,24.90
+Copenhagen,Chevrolet,Full-size,Impala,Gray,Enterprise,28.25
+Stockholm,Nissan,Compact,Altima,Red,Hertz,27.30
+Prague,BMW,SUV,X5,Blue,Avis,31.45
+Bangkok,Mercedes-Benz,Full-size,E-Class,Black,Enterprise,30.40
+Istanbul,Audi,Compact,A4,Gray,Hertz,27.85
+Athens,Volkswagen,Midsize,Passat,White,Budget,25.20
+Lisbon,Tesla,Full-size,Model S,Red,Enterprise,32.75
+Oslo,Toyota,Compact,Corolla,Gray,Hertz,22.60
+Warsaw,Honda,Midsize,Accord,Blue,Avis,26.05
+Helsinki,Chevrolet,Full-size,Impala,White,Budget,28.30
+Moscow,Nissan,Compact,Altima,Gray,Enterprise,25.75
+Bangalore,BMW,Compact,2 Series,Red,Hertz,29.00
+Seville,Mercedes-Benz,Full-size,S-Class,Black,Avis,30.15
+Vienna,Audi,Compact,A3,Silver,Budget,26.90
+Rome,Volkswagen,Midsize,Passat,Blue,Enterprise,24.35
+Barcelona,Tesla,Full-size,Model X,Gray,Hertz,32.20
+Amsterdam,Toyota,Compact,Camry,White,Avis,22.25
+Shanghai,Honda,Midsize,Accord,Red,Budget,23.70
+Cape Town,Chevrolet,Full-size,Impala,Gray,Enterprise,26.95
+Buenos Aires,Nissan,Compact,Altima,Black,Hertz,27.80
+Munich,BMW,SUV,X5,White,Enterprise,30.05
+Beijing,Mercedes-Benz,Full-size,S-Class,Red,Hertz,31.20
+Milan,Audi,Compact,A4,Blue,Avis,27.15
+Vienna,Volkswagen,Midsize,Passat,Gray,Budget,25.40
+Dublin,Tesla,Full-size,Model 3,White,Enterprise,32.40
+Zurich,Toyota,Compact,Camry,Black,Hertz,23.35
+Copenhagen,Honda,Midsize,Accord,Silver,Avis,24.50
+Stockholm,Chevrolet,Full-size,Impala,Red,Budget,27.75
+Prague,Nissan,Compact,Altima,Gray,Enterprise,29.60
+Bangkok,BMW,SUV,X3,Black,Hertz,31.95
+Istanbul,Mercedes-Benz,Full-size,E-Class,White,Avis,30.90
+Athens,Audi,Compact,Q3,Gray,Budget,27.55
+Lisbon,Volkswagen,Midsize,Passat,Red,Enterprise,25.80
+Oslo,Tesla,Full-size,Model S,Black,Hertz,32.65
+Warsaw,Toyota,Compact,Corolla,Red,Budget,22.45
+Helsinki,Chevrolet,Full-size,Impala,Black,Enterprise,30.10
+Moscow,Nissan,Compact,Altima,White,Hertz,28.25
+Bangalore,BMW,SUV,X5,Red,Avis,30.40
+Seville,Mercedes-Benz,Full-size,S-Class,Silver,Budget,32.55
+Vienna,Audi,Compact,A3,Blue,Enterprise,27.30
+Rome,Volkswagen,Midsize,Passat,Gray,Hertz,29.45
+Barcelona,Tesla,Full-size,Model 3,Black,Avis,32.70
+Amsterdam,Toyota,Compact,Corolla,Red,Budget,25.65
+Shanghai,Honda,Midsize,Accord,Gray,Enterprise,28.80
+Cape Town,Chevrolet,Full-size,Impala,White,Hertz,32.05
+Buenos Aires,Nissan,Compact,Altima,Silver,Avis,30.90
+Munich,BMW,SUV,X3,Blue,Enterprise,29.15
+Beijing,Mercedes-Benz,Full-size,S-Class,Gray,Hertz,31.30
+Milan,Audi,Compact,A4,Black,Budget,27.75
+Vienna,Volkswagen,Midsize,Passat,Red,Enterprise,30.00
+Dublin,Tesla,Full-size,Model X,White,Hertz,32.85
+Zurich,Toyota,Compact,Corolla,Gray,Avis,28.20
+Copenhagen,Honda,Full-size,Accord,Blue,Enterprise,30.25
+Stockholm,Chevrolet,Compact,Malibu,White,Hertz,27.30
+Prague,Nissan,Full-size,Maxima,Red,Budget,30.45
+Bangkok,BMW,Compact,1 Series,Black,Enterprise,31.60
+Istanbul,Mercedes-Benz,Midsize,C-Class,Silver,Hertz,28.75
+Athens,Audi,Compact,A3,Gray,Avis,27.80
+Lisbon,Volkswagen,Full-size,Passat,White,Budget,30.05
+Oslo,Tesla,Full-size,Model 3,Blue,Enterprise,32.90
+Warsaw,Toyota,Compact,Corolla,Black,Hertz,28.10
+Helsinki,Mercedes-Benz,SUV,GLC,Gray,Hertz,29.25
+Moscow,Nissan,Full-size,Maxima,White,Avis,30.60
+Bangalore,BMW,Compact,1 Series,Red,Enterprise,31.75
+Seville,Audi,Compact,A4,Black,Budget,28.50
+Vienna,Volkswagen,Full-size,Passat,Gray,Hertz,30.75
+Rome,Tesla,Full-size,Model X,White,Avis,33.00
+Barcelona,Toyota,Compact,Camry,Gray,Hertz,28.95
+Amsterdam,Honda,Full-size,Accord,Blue,Enterprise,31.10
+Shanghai,Chevrolet,Compact,Malibu,Black,Budget,29.25
+Cape Town,Nissan,Full-size,Maxima,Gray,Hertz,31.40
+Buenos Aires,BMW,SUV,X5,White,Avis,32.55
+Munich,Mercedes-Benz,Midsize,C-Class,Gray,Enterprise,29.70
+Beijing,Audi,Compact,A4,White,Hertz,28.05
+Milan,Volkswagen,Full-size,Passat,Red,Budget,30.30
+Vienna,Tesla,Full-size,Model S,Silver,Enterprise,33.15
+Dublin,Toyota,Compact,Corolla,Gray,Hertz,28.40
+Zurich,Honda,Full-size,Accord,Red,Budget,30.55
+Copenhagen,Chevrolet,Compact,Malibu,Black,Enterprise,32.70
+Stockholm,Nissan,Full-size,Maxima,Gray,Hertz,31.75
+Prague,BMW,SUV,X5,White,Avis,32.90
+Bangkok,Mercedes-Benz,Midsize,C-Class,Blue,Budget,29.95
+Istanbul,Audi,Compact,A4,Red,Enterprise,31.10
+Athens,Volkswagen,Full-size,Passat,Gray,Hertz,30.15
+Lisbon,Tesla,Full-size,Model X,White,Avis,33.30
+Oslo,Toyota,Compact,Corolla,Blue,Enterprise,28.65
+Warsaw,Honda,Full-size,Accord,Black,Budget,30.80
+Helsinki,Mercedes-Benz,SUV,GLC,White,Hertz,31.95
+Moscow,Nissan,Full-size,Maxima,Black,Avis,32.10
+Bangalore,BMW,Compact,1 Series,Silver,Enterprise,29.25
+Seville,Audi,Compact,A4,Blue,Budget,28.40
+Vienna,Volkswagen,Full-size,Passat,Red,Hertz,30.55
+Rome,Tesla,Full-size,Model S,Black,Enterprise,33.45
+Barcelona,Toyota,Compact,Camry,White,Hertz,29.70
+Amsterdam,Honda,Full-size,Accord,Red,Avis,31.85
+Shanghai,Chevrolet,Compact,Malibu,Gray,Budget,29.00
+Cape Town,Nissan,Full-size,Maxima,Red,Enterprise,32.25
+Buenos Aires,BMW,SUV,X5,Gray,Avis,32.40
+Munich,Mercedes-Benz,Midsize,C-Class,Red,Enterprise,29.55
+Beijing,Audi,Compact,A4,Gray,Hertz,28.70
+Milan,Volkswagen,Full-size,Passat,Blue,Budget,30.75
+Vienna,Tesla,Full-size,Model X,Black,Enterprise,33.60
+Dublin,Toyota,Compact,Corolla,White,Hertz,28.95
+Zurich,Honda,Full-size,Accord,Gray,Budget,30.90
+Copenhagen,Chevrolet,Compact,Malibu,Red,Enterprise,33.05
+Stockholm,Nissan,Full-size,Maxima,White,Hertz,32.10
+Prague,BMW,SUV,X5,Gray,Avis,33.25
+Bangkok,Mercedes-Benz,Midsize,C-Class,White,Budget,30.40
+Istanbul,Audi,Compact,A4,Silver,Enterprise,31.55
+Athens,Volkswagen,Full-size,Passat,Red,Hertz,31.70
+Lisbon,Tesla,Full-size,Model X,Black,Avis,33.75
+Oslo,Toyota,Compact,Corolla,Red,Enterprise,29.10
+Warsaw,Honda,Full-size,Accord,Gray,Budget,31.90
+Helsinki,Mercedes-Benz,SUV,GLC,Red,Hertz,32.05
+Moscow,Nissan,Full-size,Maxima,Red,Avis,32.20
+Bangalore,BMW,Compact,1 Series,Blue,Enterprise,29.85
+Seville,Audi,Compact,A4,White,Budget,28.70
+Vienna,Volkswagen,Full-size,Passat,Gray,Hertz,31.05
+Rome,Tesla,Full-size,Model 3,Black,Enterprise,33.90
+Barcelona,Toyota,Compact,Camry,Red,Hertz,30.15
+Amsterdam,Honda,Full-size,Accord,Gray,Avis,32.30
+Shanghai,Chevrolet,Compact,Malibu,White,Budget,29.45
+Cape Town,Nissan,Full-size,Maxima,Gray,Enterprise,32.70
+Buenos Aires,BMW,SUV,X5,Red,Avis,32.85
+Munich,Mercedes-Benz,Midsize,C-Class,White,Enterprise,30.60
+Beijing,Audi,Compact,A4,Blue,Hertz,29.15
+Milan,Volkswagen,Full-size,Passat,Gray,Budget,31.20
+Vienna,Tesla,Full-size,Model S,Red,Enterprise,34.05
+Dublin,Toyota,Compact,Corolla,Blue,Hertz,29.30
+Zurich,Honda,Full-size,Accord,White,Budget,31.35
+Copenhagen,Chevrolet,Compact,Malibu,Gray,Enterprise,33.20
+Stockholm,Nissan,Full-size,Maxima,Red,Hertz,32.25
+Prague,BMW,SUV,X5,Red,Avis,33.40
+Bangkok,Mercedes-Benz,Midsize,C-Class,Gray,Budget,30.55
+Istanbul,Audi,Compact,A4,White,Enterprise,31.70
+Athens,Volkswagen,Full-size,Passat,Blue,Hertz,31.85
+Lisbon,Tesla,Full-size,Model X,Red,Avis,34.20
+Oslo,Toyota,Compact,Corolla,Silver,Enterprise,29.55
+Warsaw,Honda,Full-size,Accord,White,Budget,31.50
+Helsinki,Mercedes-Benz,SUV,GLC,Gray,Hertz,32.35
+Moscow,Nissan,Full-size,Maxima,White,Avis,32.50
+Bangalore,BMW,Compact,1 Series,Gray,Enterprise,30.10
+Seville,Audi,Compact,A4,Red,Budget,29.30
+Vienna,Volkswagen,Full-size,Passat,Blue,Hertz,31.65
+Rome,Tesla,Full-size,Model 3,White,Enterprise,34.35
+Barcelona,Toyota,Compact,Camry,Silver,Hertz,30.70
+Amsterdam,Honda,Full-size,Accord,Red,Avis,32.85
+Shanghai,Chevrolet,Compact,Malibu,Black,Budget,29.60
+Cape Town,Nissan,Full-size,Maxima,Blue,Enterprise,32.95
+Buenos Aires,BMW,SUV,X5,Blue,Avis,33.10
+Munich,Mercedes-Benz,Midsize,C-Class,Blue,Enterprise,30.75
+Beijing,Audi,Compact,A4,Gray,Hertz,29.45
+Milan,Volkswagen,Full-size,Passat,Red,Budget,31.40
+Vienna,Tesla,Full-size,Model S,Blue,Enterprise,34.50
+Dublin,Toyota,Compact,Corolla,Red,Hertz,29.65
+Zurich,Honda,Full-size,Accord,Gray,Budget,31.80
+Copenhagen,Chevrolet,Compact,Malibu,White,Enterprise,33.35
+Stockholm,Nissan,Full-size,Maxima,Blue,Hertz,32.40
+Prague,BMW,SUV,X5,Blue,Avis,33.55
+Bangkok,Mercedes-Benz,Midsize,C-Class,Red,Budget,30.70
+Istanbul,Audi,Compact,A4,Black,Enterprise,31.85
+Athens,Volkswagen,Full-size,Passat,Gray,Hertz,32.00
+Lisbon,Tesla,Full-size,Model X,Blue,Avis,34.25
+Oslo,Toyota,Compact,Corolla,Black,Enterprise,29.80
+Warsaw,Honda,Full-size,Accord,Blue,Budget,31.65
+Helsinki,Mercedes-Benz,SUV,GLC,Blue,Hertz,32.50
+Moscow,Nissan,Full-size,Maxima,Black,Avis,32.65
+Bangalore,BMW,Compact,1 Series,Red,Enterprise,30.25
+Seville,Audi,Compact,A4,White,Budget,29.50
+Vienna,Volkswagen,Full-size,Passat,Silver,Hertz,31.75
+Rome,Tesla,Full-size,Model 3,Blue,Enterprise,34.60
+Barcelona,Toyota,Compact,Camry,Black,Hertz,30.85
+Amsterdam,Honda,Full-size,Accord,Gray,Avis,33.00
+Shanghai,Chevrolet,Compact,Malibu,Red,Budget,29.75
+Cape Town,Nissan,Full-size,Maxima,Silver,Enterprise,33.20
+Buenos Aires,BMW,SUV,X5,Black,Avis,33.35
+Munich,Mercedes-Benz,Midsize,C-Class,Black,Enterprise,30.90
+Beijing,Audi,Compact,A4,Silver,Hertz,29.85
+Milan,Volkswagen,Full-size,Passat,Blue,Budget,31.60
+Vienna,Tesla,Full-size,Model S,Red,Enterprise,34.75
+Dublin,Toyota,Compact,Corolla,Gray,Hertz,29.95
+Zurich,Honda,Full-size,Accord,Blue,Budget,31.90
+Copenhagen,Chevrolet,Compact,Malibu,Black,Enterprise,33.45
+Stockholm,Nissan,Full-size,Maxima,Gray,Hertz,32.50
+Prague,BMW,SUV,X5,Black,Avis,33.65
+Bangkok,Mercedes-Benz,Midsize,C-Class,Gray,Budget,30.85
+Istanbul,Audi,Compact,A4,Blue,Enterprise,32.00
+Athens,Volkswagen,Full-size,Passat,Red,Hertz,32.15
+Lisbon,Tesla,Full-size,Model X,Red,Avis,34.30
+Oslo,Toyota,Compact,Corolla,Blue,Enterprise,30.10
+Warsaw,Honda,Full-size,Accord,Black,Budget,31.75
+Helsinki,Mercedes-Benz,SUV,GLC,Black,Hertz,32.65
+Moscow,Nissan,Full-size,Maxima,Blue,Avis,32.80
+Bangalore,BMW,Compact,1 Series,Blue,Enterprise,30.45
+Seville,Audi,Compact,A4,Gray,Budget,29.70
+Vienna,Volkswagen,Full-size,Passat,White,Hertz,31.95
+Rome,Tesla,Full-size,Model 3,Red,Enterprise,34.85
+Barcelona,Toyota,Compact,Camry,Gray,Hertz,31.00

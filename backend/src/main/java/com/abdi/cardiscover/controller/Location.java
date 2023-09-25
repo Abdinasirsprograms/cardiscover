@@ -62,7 +62,7 @@ public class Location {
     * return both arrays
     */
 
-    // get 3 random locations that have vehicles avaliables 
+    // get random locations
     @GetMapping("/suggest-locations")
     @ResponseBody
     public List<String> suggestLocations() throws SQLException{
@@ -74,7 +74,7 @@ public class Location {
         return locationNames;
     }
 
-    // Get all avaliable cars at the location
+    // Get location names that start with the given string
     @GetMapping("/{locationName}")
     @ResponseBody
     public List<String> getLocationNames(@PathVariable String locationName) throws SQLException{
