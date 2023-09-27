@@ -22,8 +22,8 @@ import com.abdi.cardiscover.entity.CarEntity;
 import com.abdi.cardiscover.entity.ReservationEntity;
 import com.abdi.cardiscover.repository.CarRepository;
 import com.abdi.cardiscover.repository.ReservationRepository;
-import com.abdi.cardiscover.requestbody.ReservationRequestBody;
 import com.abdi.cardiscover.service.CleanCarData;
+import com.abdi.cardiscover.utility.requestbody.ReservationRequestBody;
 
 @Component 
 @RestController

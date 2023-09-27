@@ -40,10 +40,9 @@ import com.abdi.cardiscover.repository.RateRepository;
 import com.abdi.cardiscover.repository.ReservationRepository;
 import com.abdi.cardiscover.repository.SizeRepository;
 import com.abdi.cardiscover.repository.SupplierRepository;
-import com.abdi.cardiscover.requestbody.CarRequestBody;
-import com.abdi.cardiscover.requestbody.ReservationRequestBody;
-
 import com.abdi.cardiscover.service.CleanCarData;
+import com.abdi.cardiscover.utility.requestbody.CarRequestBody;
+import com.abdi.cardiscover.utility.requestbody.ReservationRequestBody;
 
 @Component 
 @RestController

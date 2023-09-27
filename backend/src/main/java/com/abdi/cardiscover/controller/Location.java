@@ -31,9 +31,8 @@ import com.abdi.cardiscover.entity.LocationEntity;
 
 import com.abdi.cardiscover.repository.CarRepository;
 import com.abdi.cardiscover.repository.LocationRepository;
-
-import com.abdi.cardiscover.requestbody.ReservationRequestBody;
 import com.abdi.cardiscover.service.CleanCarData;
+import com.abdi.cardiscover.utility.requestbody.ReservationRequestBody;
 
 @Component 
 @RestController
