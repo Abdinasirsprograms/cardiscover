@@ -7,9 +7,10 @@ import { carFormInterface } from './car-form.interface';
   providedIn: 'root'
 })
 export class carDiscoverHTTPService {
-  private BASE_API_URL = 'http://192.168.1.196:8080/car/'
+  private BASE_API_URL = 'https://abdinasirnoor.com/cardiscover/api/car'
   constructor(private http: HttpClient) {
   }
+
   getAllCars(): Observable<carFormInterface[]> {
     return this.http.get<carFormInterface[]>(this.BASE_API_URL + 'get-all-cars');
   }

@@ -32,8 +32,7 @@ public class Image {
     }
 
     @GetMapping("/get-all-images")
-  
-
+    @CrossOrigin(origins = {"https://abdinasirnoor.com", "http://localhost:8080"})
     @ResponseBody
     // Serlizes the object as JSON due to the @ResponseBody annotation
     public List<ImageEntity> getAllImages() throws SQLException {
@@ -43,9 +42,8 @@ public class Image {
         return images;
     }
 
-  
-    
-
+    @GetMapping("/get-image")
+    @CrossOrigin(origins = {"https://abdinasirnoor.com", "http://localhost:8080"})
     @ResponseBody
     // Serlizes the object as JSON due to the @ResponseBody annotation
     public String getImage(@RequestParam("id") Long id) throws SQLException {
@@ -56,8 +54,7 @@ public class Image {
     }
 
     @PostMapping("/upload-image")
-    
-
+    @CrossOrigin(origins = {"https://abdinasirnoor.com", "http://localhost:8080"})
     @ResponseBody
     public String uploadImage(@RequestParam("image") MultipartFile file) {
         return String.valueOf(file.getSize());
