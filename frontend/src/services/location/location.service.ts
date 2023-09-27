@@ -10,7 +10,7 @@ import { carFormInterface } from 'src/car-form.interface';
 export class locationHttpService {
 
 
-  private BASE_API_URL = 'http://192.168.1.196:8080/location/'
+  private BASE_API_URL = 'https://abdinasirnoor.com/cardiscover/location/'
   constructor(private http: HttpClient) {}
 
   getLocationNames(locationInput:String): Observable<String[]> {

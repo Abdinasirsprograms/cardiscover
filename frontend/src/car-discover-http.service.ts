@@ -7,7 +7,7 @@ import { carFormInterface } from './car-form.interface';
   providedIn: 'root'
 })
 export class carDiscoverHTTPService {
-  private BASE_API_URL = 'https://abdinasirnoor.com/cardiscover/api/car'
+  private BASE_API_URL = 'https://abdinasirnoor.com/cardiscover/api/car/'
   constructor(private http: HttpClient) {
   }
 
