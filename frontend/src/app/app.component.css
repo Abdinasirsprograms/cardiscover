@@ -78,7 +78,7 @@
     position: fixed;
     aspect-ratio: 9/16;
     /* request will be initiated front-end so rate-limiting and caching shouldn't be a concern for demo purposes */
-    /* background: url(https://source.unsplash.com/random/?car,travel,city); */
+    background: url(https://source.unsplash.com/random/?car,travel,city);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
