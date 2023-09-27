@@ -1,4 +1,4 @@
-package com.abdi.cardiscover.requestbody;
+package com.abdi.cardiscover.utility.requestbody;
 
 import java.math.BigDecimal;
 import java.util.GregorianCalendar;

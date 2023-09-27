@@ -1,4 +1,4 @@
-package com.abdi.cardiscover;
+package com.abdi.cardiscover.utility;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -28,7 +28,7 @@ import com.abdi.cardiscover.repository.RateRepository;
 import com.abdi.cardiscover.repository.ReservationRepository;
 import com.abdi.cardiscover.repository.SizeRepository;
 import com.abdi.cardiscover.repository.SupplierRepository;
-import com.abdi.cardiscover.requestbody.CarRequestBody;
+import com.abdi.cardiscover.utility.requestbody.CarRequestBody;
 import com.opencsv.CSVReader;
 
 import jakarta.transaction.Transactional;
