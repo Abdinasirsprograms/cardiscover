@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.abdi.cardiscover.entity.car.CarEntity;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +20,7 @@ public class RateEntity {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Long id;
   private BigDecimal rate;
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.PERSIST)
   private List<CarEntity> cars = new ArrayList<>();
 //   the default constructor exists only for the sake of JPA.
   public RateEntity() {}

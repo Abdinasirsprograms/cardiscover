@@ -1,23 +1,35 @@
-package com.abdi.cardiscover.requestbody;
+package com.abdi.cardiscover.utility.requestbody;
 
 import java.util.GregorianCalendar;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 
-public class Reservation {
+public class ReservationRequestBody {
     private String doLocation;
     private String puLocation;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private GregorianCalendar doDate;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private GregorianCalendar puDate;
-    private Long carId;
-    public Long getCarId() {
-        return carId;
+    private Long id;
+    public ReservationRequestBody(String doLocation,
+    String puLocation,
+    GregorianCalendar doDate,
+    GregorianCalendar puDate,
+    Long id) {
+        this.doLocation = doLocation;
+        this.puLocation = puLocation;
+        this.doDate = doDate;
+        this.puDate = puDate;
+        this.id = id;
     }
-    public void setCarId(Long carId) {
-        this.carId = carId;
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
     public String getDoLocation() {
         return doLocation;
@@ -45,7 +57,7 @@ public class Reservation {
     }
     @Override
     public String toString() {
-        return "RequestAvaliability [doLocation=" + doLocation + ", puLocation=" + puLocation + ", doDate=" + doDate
-                + ", puDate=" + puDate + "]";
+        return "RequestAvaliability [doLocation=" + doLocation.toString() + ", puLocation=" + puLocation.toString() + ", doDate=" + doDate.toString()
+                + ", puDate=" + puDate.toString() + ", id = " + id + "]";
     }
 }

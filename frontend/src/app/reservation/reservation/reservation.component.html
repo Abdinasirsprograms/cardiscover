@@ -1,0 +1,14 @@
+<mat-card id="unset-discover-button-style">
+    <mat-card-content class="center-me">
+      <button mat-fab extended color="primary"  (click)="emittGetReservations()" type="button" role="button">
+        <ng-container *ngIf="hideReservationsButtonText; else showReservations">
+            <mat-icon>home</mat-icon>
+            Back to Search
+        </ng-container>
+        <ng-template #showReservations>
+            <mat-icon>event_available</mat-icon>
+            View upcoming reservations
+        </ng-template>
+      </button>
+    </mat-card-content>
+  </mat-card>

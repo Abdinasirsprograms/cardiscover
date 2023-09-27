@@ -1,13 +1,8 @@
-package com.abdi.cardiscover.entity.brand;
+package com.abdi.cardiscover.entity;
 
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.abdi.cardiscover.entity.ImageEntity;
-import com.abdi.cardiscover.entity.ModelEntity;
-import com.abdi.cardiscover.entity.SizeEntity;
-import com.abdi.cardiscover.entity.SpecialtyClassEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -33,6 +28,8 @@ public class BrandEntity {
   private List<ModelEntity> models = new ArrayList<>();  
   @ManyToMany(cascade = CascadeType.DETACH)
   private List<SpecialtyClassEntity> specialtyclasses = new ArrayList<>();  
+  @OneToMany(cascade = CascadeType.DETACH)
+  private List<CarEntity> cars;
   @ManyToOne(cascade = CascadeType.ALL)
   private SizeEntity sizes;
   //   the default constructor exists only for the sake of JPA.
@@ -80,4 +77,7 @@ public class BrandEntity {
   public void setLogo(ImageEntity logo) {
     this.logo = logo;
   }
+
+  
+
 }

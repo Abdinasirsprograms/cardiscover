@@ -3,8 +3,6 @@ package com.abdi.cardiscover.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.abdi.cardiscover.entity.car.CarEntity;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +24,7 @@ public class SupplierEntity {
   private ImageEntity logo;
   @ManyToMany(cascade = CascadeType.ALL)
   private List<AgencyEntity> agencies;
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.PERSIST)
   private List<CarEntity> cars = new ArrayList<>();
 //   the default constructor exists only for the sake of JPA.
   protected SupplierEntity() {}

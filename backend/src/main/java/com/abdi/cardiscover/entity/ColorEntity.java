@@ -1,9 +1,6 @@
 package com.abdi.cardiscover.entity;
 
 import java.util.List;
-
-import com.abdi.cardiscover.entity.car.CarEntity;
-
 import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
@@ -24,7 +21,7 @@ public class ColorEntity {
   @OneToMany(cascade = CascadeType.ALL)
   private List<ModelEntity> models = new ArrayList<>();
   
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.PERSIST)
   private List<CarEntity> car = new ArrayList<>();
 //   the default constructor exists only for the sake of JPA.
   protected ColorEntity() {}

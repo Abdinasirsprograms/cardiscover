@@ -1,9 +1,7 @@
-package com.abdi.cardiscover.entity.location;
+package com.abdi.cardiscover.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.abdi.cardiscover.entity.car.CarEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -19,7 +17,7 @@ public class LocationEntity {
     private Long id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<CarEntity> cars;
     
     public Long getId() {
@@ -40,6 +38,10 @@ public class LocationEntity {
     }
     public void setCars(List<CarEntity> cars) {
         this.cars = cars;
+    }
+
+    public void removeCar(CarEntity car){
+        this.cars.remove(car);
     }
 
     public void addCar(CarEntity car) {

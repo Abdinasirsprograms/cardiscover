@@ -17,13 +17,10 @@ I'm using the Spring Web MVC (model-view-controller) framework with a MYSQL data
 Spring's Data `JPA` (Jakarta Persistance APIs) framework uses the Domain-Driven Design (DDD) Repository pattern by generating queries based on method name conventions. Database tables/models are defined in the `repository` folder. 
 
 * You can write MySQL statements by injecting Spring Data's `datasource` into a controller. Then use `preparedstatements()` to prepare the MySQL statements, finally excute the respective operation - i.e `executeUpdate().` 
-* I chose to stick with Hibernate within Spring's Data JPA because it makes it easy to implement CRUD (create-read-update-delete) biolerplate operations by just using method names instead of testing and validating MySQL statements seperately. 
+I chose to stick with Hibernate within Spring's Data JPA because it makes it easy to implement CRUD (create-read-update-delete) biolerplate operations by just using method names instead of testing and validating MySQL statements seperately. Demo data is stored in [`resources/demoData.csv`](https://github.com/Abdinasirsprograms/cardiscover/blob/master/backend/src/main/resources/demoData.csv) 
 Spring Data JPA uses the Java ORM library `Hibernate` as it's JPA provider by default. 
 
-The application.properties.sample define the database configuration settings - copy it and rename it to application.properties so spring can setup the ORM properly. The `spring.jpa.hibernate.ddl-auto` database schema proeprty is needs to be setup so properly so that if the application crashes unexpectldy and relaunches, you'll be prapared for what spring will do to the database - i.e. `create-drop` delete all the database and re-create it, which is very useful for local dev environment, but not so for prod. This setting can also be set to `none` to ensure spring doesn't do anything to the database scheme.
-
-## Docker
-At this time, the Dockerfile does image compose but due to how docker is containerizing and communicating with my host server, I'm unable to get past CORS (Cross Origin Resource Sharing) security policy errors when communicating with my host server and connecting to my host server's MySQL database via Docker's IP `172.17.0.1.` At this time I will need to re-think my entire website's infrastructure to accomodate Docker containers. I'm researching how I can use docker-compose with a MySQL DB service embedded - right now that's my biggest hurdle. The frontend can always be served by apache but I also want to incorporate the frontend. More to come.
+`application.properties.sample` file defines the database configuration settings - copy it and rename it to `application.properties` so spring can setup the ORM properly. `spring.jpa.hibernate.ddl-auto` property is set to create-drop. 
 
 ## Layout
 * Business logic is within `controller` folder with axuillary shared functionality stored within `utility` folder

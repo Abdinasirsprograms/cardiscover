@@ -3,10 +3,10 @@ import { DatePipe } from "@angular/common"
 export interface carFormInterface {
     id: number
     brand: String
-    dropoffTime: DatePipe
+    dropoffTime: Date
     location: String
     model: String
-    pickupTime: DatePipe
+    pickupTime: Date
     rate: Number
     size: String
     supplier: String

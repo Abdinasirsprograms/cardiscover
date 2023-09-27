@@ -1,10 +1,6 @@
 package com.abdi.cardiscover.entity;
 
 import java.util.List;
-
-import com.abdi.cardiscover.entity.brand.BrandEntity;
-import com.abdi.cardiscover.entity.car.CarEntity;
-
 import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;

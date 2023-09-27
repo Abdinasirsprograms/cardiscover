@@ -7,23 +7,36 @@
           </div>
           <mat-card-title>Pick up details</mat-card-title>
         </mat-card-header>
+        
         <mat-card-content >
           <form [formGroup]="carDiscoverForm" (ngSubmit)="getAvaliableCars()" class="form-container">
+
             <mat-form-field class="location-input-parent" >
               <mat-label>Pick Up</mat-label>
-              <input matInput placeholder="Ex. London" name="puLocation" formControlName="puLocation" >
+              <input type="text"
+              aria-label="Input Location"
+              placeholder="Ex. London" name="puLocation" formControlName="puLocation" 
+              matInput
+              (keydown)="puLocationInput($event)"
+              [matAutocomplete]="auto1">
+              <mat-autocomplete autoActiveFirstOption #pickupAutoComplete #auto1="matAutocomplete" (optionSelected)="setDoLocation($event.option.value)">
+                <mat-option *ngFor="let option of filteredPickupOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
             </mat-form-field>
+
             <mat-form-field>
               <mat-label>Pick up date</mat-label>
               <mat-datetimepicker-toggle [for]="puDate" class="datetime-picker-toggle"   matSuffix></mat-datetimepicker-toggle>
               <mat-datetimepicker #puDate type="datetime" [style]="{color:'green!important'}"> </mat-datetimepicker>
               <input matInput formControlName="puDate" [matDatetimepicker]="puDate" required autocomplete="false" />
-          
             </mat-form-field>
         </form>
         </mat-card-content>
       </mat-card>
     </div>
+
     <div class="grid-list-item">
         <mat-card class="card-background">
           <mat-card-header>
@@ -32,12 +45,24 @@
             </div>
             <mat-card-title>Drop off details</mat-card-title>
           </mat-card-header>
+          
           <mat-card-content>
             <form  [formGroup]="carDiscoverForm" (ngSubmit)="getAvaliableCars()" class="form-container">
+
               <mat-form-field class="location-input-parent" >
                 <mat-label>Drop Off location</mat-label>
-                <input matInput placeholder="Ex. London" name="doLocation" formControlName="doLocation" >
+                <input type="text"
+                placeholder="Ex. London" name="doLocation" formControlName="doLocation" 
+                matInput
+                (keydown)="doLocationInput($event)"
+                [matAutocomplete]="dropOffAutoComplete">
+                <mat-autocomplete autoActiveFirstOption #dropOffAutoComplete="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredDropoffOptions | async" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
               </mat-form-field>
+
               <mat-form-field>
               <mat-label>Drop off date</mat-label>
               <mat-datetimepicker-toggle [for]="doDate" class="datetime-picker-toggle"   matSuffix></mat-datetimepicker-toggle>

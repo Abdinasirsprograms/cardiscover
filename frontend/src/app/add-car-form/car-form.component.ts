@@ -1,4 +1,4 @@
-import { Component, Injectable, Input, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { carFormInterface } from '../../car-form.interface';
@@ -13,27 +13,29 @@ import { DatePipe } from '@angular/common';
   templateUrl: './car-form.component.html',
   styleUrls: ['./car-form.component.css'],
 })
-export class AddCarFormComponent implements OnInit {
+export class AddCarFormComponent implements OnInit,OnChanges {
   
   carForm: FormGroup = this.formBuilder.group({
+    id: [null],
     brand: ['',Validators.required],
     dropoffTime: [null, Validators.required],
     location: ['',Validators.required],
     model: ['', Validators.required],
     pickupTime: [null, Validators.required],
-    rate: [null, Validators.required],
+    rate: ['', Validators.required],
     size: ['', Validators.required],
     supplier: ['', Validators.required]
-  });;
-  @Input() id: number | undefined;
-  @Input() brand: String | undefined;
-  @Input() dropoffTime: DatePipe | undefined;
-  @Input() location: String| undefined;
-  @Input() model: String| undefined;
-  @Input() pickupTime: DatePipe | undefined;
-  @Input() rate: String| undefined;
-  @Input() size: String| undefined;
-  @Input() supplier: String| undefined;
+  });
+  @Input() id!: Number;
+  @Input() reservation_id!: Number;
+  @Input() brand!: String;
+  @Input() dropoffTime!: Date;
+  @Input() location!: String;
+  @Input() model!: String;
+  @Input() pickupTime!: Date;
+  @Input() rate!: String;
+  @Input() size!: String;
+  @Input() supplier!: String;
   editView = false;
   clearSelectedView = false;
   rowsClicked: number[]= [];
@@ -48,20 +50,29 @@ export class AddCarFormComponent implements OnInit {
      }
 
   addMultiple(){}
-
+  
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+  }
 
   ngOnInit(): void {
-    this.carForm = this.formBuilder.group({
-      brand: ['',Validators.required],
-      dropoffTime: [null, Validators.required],
-      location: ['',Validators.required],
-      model: ['', Validators.required],
-      pickupTime: [null, Validators.required],
-      rate: [null, Validators.required],
-      size: ['', Validators.required],
-      supplier: ['', Validators.required]
-    });
-  }
+    this.carForm.controls['id'].disable()
+    if(this.reservation_id !== -1){
+      this.carForm.addControl('reservation_id',  this.formBuilder.control(this.reservation_id, [Validators.required]))
+      this.carForm.controls['reservation_id'].disable()
+    }
+  };
+  //   this.carForm = this.formBuilder.group({
+  //     brand: ['',Validators.required],
+  //     dropoffTime: [null, Validators.required],
+  //     location: ['',Validators.required],
+  //     model: ['', Validators.required],
+  //     pickupTime: [null, Validators.required],
+  //     rate: [null, Validators.required],
+  //     size: ['', Validators.required],
+  //     supplier: ['', Validators.required]
+  //   });
+  // }
 
   onSubmit(): void {
     
