@@ -7,7 +7,7 @@ import { carFormInterface } from 'src/car-form.interface';
   providedIn: 'root'
 })
 export class ReservationHTTPService {
-  private BASE_API_URL = 'https://abdinasirnoor.com/cardiscover/reservation/'
+  private BASE_API_URL = 'https://abdinasirnoor.com/cardiscover/api/reservation/'
 
   constructor(private http: HttpClient) { }
   deleteReservation(reservation_id: Number){
