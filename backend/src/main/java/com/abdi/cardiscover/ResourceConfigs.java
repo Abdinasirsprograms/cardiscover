@@ -36,6 +36,6 @@ public class ResourceConfigs implements WebMvcConfigurer
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("http://192.168.1.196:4200", "http://localhost:8080");
+        registry.addMapping("/**").allowedOrigins("https://abdinasirnoor.com", "http://192.168.1.196:4200", "http://localhost:8080");
     }
 };
