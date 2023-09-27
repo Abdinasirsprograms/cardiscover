@@ -17,10 +17,10 @@ I'm using the Spring Web MVC (model-view-controller) framework with a MYSQL data
 Spring's Data `JPA` (Jakarta Persistance APIs) framework uses the Domain-Driven Design (DDD) Repository pattern by generating queries based on method name conventions. Database tables/models are defined in the `repository` folder. 
 
 * You can write MySQL statements by injecting Spring Data's `datasource` into a controller. Then use `preparedstatements()` to prepare the MySQL statements, finally excute the respective operation - i.e `executeUpdate().` 
-I chose to stick with Hibernate within Spring's Data JPA because it makes it easy to implement CRUD (create-read-update-delete) biolerplate operations by just using method names instead of testing and validating MySQL statements seperately. 
+I chose to stick with Hibernate within Spring's Data JPA because it makes it easy to implement CRUD (create-read-update-delete) biolerplate operations by just using method names instead of testing and validating MySQL statements seperately. Demo data is stored in [`resources/demoData.csv`](https://github.com/Abdinasirsprograms/cardiscover/blob/master/backend/src/main/resources/demoData.csv) 
 Spring Data JPA uses the Java ORM library `Hibernate` as it's JPA provider by default. 
 
-`application.properties.sample` file defines the database configuration settings - copy it and rename it to `application.properties` so spring can setup the ORM properly. `spring.jpa.hibernate.ddl-auto` property is set to update. 
+`application.properties.sample` file defines the database configuration settings - copy it and rename it to `application.properties` so spring can setup the ORM properly. `spring.jpa.hibernate.ddl-auto` property is set to create-drop. 
 
 ## Layout
 * Business logic is within `controller` folder with axuillary shared functionality stored within `utility` folder
